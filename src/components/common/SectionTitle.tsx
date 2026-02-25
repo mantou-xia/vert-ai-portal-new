@@ -16,12 +16,12 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
   level = 2 
 }) => {
   return (
-    <div className="section-title">
-      <Title level={level} className="section-title-text">
+    <div className="common-section-title">
+      <Title level={level} className="common-section-title-text">
         {title}
       </Title>
       {subtitle && (
-        <Paragraph className="section-subtitle">
+        <Paragraph className="common-section-subtitle">
           {subtitle}
         </Paragraph>
       )}

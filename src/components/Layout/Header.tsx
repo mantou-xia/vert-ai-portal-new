@@ -33,59 +33,37 @@ const Header: React.FC = () => {
     },
   ];
 
-  const productsMenuItems = [
-    { key: 'product1', label: 'AI产品1' },
-    { key: 'product2', label: 'AI产品2' },
-    { key: 'product3', label: 'AI产品3' },
-  ];
-
-  const solutionsMenuItems = [
-    { key: 'solution1', label: '垂直场景1' },
-    { key: 'solution2', label: '垂直场景2' },
-    { key: 'solution3', label: '垂直场景3' },
-  ];
-
-  const resourcesMenuItems = [
-    { key: 'download', label: '资源下载' },
-    { key: 'blog', label: '行业资讯' },
-    { key: 'academy', label: '学习中心' },
-  ];
-
-  const aboutMenuItems = [
-    { key: 'intro', label: '公司介绍' },
-    { key: 'honor', label: '荣誉奖项' },
-    { key: 'partner', label: '合作伙伴' },
+  const techCenterMenuItems = [
+    { key: 'dev-platform', label: '开发者平台' },
+    { key: 'enterprise-solution', label: '企业解决方案' },
+    { key: 'smart-terminal', label: '智能终端' },
+    { key: 'performance-opt', label: '性能优化' },
   ];
 
   const menuItems = [
     {
-      key: 'products',
-      label: t('nav.products'),
-      children: productsMenuItems,
+      key: 'home',
+      label: '首页',
+      onClick: () => navigate(routes.home),
+    },
+    {
+      key: 'tech-center',
+      label: '技术中心',
+      children: techCenterMenuItems,
     },
     {
       key: 'solutions',
-      label: t('nav.solutions'),
-      children: solutionsMenuItems,
+      label: '解决方案',
+      onClick: () => navigate(routes.solutions),
     },
     {
-      key: 'cases',
-      label: t('nav.cases'),
-      onClick: () => navigate(routes.cases),
+      key: 'contact',
+      label: '联系我们',
+      onClick: () => navigate(routes.about),
     },
     {
-      key: 'resources',
-      label: t('nav.resources'),
-      children: resourcesMenuItems,
-    },
-    {
-      key: 'about',
-      label: t('nav.about'),
-      children: aboutMenuItems,
-    },
-    {
-      key: 'fde',
-      label: t('nav.fde'),
+      key: 'trial',
+      label: '立即试用',
       onClick: () => navigate(routes.fde),
     },
   ];

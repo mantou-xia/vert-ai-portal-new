@@ -9,7 +9,6 @@ import SolutionsPage from './pages/SolutionsPage';
 import CasesPage from './pages/CasesPage';
 import ResourcesPage from './pages/ResourcesPage';
 import AboutPage from './pages/AboutPage';
-import FDEPage from './pages/FDEPage';
 import { routes } from './config/routes';
 import './App.css';
 
@@ -27,7 +26,6 @@ function App() {
           <Route path={routes.cases} element={<CasesPage />} />
           <Route path={routes.resources} element={<ResourcesPage />} />
           <Route path={routes.about} element={<AboutPage />} />
-          <Route path={routes.fde} element={<FDEPage />} />
           <Route path="*" element={<Navigate to={routes.home} replace />} />
         </Routes>
       </Content>

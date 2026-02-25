@@ -1,18 +1,18 @@
-.section-title {
+.common-section-title {
   text-align: center;
   margin-bottom: 48px;
 }
 
-.section-title-text {
+.common-section-title-text {
   margin-bottom: 16px !important;
 }
 
-.section-subtitle {
+.common-section-subtitle {
   font-size: 16px;
   color: rgba(0, 0, 0, 0.65);
   margin-bottom: 0 !important;
 }
 
-.dark .section-subtitle {
+.dark .common-section-subtitle {
   color: rgba(255, 255, 255, 0.65);
 }
