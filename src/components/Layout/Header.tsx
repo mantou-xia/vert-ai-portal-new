@@ -10,7 +10,7 @@ import './Header.css';
 const { Header: AntHeader } = Layout;
 
 const Header: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const navigate = useNavigate();
   const { themeMode, toggleTheme } = useTheme();
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
@@ -33,13 +33,6 @@ const Header: React.FC = () => {
     },
   ];
 
-  const techCenterMenuItems = [
-    { key: 'dev-platform', label: '开发者平台' },
-    { key: 'enterprise-solution', label: '企业解决方案' },
-    { key: 'smart-terminal', label: '智能终端' },
-    { key: 'performance-opt', label: '性能优化' },
-  ];
-
   const menuItems = [
     {
       key: 'home',
@@ -47,24 +40,24 @@ const Header: React.FC = () => {
       onClick: () => navigate(routes.home),
     },
     {
-      key: 'tech-center',
-      label: '技术中心',
-      children: techCenterMenuItems,
+      key: 'fde-solutions',
+      label: 'FDE解决方案',
+      onClick: () => navigate(routes.fde),
     },
     {
-      key: 'solutions',
-      label: '解决方案',
+      key: 'maas',
+      label: 'MAAS',
       onClick: () => navigate(routes.solutions),
     },
     {
-      key: 'contact',
-      label: '联系我们',
-      onClick: () => navigate(routes.about),
+      key: 'products',
+      label: '产品',
+      onClick: () => navigate(routes.products),
     },
     {
-      key: 'trial',
-      label: '立即试用',
-      onClick: () => navigate(routes.fde),
+      key: 'about',
+      label: '关于我们',
+      onClick: () => navigate(routes.about),
     },
   ];
 
@@ -72,27 +65,23 @@ const Header: React.FC = () => {
     <AntHeader className="app-header">
       <div className="header-content">
         <div className="header-logo" onClick={() => navigate(routes.home)}>
-          <span className="logo-text">VERT.AI</span>
+          <span className="logo-text">
+            <img src="/images/home/logo.png" alt="VERT" />
+          </span>
         </div>
 
-        <Menu
-          mode="horizontal"
-          items={menuItems}
-          className="header-menu"
-          selectedKeys={[]}
-        />
+        <div className="header-nav-center">
+          <div className="header-nav-pill">
+            <Menu
+              mode="horizontal"
+              items={menuItems}
+              className="header-menu"
+              selectedKeys={[]}
+            />
+          </div>
+        </div>
 
-        <Space className="header-actions" size="middle">
-          <span className="header-phone">400-880-0750</span>
-          
-          <Button type="link" onClick={() => navigate('/login')}>
-            {i18n.language === 'zh-CN' ? '账号登录' : 'Login'}
-          </Button>
-
-          <Button type="primary" onClick={() => navigate(routes.home)}>
-            {t('common.freeConsult')}
-          </Button>
-
+        {/* <Space className="header-actions" size="middle">
           <Dropdown menu={{ items: languageMenuItems }} placement="bottomRight">
             <Button icon={<GlobalOutlined />} type="text" />
           </Dropdown>
@@ -109,10 +98,10 @@ const Header: React.FC = () => {
           icon={<MenuOutlined />}
           onClick={() => setMobileMenuVisible(!mobileMenuVisible)}
           type="text"
-        />
+        /> */}
       </div>
 
-      {mobileMenuVisible && (
+      {/* {mobileMenuVisible && (
         <div className="mobile-menu">
           <Menu
             mode="vertical"
@@ -120,7 +109,7 @@ const Header: React.FC = () => {
             onClick={() => setMobileMenuVisible(false)}
           />
         </div>
-      )}
+      )} */}
     </AntHeader>
   );
 };
