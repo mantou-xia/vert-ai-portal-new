@@ -36,9 +36,7 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: |
-          npm ci
-          npm install --save-dev webpack-cli  # 强制安装 CLI
+        run: npm ci
       
       - name: Build
         run: npm run build
