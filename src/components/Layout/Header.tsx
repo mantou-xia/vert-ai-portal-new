@@ -1,37 +1,13 @@
-import React, { useState } from 'react';
-import { Layout, Menu, Button, Dropdown, Space } from 'antd';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
+import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { MenuOutlined, GlobalOutlined, MoonOutlined, SunOutlined } from '@ant-design/icons';
-import { useTheme } from '../../hooks/useTheme';
 import { routes } from '../../config/routes';
 import './Header.css';
 
 const { Header: AntHeader } = Layout;
 
 const Header: React.FC = () => {
-  const { i18n } = useTranslation();
   const navigate = useNavigate();
-  const { themeMode, toggleTheme } = useTheme();
-  const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
-
-  const handleLanguageChange = (lang: string) => {
-    i18n.changeLanguage(lang);
-    localStorage.setItem('language', lang);
-  };
-
-  const languageMenuItems = [
-    {
-      key: 'zh-CN',
-      label: '简体中文',
-      onClick: () => handleLanguageChange('zh-CN'),
-    },
-    {
-      key: 'en-US',
-      label: 'English',
-      onClick: () => handleLanguageChange('en-US'),
-    },
-  ];
 
   const menuItems = [
     {

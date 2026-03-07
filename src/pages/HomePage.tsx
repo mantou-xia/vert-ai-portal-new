@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import './HomePage.css';
-import { ArrowRightOutlined, EnterOutlined, ToolOutlined, WindowsOutlined, ZoomInOutlined } from '@ant-design/icons';
 import HomeVideo from './home/HomeVideo';
 import HomeItemShow from './home/HomeItemShow';
 import HomeSubjectKeyword from './home/HomeSubjectKeyword';
