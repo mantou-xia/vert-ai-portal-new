@@ -3,6 +3,7 @@ import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../config/routes';
 import './Header.css';
+import { getAssetPath } from '../../utils/path';
 
 const { Header: AntHeader } = Layout;
 
@@ -42,7 +43,7 @@ const Header: React.FC = () => {
       <div className="header-content">
         <div className="header-logo" onClick={() => navigate(routes.home)}>
           <span className="logo-text">
-            <img src="/images/home/logo.png" alt="VERT" />
+            <img src={getAssetPath('/images/home/logo.png')} alt="VERT" />
           </span>
         </div>
 
