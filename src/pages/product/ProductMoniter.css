@@ -1,0 +1,141 @@
+.product-moniter {
+  padding: 72px 40px 80px;
+  background: #f8fafc;
+  color: #1e293b;
+
+  .product-moniter__header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .product-moniter__title {
+    margin: 0 0 16px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .product-moniter__subtitle {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #64748b;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .product-moniter__grid {
+    max-width: 1000px;
+    margin: 0 auto 56px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .product-moniter__card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+  }
+
+  .product-moniter__card-title {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  .product-moniter__card-desc {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  .product-moniter__card-body {
+    min-height: 160px;
+    border-radius: 12px;
+    background: #f1f5f9;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-moniter__card-img {
+    width: 100%;
+    height: 100%;
+    min-height: 160px;
+    object-fit: cover;
+  }
+
+  .product-moniter__stats {
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    text-align: center;
+  }
+
+  .product-moniter__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .product-moniter__stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .product-moniter__stat-label {
+    font-size: 14px;
+    color: #64748b;
+  }
+
+  @media (max-width: 768px) {
+    padding: 48px 20px 56px;
+
+    .product-moniter__title {
+      font-size: 22px;
+    }
+
+    .product-moniter__subtitle {
+      font-size: 14px;
+    }
+
+    .product-moniter__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .product-moniter__card-body {
+      min-height: 140px;
+    }
+
+    .product-moniter__card-img {
+      min-height: 140px;
+    }
+
+    .product-moniter__stats {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .product-moniter__stat-value {
+      font-size: 22px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .product-moniter__stats {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}

@@ -54,6 +54,80 @@ export default {
       description: '企业级AI平台服务',
     },
   },
+
+  // 插件
+  plugins: {
+    title: '海量插件，即插即用',
+    subtitle: '覆盖办公、AI能力、数据处理等多场景,无需开发即可集成',
+    center: '插件中心',
+    centerEn: 'Plugin Center',
+    pdfReader: 'PDF阅读器',
+    searchApi: 'SearchAPI',
+    chatAi: 'Chat AI',
+    soon: 'SOON!',
+    dcpServer: 'DCP server',
+    formulaModel: '公式模型服务',
+    agentSql: 'AgentSQL',
+    privateBot: '私有化部署 Bot',
+    ppt: 'PPT',
+    shareAi: 'Share AI',
+    github: 'Github',
+    statPlugins: '插件总数',
+    statUsage: '使用次数',
+    statDevelopers: '开发者',
+    statEnterprises: '企业用户',
+  },
+
+  // 工作流
+  workflow: {
+    title: '无代码工作流引擎,稳定易用',
+    subtitle: '拖拽式搭建AI工作流,可视化配置执行逻辑,降低自动化门槛',
+    feature1: '拖拽式可视化编排,无需编写代码',
+    feature2: '支持条件分支、循环等复杂逻辑',
+    feature3: '实时预览执行结果,快速调试',
+    feature4: '丰富的模板库,一键开始使用',
+    cta: '立即试用',
+    statTemplates: '工作流模板',
+    statDaily: '日均执行',
+    statSuccess: '成功率',
+  },
+
+  // 监控/调试
+  monitor: {
+    title: '实时调试预览，支持性能监控',
+    subtitle: '实时查看接口调用耗时、错误日志,在线调试参数,快速定位问题',
+    card1Title: '实时性能监控',
+    card1Desc: '监控APP响应时间、成功率等关键指标',
+    card2Title: '在线调试控制台',
+    card2Desc: '实时查看请求日志、错误堆栈信息',
+    card3Title: '参数在线调试',
+    card3Desc: '可视化编辑请求参数,即时预览结果',
+    card4Title: '性能分析报告',
+    card4Desc: '生成详细的性能分析和优化建议',
+    statResponse: '平均响应时间',
+    statCoverage: '监控覆盖率',
+    statLocate: '问题定位速度提升',
+  },
+
+  // 大模型集成
+  model: {
+    title: '通用大模型集成能力',
+    subtitle: '支持市场主流大模型快速匹配集成,一键连接顶尖AI能力',
+    latency: '延迟',
+    accuracy: '准确率',
+    gpt4: 'OpenAI GPT-4',
+    gpt4Caps: '文本生成 代码辅助 多模态',
+    claude: 'Claude 3',
+    claudeCaps: '长文本理解 分析推理 创作',
+    deepseek: 'deepseek',
+    deepseekCaps: '文本生成 代码辅助 多模态',
+    qianwen: '通义千问',
+    qianwenCaps: '多语言 多模态 代码生成',
+    gemini: 'Gemini Pro',
+    geminiCaps: '推理 创意 多模态',
+    kimi: 'Kimi',
+    kimiCaps: '文本生成 代码辅助 多模态',
+  },
   
   // 解决方案
   solutions: {
@@ -133,6 +207,28 @@ export default {
     subtitle: '深入前沿互动交流，学习AI应用实践',
   },
   
+  // 关于页主图
+  aboutMain: {
+    title: '关于VERT',
+    description: 'VERT.AI 为全球中大型企业、机构及数据密集型组织,提供异构数据整合、分析及建模、大模型部署,专注企业级AI「数字员工」研发与落地。',
+    cta: '立即开始',
+  },
+
+  // 关于页-核心竞争力
+  aboutDescript: {
+    title: '我们团队的核心竞争力',
+    col1Title: '专注于AI技术研发与企业应用',
+    fde: 'VERT.FDE: 现场交付与深度实施团队',
+    maas: 'VERT.MAAS: 垂直场景 AI Agent 插件(数字员工)',
+    flowAi: 'VERT.Flow AI: 应用开发平台(企业级AI 应用开发平台)',
+    insight: 'VERT.Insight: 数据底座(企业级数据整合与治理平台)',
+    core: 'VERT.Core: 云原生平台(DevOps 与跨环境部署平台)',
+    col2Title: '行业化AI企业落地经验',
+    col2Text: '我们团队和自研软件为中国商业企业与前沿医疗机构提供支撑,赋能实时 AI驱动决策,应用场景覆盖从企业管理、生产车间到一线医疗的前沿的全领域。',
+    col3Title: '团队成员构成情况',
+    col3Text: '核心团队具备多年企业级 AI 部署与大数据治理经验,均为阿里、字节、百度。产品及研发人员占比超90%,核心技术团队均为硕士及博士学历。',
+  },
+
   // 联系我们
   contact: {
     title: '立即咨询AI解决方案',
