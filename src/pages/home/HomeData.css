@@ -1,11 +1,11 @@
 .home-data {
   padding: 96px 0;
-  background: #f4f5f5;
+  background: #fff;
 
   .home-data__inner {
     width: 90%;
     max-width: 1840px;
-    min-height: 760px;
+    max-height: 760px;
     margin: 0 auto;
     padding: 48px 48px 56px;
     border-radius: 32px;
@@ -89,7 +89,7 @@
     font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
     font-size: 16px;
     padding-right: 8px;
-    color: #fff
+    color: #fff;
     opacity: 0.6;
   }
 

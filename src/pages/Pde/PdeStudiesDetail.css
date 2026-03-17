@@ -1,186 +1,214 @@
 .pde-studies-detail {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 48px 0 80px;
+  padding: 0;
+  background: #fff;
+  margin-top: 64px;
 
-  .pde-studies-detail__viewport {
+  .pde-studies-detail__inner {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1760px;
     margin: 0 auto;
-    padding: 0 24px;
-    overflow: hidden;
-    flex: 1;
-    display: flex;
-    align-items: center;
-  }
-
-  .pde-studies-detail__track {
-    display: flex;
-    width: 100%;
-    gap: 20px;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    flex-shrink: 0;
+    padding: 0 80px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
   }
 
   .pde-studies-detail__card {
     position: relative;
-    flex: 1 1 0;
-    min-width: 0;
-    box-sizing: border-box;
-  }
-
-  .pde-studies-detail__card-inner {
-    position: relative;
-    width: 100%;
-    max-width: none;
-    margin: 0 auto;
-    padding: 32px 24px 0;
+    min-height: 592px;
+    border-radius: 32px;
+    background: #f7f7f7;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     overflow: hidden;
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-bottom: 3px solid transparent;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+
+      .pde-studies-detail__expand {
+        opacity: 1;
+        max-height: 400px;
+      }
+    }
   }
 
-  .pde-studies-detail__card-inner:hover {
-    border-bottom-color: #3b82f6;
-  }
-
-  .pde-studies-detail__card-inner:hover .pde-studies-detail__card-slide {
-    transform: translateY(0);
-  }
-
-  .pde-studies-detail__card-title {
-    margin: 0 0 16px;
-    font-size: 22px;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.35;
-  }
-
-  .pde-studies-detail__card-pain-wrap {
+  .pde-studies-detail__content {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 20px;
   }
 
-  .pde-studies-detail__pain-tag {
-    align-self: flex-start;
-    padding: 6px 14px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #ffffff;
-    background: #0f172a;
-    border-radius: 8px;
-  }
-
-  .pde-studies-detail__card-pain {
+  .pde-studies-detail__title {
     margin: 0;
-    font-size: 14px;
-    line-height: 1.65;
-    color: #64748b;
+    color: #000;
+    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 40px;
   }
 
-  .pde-studies-detail__card-img-wrap {
-    position: relative;
+  .pde-studies-detail__pain {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pde-studies-detail__tag {
+    width: max-content;
+    height: 24px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #1a1a1a;
+    color: #fff;
+    font-family: "PingFang SC", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pde-studies-detail__pain-text {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .pde-studies-detail__image-wrap {
     width: 100%;
-    aspect-ratio: 16/10;
-    border-radius: 12px;
+    height: 336px;
+    border: 1px solid #1a1a1a;
+    border-radius: 24px;
     overflow: hidden;
-    background: #f1f5f9;
-    margin-bottom: 15px;
   }
 
-  .pde-studies-detail__card-img {
+  .pde-studies-detail__card--audit .pde-studies-detail__image-wrap {
+    border-width: 1.049px;
+    border-radius: 25.167px;
+  }
+
+  .pde-studies-detail__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  .pde-studies-detail__card-img-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-  }
-
-  .pde-studies-detail__card-slide {
+  .pde-studies-detail__expand {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 20px 24px 24px;
-    background: #1e293b;
-    transform: translateY(100%);
-    transition: transform 0.35s ease;
-    z-index: 2;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 16px 16px 16px 16px;
-    height: 60%;
+    background: #101010;
+    padding: 24px 40px 40px;
+    border-radius: 0 0 32px 32px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.35s ease, max-height 0.35s ease;
   }
 
-  .pde-studies-detail__slide-block {
-    margin-bottom: 16px;
+  .pde-studies-detail__expand-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 0;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
   }
 
-  .pde-studies-detail__slide-block:last-child {
-    margin-bottom: 0;
-  }
-
-  .pde-studies-detail__slide-title {
-    margin: 0 0 8px;
-    font-size: 15px;
-    font-weight: 700;
-    color: #ffffff;
-  }
-
-  .pde-studies-detail__slide-text {
+  .pde-studies-detail__expand-title {
     margin: 0;
-    font-size: 13px;
-    line-height: 1.65;
-    color: #e2e8f0;
+    color: #fff;
+    font-family: "PingFang SC", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
   }
 
-  .pde-studies-detail__slide-highlight {
-    color: #aeff21;
-    font-weight: 600;
+  .pde-studies-detail__expand-text {
+    margin: 0;
+    color: #bfbfbf;
+    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 32px;
+
+    .pde-studies-detail__highlight {
+      color: #aeff21;
+      font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+      font-weight: 700;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .pde-studies-detail__inner {
+      padding: 0 40px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .pde-studies-detail__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .pde-studies-detail__card {
+      min-height: auto;
+    }
   }
 
   @media (max-width: 768px) {
-    padding: 32px 0 72px;
-
-    .pde-studies-detail__viewport {
-      padding: 0 16px;
+    .pde-studies-detail__inner {
+      padding: 0 24px;
     }
 
-    .pde-studies-detail__track {
-      flex-direction: column;
+    .pde-studies-detail__card {
+      padding: 24px;
       gap: 24px;
+      border-radius: 24px;
     }
 
-    .pde-studies-detail__card-inner {
-      padding: 24px 20px 0;
+    .pde-studies-detail__title {
+      font-size: 18px;
+      line-height: 30px;
     }
 
-    .pde-studies-detail__card-title {
+    .pde-studies-detail__pain-text {
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .pde-studies-detail__image-wrap {
+      height: auto;
+      aspect-ratio: 496 / 336;
+    }
+
+    .pde-studies-detail__expand {
+      padding: 20px 24px 24px;
+      border-radius: 0 0 24px 24px;
+    }
+
+    .pde-studies-detail__expand-title {
       font-size: 18px;
     }
 
-    .pde-studies-detail__card-pain,
-    .pde-studies-detail__card-ai,
-    .pde-studies-detail__card-value {
-      font-size: 13px;
-    }
-
-    .pde-studies-detail__card-slide {
-      padding: 20px 20px 28px;
+    .pde-studies-detail__expand-text {
+      font-size: 14px;
+      line-height: 24px;
     }
   }
 }

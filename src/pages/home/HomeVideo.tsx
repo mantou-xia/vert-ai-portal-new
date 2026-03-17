@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { getAssetPath } from '../../utils/path';
 import { useScrollContext } from '../../contexts/ScrollContext';
 import MessageBoard from '../MessageBoard';
+import CTAButton from '../../components/common/CTAButton';
 import './HomeVideo.css';
 
 const VIDEO_SRC = getAssetPath('/videos/home/home_video.mp4');
@@ -92,13 +93,10 @@ const HomeVideo: React.FC = () => {
             className="home-video-cta-wrap"
             style={{ opacity: ctaOpacity, pointerEvents: ctaOpacity < 0.1 ? 'none' : 'auto' }}
           >
-            <button
-              type="button"
+            <CTAButton
               className="home-video-cta"
               onClick={() => setIsMessageOpen(true)}
-            >
-              立即开始 →
-            </button>
+            />
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MessageBoard from '../MessageBoard';
 import ProductFlowG6 from './ProductFlowG6';
+import CTAButton from '../../components/common/CTAButton';
 import './ProductMainImg.css';
 
 const ProductMainImg: React.FC = () => {
@@ -19,13 +20,10 @@ const ProductMainImg: React.FC = () => {
             一站式完成大模型集成、管理、多智能 Agent 编排、知识库和 RAG 引擎。智能化工作流编排与
             工具生态连接帮助传统系统升级为 AI 驱动，激活可用的数据资产，全面提升企业 AI 落地效率。
           </p>
-          <button
-            type="button"
+          <CTAButton
             className="product-main-img__cta"
             onClick={() => setIsMessageOpen(true)}
-          >
-            立即开始
-          </button>
+          />
           <MessageBoard open={isMessageOpen} onClose={() => setIsMessageOpen(false)} />
         </div>
 

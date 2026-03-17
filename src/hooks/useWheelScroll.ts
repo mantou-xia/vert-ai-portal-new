@@ -8,6 +8,12 @@ export type UseWheelScrollOptions = {
    * 为 true 时：区域进入视口后锁定，滑轮仅切换条目；到达最后一条且向下滚时解锁。
    */
   lockMode?: boolean;
+  /**
+   * 锁区模式下的 IntersectionObserver threshold，0~1。
+   * 越大则需更多区域进入视口才锁定，可避免过早拦截上一区块的滚动（如 HomeVideo 下滑放大）。
+   * 默认 0.8。
+   */
+  lockThreshold?: number;
 };
 
 /**
@@ -19,7 +25,7 @@ export const useWheelScroll = (
   itemCount: number,
   options: UseWheelScrollOptions = {}
 ) => {
-  const { scrollThreshold = 120, lockMode = false } = options;
+  const { scrollThreshold = 120, lockMode = false, lockThreshold = 0.8 } = options;
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isLocked, setIsLocked] = useState(false);
@@ -40,11 +46,11 @@ export const useWheelScroll = (
         if (!entry) return;
         setIsLocked(entry.isIntersecting);
       },
-      { threshold: 0.3 }
+      { threshold: lockThreshold }
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [lockMode]);
+  }, [lockMode, lockThreshold]);
 
   useEffect(() => {
     if (itemCount <= 0) return;

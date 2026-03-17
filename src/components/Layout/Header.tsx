@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { routes } from '../../config/routes';
 import { useScrollContext } from '../../contexts/ScrollContext';
 import MessageBoard from '../../pages/MessageBoard';
+import CTAButton from '../common/CTAButton';
 import './Header.css';
 import { getAssetPath } from '../../utils/path';
 
@@ -57,13 +58,10 @@ const Header: React.FC = () => {
               <div className="header-mini-logo" onClick={() => navigate(routes.home)}>
                 <img src={getAssetPath('/images/home/logo.png')} alt="VERT" />
               </div>
-              <button
-                type="button"
+              <CTAButton
                 className="header-mini-cta"
                 onClick={() => setIsMessageOpen(true)}
-              >
-                立即开始 →
-              </button>
+              />
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@
   right: 0;
   z-index: 100;
   padding: 24px 40px;
-  background: #F5F5F5;
+  background: #fff;
   border-bottom: none;
   min-height: 88px;
   line-height: normal;
@@ -123,26 +123,6 @@
     }
   }
 
-  .header-mini-cta {
-    padding: 8px 20px;
-    border-radius: 100px;
-    border: none;
-    background: #aeff21;
-    color: #000000;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    height: 48px;
-    transition: background 0.2s;
-
-    &:hover {
-      background: #c4ff50;
-    }
-  }
 
   /* ---- Legacy slots ---- */
   .header-actions {

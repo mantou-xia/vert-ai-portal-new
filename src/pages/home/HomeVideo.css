@@ -52,31 +52,6 @@
     margin-top: 8px;
   }
 
-  .home-video-cta {
-    padding: 8px 20px;
-    height: 48px;
-    border-radius: 100px;
-    border: none;
-    background: #aeff21;
-    color: #000000;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-
-    &:hover {
-      transform: translateY(-2px);
-      background: #c4ff50;
-      box-shadow: 0 8px 24px rgba(174, 255, 33, 0.4);
-    }
-
-    &:active {
-      transform: translateY(0);
-    }
-  }
 
   .home-video-frame {
     position: absolute;
