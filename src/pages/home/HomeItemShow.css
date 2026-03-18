@@ -152,7 +152,6 @@
       .home-item-show__item-title {
         color: #000000;
         font-weight: 700;
-        font-size: 26px;
       }
 
       .home-item-show__item-desc {
@@ -183,7 +182,12 @@
     line-height: 32px;
     font-weight: 400;
     color: #727272;
-    transition: color 0.2s;
+    transition: color 0.2s, font-weight 0.2s;
+  }
+
+  .home-item-show__item-title--active {
+    color: #000000;
+    font-weight: 700;
   }
 
   .home-item-show__item-desc {

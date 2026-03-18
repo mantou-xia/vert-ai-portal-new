@@ -7,7 +7,6 @@
     width: 100%;
     max-width: 1760px;
     margin: 0 auto;
-    padding: 0 80px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -18,32 +17,34 @@
     margin: 0;
     color: #1a1a1a;
     text-align: center;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 36px;
     font-weight: 700;
     line-height: 50px;
   }
 
   .pde-algorithm-examples__block {
+    position: relative;
     width: 100%;
-    height: 588px;
+    min-height: 576px;
     border-radius: 32px;
     background: #101010;
     overflow: hidden;
     box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 600px 1fr 633px;
-    align-items: center;
-    padding-left: 200px;
+    padding: 99px 200px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
   }
 
   .pde-algorithm-examples__left {
-    grid-column: 1;
     width: 600px;
     color: #fff;
     display: flex;
     flex-direction: column;
     gap: 48px;
+    flex-shrink: 0;
     z-index: 2;
   }
 
@@ -56,7 +57,7 @@
   .pde-algorithm-examples__company {
     margin: 0;
     color: #fff;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 36px;
     font-weight: 700;
     line-height: 50px;
@@ -66,7 +67,7 @@
     margin: 0;
     color: #fff;
     opacity: 0.6;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 28px;
@@ -75,150 +76,191 @@
   .pde-algorithm-examples__intro {
     margin: 0;
     color: #fff;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 28px;
+    max-width: 600px;
   }
 
-  .pde-algorithm-examples__upgrades {
+  .pde-algorithm-examples__metrics {
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: nowrap;
   }
 
-  .pde-algorithm-examples__upgrade-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 0;
+  .pde-algorithm-examples__metric-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
   }
 
-  .pde-algorithm-examples__upgrade-index {
-    min-width: 24px;
-    color: #aeff21;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 28px;
-  }
-
-  .pde-algorithm-examples__upgrade-text {
+  .pde-algorithm-examples__metric-label {
     color: #fff;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 28px;
+  }
+
+  .pde-algorithm-examples__metric-value-wrap {
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .pde-algorithm-examples__metric-value {
+    color: #aeff21;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 40px;
   }
 
   .pde-algorithm-examples__btn {
     width: max-content;
   }
 
-  .pde-algorithm-examples__right {
-    grid-column: 3;
-    width: 633px;
-    height: 460px;
-    justify-self: end;
-    align-self: center;
+  .pde-algorithm-examples__visual {
     position: relative;
+    width: 624px;
+    height: 382px;
+    /* border: 2px solid #ebffd5; */
+    border-bottom: none;
+    border-radius: 25.6px;
+    background: linear-gradient(180deg, #a2ff00 0%, rgba(16, 16, 16, 0) 100%);
+    flex-shrink: 0;
+    z-index: 5;
   }
 
-  .pde-algorithm-examples__stack-image {
-    position: absolute;
-    overflow: hidden;
-    border-left: 2px solid #000;
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
-    border-radius: 24px 0 0 24px;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: left top;
-      display: block;
-    }
-  }
-
-  .pde-algorithm-examples__stack-image--bottom {
-    left: 82px;
-    top: 140px;
-    width: 551px;
-    height: 320px;
-    z-index: 2;
-  }
-
-  .pde-algorithm-examples__stack-image--middle {
-    left: 0;
-    top: 60px;
-    width: 633px;
-    height: 320px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  .pde-algorithm-examples__visual-image-wrapper {
+    position: relative;
+    width: 624px;
+    height: 382px;
+    padding: 2px;
+    background: linear-gradient(to bottom right,#EBFFD5,#101010);
+    border-radius: 25.6px;
     z-index: 1;
+    box-sizing: content-box;
   }
 
-  .pde-algorithm-examples__stack-image--top {
-    left: 82px;
-    top: 0;
-    width: 551.111px;
+  .pde-algorithm-examples__visual-frame {
+    position: absolute;
+    left: 38px;
+    top: 39px;
+    width: 548px;
     height: 320px;
-    border-left-width: 1.778px;
-    border-top-width: 1.778px;
-    border-bottom-width: 1.778px;
-    border-radius: 21.333px 0 0 21.333px;
-    box-shadow: 0 7.111px 21.333px rgba(0, 0, 0, 0.16);
-    z-index: 3;
+    border: 2.4px solid #000;
+    border-radius: 19.2px;
+    overflow: hidden;
+    background: #fff;
+    
+    z-index: 5;
   }
 
-  @media (max-width: 1600px) {
+  .pde-algorithm-examples__visual-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left top;
+    display: block;
+  }
+
+  .pde-algorithm-examples__prompt {
+    position: absolute;
+    left: -249px;
+    top: 340px;
+    width: 411px;
+    height: 72px;
+    border-radius: 32px;
+    border: 1px solid #aeff21;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 8px 8px 24px;
+    box-sizing: border-box;
+    z-index: 9;
+  }
+
+  .pde-algorithm-examples__prompt-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .pde-algorithm-examples__prompt-text {
+    color: #fff;
+    font-family: 'PingFang SC', 'Alibaba PuHuiTi 3.0', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    white-space: nowrap;
+    margin-right: auto;
+  }
+
+  .pde-algorithm-examples__prompt-action {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pde-algorithm-examples__prompt-action img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  @media (max-width: 1760px) {
     .pde-algorithm-examples__inner {
       padding: 0 40px;
     }
 
     .pde-algorithm-examples__block {
-      height: auto;
+      padding: 80px 48px;
       min-height: 520px;
-      padding: 56px 40px;
+      border-radius: 28px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(380px, 42%);
+      grid-template-columns: minmax(0, 1fr) minmax(420px, 44%);
+      align-items: flex-start;
       column-gap: 32px;
     }
 
     .pde-algorithm-examples__left {
-      grid-column: 1;
       width: 100%;
       max-width: 600px;
+      gap: 40px;
     }
 
-    .pde-algorithm-examples__right {
-      grid-column: 2;
+    .pde-algorithm-examples__visual {
       width: 100%;
-      max-width: 560px;
+      max-width: 624px;
       height: auto;
-      aspect-ratio: 633 / 460;
+      aspect-ratio: 624 / 382;
+      justify-self: end;
     }
 
-    .pde-algorithm-examples__stack-image--bottom {
-      left: 12.95%;
-      top: 30.43%;
-      width: 87.05%;
-      height: 69.57%;
+    .pde-algorithm-examples__visual-frame {
+      left: 6.09%;
+      top: 10.21%;
+      width: 87.82%;
+      height: 83.77%;
     }
 
-    .pde-algorithm-examples__stack-image--middle {
-      left: 0;
-      top: 13.04%;
-      width: 100%;
-      height: 69.57%;
-    }
-
-    .pde-algorithm-examples__stack-image--top {
-      left: 12.95%;
-      top: 0;
-      width: 87.05%;
-      height: 69.57%;
+    .pde-algorithm-examples__prompt {
+      left: max(-249px, -42%);
+      top: calc(100% - 72px);
     }
   }
 
@@ -260,26 +302,33 @@
     }
 
     .pde-algorithm-examples__intro,
-    .pde-algorithm-examples__upgrade-text {
+    .pde-algorithm-examples__metric-label {
       font-size: 14px;
       line-height: 24px;
     }
 
-    .pde-algorithm-examples__upgrade-index {
-      min-width: 22px;
-      font-size: 16px;
-      line-height: 24px;
+    .pde-algorithm-examples__metric-value {
+      font-size: 24px;
+      line-height: 34px;
     }
 
-    .pde-algorithm-examples__right {
+    .pde-algorithm-examples__metrics {
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .pde-algorithm-examples__visual {
       width: 100%;
-      max-width: 633px;
-      align-self: center;
+      max-width: 624px;
+      margin: 0 auto;
     }
 
-    .pde-algorithm-examples__btn {
-      height: 52px;
-      font-size: 16px;
+    .pde-algorithm-examples__prompt {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: min(411px, 92%);
+      margin: -24px auto 0;
     }
   }
 
@@ -291,18 +340,63 @@
     .pde-algorithm-examples__block {
       padding: 24px 16px;
       gap: 24px;
+      border-radius: 20px;
     }
 
-    .pde-algorithm-examples__right {
-      max-width: 100%;
+    .pde-algorithm-examples__left {
+      gap: 24px;
     }
 
-    .pde-algorithm-examples__stack-image {
-      border-radius: 18px 0 0 18px;
+    .pde-algorithm-examples__company {
+      font-size: 24px;
+      line-height: 34px;
     }
 
-    .pde-algorithm-examples__stack-image--top {
-      border-radius: 16px 0 0 16px;
+    .pde-algorithm-examples__industry {
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .pde-algorithm-examples__intro,
+    .pde-algorithm-examples__metric-label {
+      font-size: 13px;
+      line-height: 22px;
+    }
+
+    .pde-algorithm-examples__metric-value {
+      font-size: 22px;
+      line-height: 30px;
+    }
+
+    .pde-algorithm-examples__metrics {
+      gap: 14px 18px;
+    }
+
+    .pde-algorithm-examples__visual {
+      border-radius: 20px;
+    }
+
+    .pde-algorithm-examples__prompt {
+      height: 60px;
+      border-radius: 28px;
+      padding: 8px 8px 8px 16px;
+      gap: 10px;
+      margin-top: -16px;
+    }
+
+    .pde-algorithm-examples__prompt-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .pde-algorithm-examples__prompt-text {
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    .pde-algorithm-examples__prompt-action {
+      width: 44px;
+      height: 44px;
     }
   }
 }

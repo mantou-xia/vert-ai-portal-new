@@ -151,7 +151,9 @@ const HomeItemShow: React.FC = () => {
                     <div className="home-item-show__item-title-row">
                       <span
                         ref={(el) => { titleRefs.current[index] = el; }}
-                        className="home-item-show__item-title"
+                        className={`home-item-show__item-title ${
+                          index === activeIndex ? 'home-item-show__item-title--active' : ''
+                        }`}
                       >
                         {item.title}
                       </span>

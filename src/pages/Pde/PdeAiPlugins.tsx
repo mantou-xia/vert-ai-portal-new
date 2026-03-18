@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import './PdeAiPlugins.css';
 
 type TextSegment = {
@@ -11,7 +11,13 @@ type PluginCard = {
   title: string;
   subtitle: string;
   cover: string;
+  coverOverlay?: boolean;
+  coverTextTop: number;
   pain: string;
+  painTextWidth: number;
+  dividerWidth: number;
+  aiTextWidth: number;
+  coreValueWidth: number;
   aiService: TextSegment[];
   coreValue: TextSegment[];
 };
@@ -21,8 +27,14 @@ const PLUGINS: PluginCard[] = [
     key: 'aeon',
     title: 'AEON',
     subtitle: 'CDP助手（私域运营）',
-    cover: 'https://www.figma.com/api/mcp/asset/a0a38228-96f1-4bd8-8884-75cbcf7e5a36',
+    cover: 'https://www.figma.com/api/mcp/asset/f8145b66-e387-453c-848b-efce1e0286ac',
+    coverOverlay: true,
+    coverTextTop: 38,
     pain: '私域系统操作门槛高，培训成本高；依赖专业人员，运营流程手工配置，SOP难复制',
+    painTextWidth: 582,
+    dividerWidth: 634,
+    aiTextWidth: 268,
+    coreValueWidth: 285,
     aiService: [
       { text: '三大Agent协同，实现' },
       { text: '“洞察-圈人-活动-触达-复盘”', strong: true },
@@ -42,8 +54,14 @@ const PLUGINS: PluginCard[] = [
     key: 'yijiancai',
     title: '易建采',
     subtitle: '大型医院采购',
-    cover: 'https://www.figma.com/api/mcp/asset/b5a846b9-3ae5-4002-b1c0-f5cfa5e232f5',
-    pain: '医疗采购跨端操作繁琐、集采分级难；招标 / 非招标流程不统一，SOP 落地难；供应商信用监控缺失；人工操作低效、监管不透明；采购场景割裂，供应链不通。',
+    cover: 'https://www.figma.com/api/mcp/asset/b532bfd8-d880-491a-80eb-2c245a3211e6',
+    coverTextTop: 40,
+    pain:
+      '医疗采购跨端操作繁琐、集采分级难；招标 / 非招标流程不统一，SOP 落地难；供应商信用监控缺失；人工操作效率低、监管不透明；采购场景割裂，供应链不通。',
+    painTextWidth: 590,
+    dividerWidth: 636,
+    aiTextWidth: 268,
+    coreValueWidth: 300,
     aiService: [
       { text: '交易 + 服务 + 监管' },
       { text: '多智能体协同', strong: true },
@@ -86,10 +104,11 @@ const PdeAiPlugins: React.FC = () => {
 
         <div className="pde-ai-plugins__grid">
           {PLUGINS.map((card) => (
-            <article key={card.key} className="pde-ai-plugins__card">
+            <article key={card.key} className={`pde-ai-plugins__card pde-ai-plugins__card--${card.key}`}>
               <div className="pde-ai-plugins__cover-wrap">
                 <img className="pde-ai-plugins__cover" src={card.cover} alt="" />
-                <div className="pde-ai-plugins__cover-text">
+                {card.coverOverlay && <span className="pde-ai-plugins__cover-overlay" aria-hidden />}
+                <div className="pde-ai-plugins__cover-text" style={{ top: `${card.coverTextTop}px` }}>
                   <h3 className="pde-ai-plugins__card-title">{card.title}</h3>
                   <p className="pde-ai-plugins__card-subtitle">{card.subtitle}</p>
                 </div>
@@ -98,19 +117,25 @@ const PdeAiPlugins: React.FC = () => {
               <div className="pde-ai-plugins__content">
                 <div className="pde-ai-plugins__pain-row">
                   <span className="pde-ai-plugins__pain-tag">痛点</span>
-                  <p className="pde-ai-plugins__pain-text">{card.pain}</p>
+                  <p className="pde-ai-plugins__pain-text" style={{ maxWidth: `${card.painTextWidth}px` }}>
+                    {card.pain}
+                  </p>
                 </div>
 
-                <div className="pde-ai-plugins__divider" />
+                <div className="pde-ai-plugins__divider" style={{ width: `${card.dividerWidth}px` }} />
 
                 <div className="pde-ai-plugins__cols">
                   <div className="pde-ai-plugins__col">
                     <h4 className="pde-ai-plugins__col-title">AI服务</h4>
-                    <p className="pde-ai-plugins__col-text">{renderSegments(card.aiService)}</p>
+                    <p className="pde-ai-plugins__col-text" style={{ maxWidth: `${card.aiTextWidth}px` }}>
+                      {renderSegments(card.aiService)}
+                    </p>
                   </div>
                   <div className="pde-ai-plugins__col">
                     <h4 className="pde-ai-plugins__col-title">核心价值</h4>
-                    <p className="pde-ai-plugins__col-text">{renderSegments(card.coreValue)}</p>
+                    <p className="pde-ai-plugins__col-text" style={{ maxWidth: `${card.coreValueWidth}px` }}>
+                      {renderSegments(card.coreValue)}
+                    </p>
                   </div>
                 </div>
               </div>

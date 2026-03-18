@@ -49,7 +49,7 @@ const HomeSubjectKeyword: React.FC<HomeSubjectKeywordProps> = ({ className }) =>
       ref={sectionRef}
       className={`home-subject ${className ?? ''}`}
     >
-      <div className="home-subject__spacer" />
+      {/* <div className="home-subject__spacer" /> */}
       <div className="home-subject__sticky">
         <div className="home-subject__inner">
           <motion.div

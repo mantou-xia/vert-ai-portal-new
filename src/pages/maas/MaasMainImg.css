@@ -1,207 +1,264 @@
 .maas-main-img {
   position: relative;
-  min-height: 520px;
+  min-height: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0f172a;
+  padding: 160px 24px 170px;
   overflow: hidden;
+  background: linear-gradient(135deg, #020203 0%, #02120c 45%, #020203 100%);
 
   .maas-main-img__bg {
     position: absolute;
     inset: 0;
+    z-index: 0;
     pointer-events: none;
   }
 
-  .maas-main-img__line {
-    position: absolute;
-    width: 1px;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, #69ee6f, transparent);
-    opacity: 0.6;
-  }
-
-  .maas-main-img__line--1 {
-    top: 15%;
-    left: 12%;
-    transform: rotate(-25deg);
-  }
-
-  .maas-main-img__line--2 {
-    top: 25%;
-    right: 18%;
-    transform: rotate(15deg);
-  }
-
-  .maas-main-img__line--3 {
-    bottom: 35%;
-    left: 20%;
-    transform: rotate(20deg);
-  }
-
-  .maas-main-img__line--4 {
-    bottom: 20%;
-    right: 25%;
-    transform: rotate(-30deg);
-  }
-
-  .maas-main-img__line--5 {
-    top: 40%;
-    left: 50%;
-    transform: rotate(-10deg);
-  }
-
-  .maas-main-img__circle {
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    background: rgba(30, 41, 59, 0.8);
-    border: 2px solid #69ee6f;
-    opacity: 0.9;
-  }
-
-  .maas-main-img__circle--tl {
-    top: -120px;
-    left: -120px;
-  }
-
-  .maas-main-img__circle--br {
-    bottom: -120px;
-    right: -120px;
+  .maas-main-img__canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .maas-main-img__content {
     position: relative;
-    z-index: 1;
-    max-width: 720px;
-    padding: 56px 24px;
+    z-index: 2;
+    width: min(1761px, 100%);
     text-align: center;
   }
 
   .maas-main-img__title {
-    margin: 0 0 20px;
-    font-size: 36px;
-    font-weight: 400;
-    color: #ffffff;
-    line-height: 1.35;
-  }
-
-  .maas-main-img__title strong {
+    margin: 0;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-size: clamp(32px, 2.65vw, 50px);
     font-weight: 700;
+    line-height: 1.24;
+    letter-spacing: 0.01em;
+    color: #ffffff;
   }
 
   .maas-main-img__desc {
-    margin: 0 0 40px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.75);
+    margin: 16px auto 64px;
+    width: min(578px, 100%);
+    font-size: clamp(14px, 0.95vw, 16px);
+    line-height: 2;
+    color: rgba(255, 255, 255, 0.58);
   }
 
   .maas-main-img__input-wrap {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 14px;
-    cursor: pointer;
-    width: 100%;
-    max-width: 560px;
+    gap: 12px;
+    width: min(720px, 100%);
+    min-height: 96px;
     margin: 0 auto;
-    padding: 14px 14px 14px 20px;
-    background: rgba(15, 23, 42, 0.95);
-    border: 2px solid #69ee6f;
-    border-radius: 12px;
-    box-shadow: 0 0 0 1px rgba(105, 238, 111, 0.2);
+    padding: 0 14px 0 24px;
+    border-radius: 24px;
+    border: 1px solid rgba(165, 255, 78, 0.46);
+    background: linear-gradient(105deg, rgba(0, 0, 0, 0.76) 0%, rgba(4, 32, 20, 0.6) 64%, rgba(10, 44, 27, 0.52) 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(140, 255, 88, 0.12),
+      0 16px 36px rgba(0, 0, 0, 0.42),
+      0 0 22px rgba(136, 255, 83, 0.12);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .maas-main-img__input-wrap:hover {
+    border-color: rgba(180, 255, 116, 0.78);
+    box-shadow:
+      inset 0 0 0 1px rgba(140, 255, 88, 0.24),
+      0 16px 40px rgba(0, 0, 0, 0.46),
+      0 0 28px rgba(136, 255, 83, 0.24);
   }
 
   .maas-main-img__input-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     flex-shrink: 0;
-    background: rgba(30, 41, 59, 0.9);
     border-radius: 50%;
-    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(154, 255, 70, 0.28);
+    margin-right: 10px;
   }
 
   .maas-main-img__input-text {
     flex: 1;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.9);
-    text-align: left;
     min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--Labels-White, #fff);
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .maas-main-img__cursor {
+    display: inline-block;
+    flex-shrink: 0;
+    margin-left: 2px;
+    width: 1.5px;
+    height: 20px;
+    background: rgba(191, 255, 142, 0.92);
+    border-radius: 1px;
+    animation: maas-main-cursor-blink 0.95s steps(1) infinite;
   }
 
   .maas-main-img__input-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 56px;
+    height: 56px;
     flex-shrink: 0;
-    background: #69ee6f;
     border: none;
     border-radius: 50%;
-    color: #0f172a;
+    background: #aeff21;
+    box-shadow: 0 4px 14px rgba(174, 255, 33, 0.36);
     cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .maas-main-img__input-btn img {
+    width: 15px;
+    height: 15px;
   }
 
   .maas-main-img__input-btn:hover {
-    background: #84cc16;
-    transform: scale(1.05);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(174, 255, 33, 0.48);
   }
 
   .maas-main-img__input-btn:active {
-    transform: scale(0.98);
+    transform: scale(0.96);
   }
 
-  @media (max-width: 768px) {
-    min-height: 460px;
-
-    .maas-main-img__content {
-      padding: 40px 20px;
-    }
-
-    .maas-main-img__title {
-      font-size: 26px;
-      margin-bottom: 16px;
-    }
+  @media (max-width: 1280px) {
+    min-height: 720px;
+    padding-top: 132px;
 
     .maas-main-img__desc {
-      font-size: 14px;
-      margin-bottom: 32px;
+      margin-bottom: 46px;
     }
 
     .maas-main-img__input-wrap {
-      padding: 12px 12px 12px 16px;
+      min-height: 82px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    min-height: 640px;
+    padding: 116px 20px 118px;
+
+    .maas-main-img__title {
+      font-size: clamp(30px, 6vw, 46px);
+    }
+
+    .maas-main-img__desc {
+      width: min(660px, 100%);
+      margin: 16px auto 34px;
+      font-size: 16px;
+      line-height: 1.58;
+    }
+  }
+
+  @media (max-width: 768px) {
+    min-height: 560px;
+    padding: 104px 16px 96px;
+
+    .maas-main-img__content {
+      width: min(640px, 100%);
+    }
+
+    .maas-main-img__title {
+      font-size: clamp(28px, 8.4vw, 38px);
+      line-height: 1.32;
+    }
+
+    .maas-main-img__desc {
+      margin: 16px auto 28px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .maas-main-img__input-wrap {
       gap: 10px;
+      min-height: 68px;
+      padding: 12px 10px 12px 14px;
+      border-radius: 14px;
     }
 
     .maas-main-img__input-icon {
-      width: 36px;
-      height: 36px;
-    }
-
-    .maas-main-img__input-icon svg {
-      width: 18px;
-      height: 18px;
+      width: 32px;
+      height: 32px;
     }
 
     .maas-main-img__input-text {
       font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .maas-main-img__cursor {
+      height: 16px;
     }
 
     .maas-main-img__input-btn {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
     }
 
-    .maas-main-img__input-btn svg {
-      width: 18px;
-      height: 18px;
+    .maas-main-img__input-btn img {
+      width: 14px;
+      height: 14px;
     }
+  }
+
+  @media (max-width: 480px) {
+    padding-left: 12px;
+    padding-right: 12px;
+
+    .maas-main-img__title {
+      font-size: clamp(26px, 9.5vw, 34px);
+    }
+
+    .maas-main-img__desc {
+      font-size: 13px;
+    }
+
+    .maas-main-img__input-text {
+      font-size: 13px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .maas-main-img__cursor,
+    .maas-main-img__input-btn {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+@keyframes maas-main-cursor-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  46%,
+  100% {
+    opacity: 0;
   }
 }

@@ -1,12 +1,14 @@
 .pde-ai-plugins {
   padding: 0;
-  background: #f2f2f2;
+  background: #fff;
+  margin-top: 120px;
+  margin-bottom: 120px;
 
   .pde-ai-plugins__inner {
     width: 100%;
-    max-width: 1760px;
+    max-width: 1920px;
     margin: 0 auto;
-    padding: 0 80px;
+    padding: 0 280px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -17,7 +19,7 @@
     margin: 0;
     color: #1a1a1a;
     text-align: center;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 36px;
     font-weight: 700;
     line-height: 50px;
@@ -52,20 +54,28 @@
     display: block;
   }
 
+  .pde-ai-plugins__cover-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(90deg, rgba(77, 37, 104, 0.2) 33.11%, rgba(77, 37, 104, 0) 44.27%);
+    pointer-events: none;
+  }
+
   .pde-ai-plugins__cover-text {
     position: absolute;
-    top: 38px;
     left: 40px;
     color: #fff;
     display: flex;
     flex-direction: column;
+    z-index: 1;
   }
 
   .pde-ai-plugins__card-title {
     margin: 0;
     color: #fff;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
-    font-size: 48px;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
+    font-size: 36px;
     font-weight: 700;
     line-height: 50px;
   }
@@ -74,10 +84,11 @@
     margin: 0;
     opacity: 0.6;
     color: #fff;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 28px;
+    white-space: nowrap;
   }
 
   .pde-ai-plugins__content {
@@ -99,7 +110,7 @@
     border-radius: 6px;
     background: #1a1a1a;
     color: #fff;
-    font-family: "PingFang SC", sans-serif;
+    font-family: 'PingFang SC', sans-serif;
     font-size: 12px;
     font-weight: 600;
     line-height: 16px;
@@ -112,14 +123,13 @@
   .pde-ai-plugins__pain-text {
     margin: 0;
     color: #1a1a1a;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
   }
 
   .pde-ai-plugins__divider {
-    width: 634px;
     max-width: 100%;
     height: 1px;
     background: #d6d6d6;
@@ -140,7 +150,7 @@
   .pde-ai-plugins__col-title {
     margin: 0;
     color: #1a1a1a;
-    font-family: "PingFang SC", sans-serif;
+    font-family: 'PingFang SC', sans-serif;
     font-size: 20px;
     font-weight: 600;
     line-height: 20px;
@@ -149,7 +159,7 @@
   .pde-ai-plugins__col-text {
     margin: 0;
     color: #727272;
-    font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 28px;
@@ -160,20 +170,19 @@
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1680px) {
     .pde-ai-plugins__inner {
-      padding: 0 40px;
+      padding: 0 120px;
     }
   }
 
   @media (max-width: 1500px) {
-    .pde-ai-plugins__grid {
-      width: 100%;
+    .pde-ai-plugins__inner {
+      padding: 0 40px;
     }
 
-    .pde-ai-plugins__card-title {
-      font-size: 40px;
-      line-height: 42px;
+    .pde-ai-plugins__grid {
+      width: 100%;
     }
   }
 
@@ -181,6 +190,11 @@
     .pde-ai-plugins__grid {
       grid-template-columns: 1fr;
       gap: 32px;
+      max-width: 672px;
+    }
+
+    .pde-ai-plugins__card {
+      width: 100%;
     }
   }
 
@@ -205,14 +219,18 @@
       border-radius: 16px;
     }
 
+    .pde-ai-plugins__cover-overlay {
+      border-radius: 16px;
+    }
+
     .pde-ai-plugins__cover-text {
-      top: 20px;
+      top: 20px !important;
       left: 20px;
     }
 
     .pde-ai-plugins__card-title {
       font-size: 28px;
-      line-height: 32px;
+      line-height: 36px;
     }
 
     .pde-ai-plugins__card-subtitle {
@@ -227,11 +245,17 @@
     .pde-ai-plugins__pain-row {
       flex-direction: column;
       gap: 8px;
+      min-height: 0;
     }
 
     .pde-ai-plugins__pain-text {
+      max-width: 100% !important;
       font-size: 14px;
       line-height: 22px;
+    }
+
+    .pde-ai-plugins__divider {
+      width: 100% !important;
     }
 
     .pde-ai-plugins__cols {
@@ -244,6 +268,7 @@
     }
 
     .pde-ai-plugins__col-text {
+      max-width: 100% !important;
       font-size: 14px;
       line-height: 24px;
     }

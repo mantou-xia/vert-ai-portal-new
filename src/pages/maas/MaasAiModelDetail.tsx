@@ -1,185 +1,248 @@
-import React, { useRef, useState, useCallback, useEffect } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { getAssetPath } from '../../utils/path';
 import './MaasAiModelDetail.css';
 
-const CARD_IMAGE = getAssetPath('/images/home/keyboard.png');
+type RouterCard = {
+  key: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+};
 
-const CARDS = [
+const ROUTER_CARDS: RouterCard[] = [
   {
     key: 'api',
-    title: '一站式API, 适配所有大模型',
+    title: '一站式API，适配所有大模型',
     description:
-      '基于VERT的核心平台 (VERT.Insight, VERT.Flow, VERT.Core), 为用户提供独有的AI Agent, 工作流驱动的智能模块, 解决企业研发的业务痛点。',
+      '基于 VERT 的核心平台（VERT.Insight、VERT.Flow、VERT.Core），为客户开发定制化的 AI Agent、工作流和数据治理模块，解决行业特有的业务痛点。',
+    image: '/images/maas/image_mass_1.png',
+    imageAlt: '一站式 API 与多模型适配',
   },
   {
     key: 'cost',
     title: '成本与性能平衡',
     description:
-      '无缝适配前沿AI Agent, 快速搭建企业级应用和降低成本控制。基于VERT.MAAS云原生平台, 灵活部署调度, 降低企业运营成本, 满足工业生产场景, 提升业务效率。',
+      '灵活适配各类 AI Agent，快速落地业务场景，兼顾项目质量与成本控制。VERT.MAAS 本地部署，加速企业级智能体落地，依托可插拔 MCP 模型组件平台，自定义工具与工作流。',
+    image: '/images/maas/image_mass_2.png',
+    imageAlt: '成本与性能平衡能力图',
   },
   {
     key: 'availability',
     title: '更高可用性',
     description:
-      '基于VERT.Core云原生平台自适应流式数据融合分布式计算, 保障AI模型稳定运行, 提供实时数据服务, 支持任何复杂计算体系结构, 同时也能成本弹性地匹配计算资源, 以应对业务增长。',
+      '基于 VERT.Core 云原生平台及腾讯云战略合作支持，保障 AI 模型稳定运行。提供卓越性能，相比任何单智能体系统，能以更低成本更快地处理复杂、长期的任务。',
+    image: '/images/maas/image_mass_3.png',
+    imageAlt: '高可用与稳定性图示',
   },
   {
-    key: 'security',
-    title: '本地, 私有安全',
+    key: 'local',
+    title: '本地、私有安全',
     description:
-      '你的数据永远属于你, 不提交云平台, 私有部署, 你的工作流敏感信息因此不会被窃取或暴露。并提供完整的隐私保护与信任。',
+      '你的数据永远属于你。专注于本地、私有部署，你的工作流和敏感信息不会脱离掌控。开源以实现完全透明与信任。',
+    image: '/images/maas/image_mass_4.png',
+    imageAlt: '本地私有安全示意图',
   },
   {
     key: 'landing',
-    title: '从模型到产品, 全流程落地',
+    title: '从模型到产品，全流程落地',
     description:
-      '模块化构建: 模块化AI Agent设计, 确保用户可以根据自身业务需求, 灵活构建和组合AI Agent功能模块。一键部署接入: 提供一键式部署工具, 快速将AI Agent集成到现有生产系统, 满足多样业务需求。',
+      '智能体市场精选优质智能体，精准匹配各行业业务需求；一键便捷接入，API 直接对接生产环境，顺畅嵌入业务全流程，无需额外适配。',
+    image: '/images/maas/image_mass_5.png',
+    imageAlt: '模型到产品全流程落地图',
   },
   {
-    key: 'websearch',
-    title: '联网搜索 (Web Search)',
+    key: 'web-search',
+    title: '联网搜索（Web Search）',
     description:
-      '兰大核心智能: 涵盖联网搜索, 网页提取, 检索等核心功能, 适配多模态需求。多模态融合智能: 基于多模态融合技术, 增强AI Agent的感知能力和表达能力, 满足多样业务需求。',
+      '三大核心形态：涵盖联网检索、问答增强、搜索智能体，适配多场景需求；多引擎聚合赋能，整合自研与第三方引擎，实现网页内容一键快速检索。',
+    image: '/images/maas/image_mass_6.png',
+    imageAlt: '联网搜索能力图示',
   },
   {
     key: 'mcp',
     title: 'MCP',
     description:
-      '通用适配接口: 支持与现有知识库系统无缝集成, 方便用户快速构建和管理知识库。智能检索增强: 结合RAG技术, 增强AI Agent的知识检索能力, 提供更精准的答案。',
+      '通用适配接口支持工具一键直连，实现模型与工具的无缝衔接；完善生态服务，集成精选 MCP 工具，助力模型高效破解复杂业务场景难题。',
+    image: '/images/maas/image_mass_7.png',
+    imageAlt: 'MCP 工具连接图',
   },
   {
     key: 'rag',
-    title: '知识库 (RAG)',
+    title: '知识库（RAG）',
     description:
-      '模型微调 (Fine-tuning): 基于丰富的行业数据进行模型微调, 确保AI Agent在特定领域表现更出色。增量式训练: 实时监控AI Agent的性能, 根据反馈数据进行增量式训练, 持续优化模型。',
+      '全链路快速构建：从内容解析、切片、索引到检索，高效打通无阻碍；专业级增强检索依托上下文增强技术，实现高精度内容召回，提升检索质量。',
+    image: '/images/maas/image_mass_7.png',
+    imageAlt: '知识库 RAG 工作流图',
+  },
+  {
+    key: 'fine-tuning',
+    title: '模型微调（Fine-tuning）',
+    description:
+      '精准业务对齐：基于专属业务数据，精准匹配业务风格及定制化规则；灵活高效适配，可按需选择 LoRA 或全参微调模式，投入产出比清晰可控。',
+    image: '/images/maas/image_mass_7.png',
+    imageAlt: '模型微调能力图示',
   },
 ];
 
-const WHEEL_SPEED = 80;
-const ENTRANCE_DURATION = 700;
-const EDGE_THRESHOLD = 10;
-const ENTRANCE_SCROLL_PX = 360;
-
 const MaasAiModelDetail: React.FC = () => {
-  const trackRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  const dragStartXRef = useRef(0);
+  const dragStartScrollRef = useRef(0);
+  const touchStartXRef = useRef(0);
+  const touchStartScrollRef = useRef(0);
+
+  const [isVisible, setIsVisible] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollStart, setScrollStart] = useState(0);
-  const entranceDoneRef = useRef(false);
 
   useEffect(() => {
-    const el = trackRef.current;
-    if (!el || entranceDoneRef.current) return;
-    entranceDoneRef.current = true;
-    const maxScroll = Math.max(0, el.scrollWidth - el.clientWidth);
-    if (maxScroll <= 0) return;
-    const startLeft = el.scrollLeft;
-    const targetLeft = Math.min(maxScroll, ENTRANCE_SCROLL_PX);
-    const startTime = performance.now();
-    const tick = (now: number) => {
-      const t = Math.min((now - startTime) / ENTRANCE_DURATION, 1);
-      const ease = 1 - (1 - t) * (1 - t);
-      el.scrollLeft = startLeft + (targetLeft - startLeft) * ease;
-      if (t < 1) requestAnimationFrame(tick);
+    const section = sectionRef.current;
+    if (!section) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.18,
+        rootMargin: '0px 0px -8% 0px',
+      }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) {
+      return;
+    }
+
+    const handleWheel = (event: WheelEvent) => {
+      const maxScrollLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+      if (maxScrollLeft <= 0) {
+        return;
+      }
+
+      const delta = event.deltaY !== 0 ? event.deltaY : event.deltaX;
+      if (delta === 0) {
+        return;
+      }
+
+      const atStart = viewport.scrollLeft <= 1;
+      const atEnd = viewport.scrollLeft >= maxScrollLeft - 1;
+
+      if ((delta < 0 && atStart) || (delta > 0 && atEnd)) {
+        return;
+      }
+
+      event.preventDefault();
+      viewport.scrollLeft = Math.max(0, Math.min(viewport.scrollLeft + delta, maxScrollLeft));
     };
-    requestAnimationFrame(tick);
+
+    viewport.addEventListener('wheel', handleWheel, { passive: false });
+    return () => viewport.removeEventListener('wheel', handleWheel);
   }, []);
 
-  const handleWheel = useCallback((e: WheelEvent) => {
-    const el = trackRef.current;
-    if (!el) return;
-    const delta = e.deltaY !== 0 ? e.deltaY : e.deltaX;
-    const maxScroll = Math.max(0, el.scrollWidth - el.clientWidth);
-    if (maxScroll <= 0) return;
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    const viewport = viewportRef.current;
+    if (!viewport) {
+      return;
+    }
 
-    const current = el.scrollLeft;
-    const atFirst = current <= EDGE_THRESHOLD;
-    const atLast = current >= maxScroll - EDGE_THRESHOLD;
-
-    // 边界放行：到第一个继续往上、到最后继续往下，都交给页面上下滚动
-    if (atFirst && delta < 0) return;
-    if (atLast && delta > 0) return;
-
-    const move = Math.abs(delta) > 0 ? (delta > 0 ? WHEEL_SPEED : -WHEEL_SPEED) : 0;
-    if (move === 0) return;
-
-    const next = Math.max(0, Math.min(current + move, maxScroll));
-    if (next === current) return;
-
-    // 只有真正发生横向滚动时才拦截默认滚动（参考 HomeItemShow）
-    e.preventDefault();
-    el.scrollLeft = next;
-  }, []);
-
-  useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.addEventListener('wheel', handleWheel, { passive: false });
-    return () => el.removeEventListener('wheel', handleWheel);
-  }, [handleWheel]);
-
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    if (!trackRef.current) return;
     setIsDragging(true);
-    setStartX(e.pageX);
-    setScrollStart(trackRef.current.scrollLeft);
-  }, []);
+    dragStartXRef.current = event.pageX;
+    dragStartScrollRef.current = viewport.scrollLeft;
+  };
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (!isDragging || !trackRef.current) return;
-      e.preventDefault();
-      const dx = e.pageX - startX;
-      const maxScroll = Math.max(
-        0,
-        trackRef.current.scrollWidth - trackRef.current.clientWidth
-      );
-      const next = Math.max(0, Math.min(scrollStart + dx, maxScroll));
-      trackRef.current.scrollLeft = next;
-    },
-    [isDragging, startX, scrollStart]
-  );
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !viewportRef.current) {
+      return;
+    }
 
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-  }, []);
+    event.preventDefault();
+    const delta = event.pageX - dragStartXRef.current;
+    viewportRef.current.scrollLeft = dragStartScrollRef.current - delta;
+  };
 
-  const handleMouseLeave = useCallback(() => {
-    if (isDragging) setIsDragging(false);
-  }, [isDragging]);
+  const handleMouseUpOrLeave = () => {
+    if (isDragging) {
+      setIsDragging(false);
+    }
+  };
 
-  const renderList = (keyPrefix = '') =>
-    CARDS.map((card) => (
-      <article key={`${keyPrefix}${card.key}`} className="maas-ai-model-detail__card">
-        <div className="maas-ai-model-detail__card-visual">
-          <img
-            className="maas-ai-model-detail__card-img"
-            src={CARD_IMAGE}
-            alt=""
-          />
-        </div>
-        <h3 className="maas-ai-model-detail__card-title">{card.title}</h3>
-        <p className="maas-ai-model-detail__card-desc">{card.description}</p>
-      </article>
-    ));
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    const viewport = viewportRef.current;
+    if (!viewport || event.touches.length === 0) {
+      return;
+    }
+
+    touchStartXRef.current = event.touches[0].clientX;
+    touchStartScrollRef.current = viewport.scrollLeft;
+  };
+
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    const viewport = viewportRef.current;
+    if (!viewport || event.touches.length === 0) {
+      return;
+    }
+
+    const delta = event.touches[0].clientX - touchStartXRef.current;
+    viewport.scrollLeft = touchStartScrollRef.current - delta;
+  };
 
   return (
-    <section className="maas-ai-model-detail">
+    <section
+      ref={sectionRef}
+      className={`maas-ai-model-detail ${isVisible ? 'maas-ai-model-detail--visible' : ''}`}
+      aria-label="VERT ROUNTER Interface for AI 工具及LLM列表"
+    >
       <div className="maas-ai-model-detail__inner">
         <header className="maas-ai-model-detail__header">
-          <h2 className="maas-ai-model-detail__title">
-            VERT ROUNTER Interface for AI 工具及LLM列表
-          </h2>
+          <h2 className="maas-ai-model-detail__title">VERT ROUNTER Interface for AI 工具及LLM列表</h2>
         </header>
+
         <div
-          ref={trackRef}
-          className={`maas-ai-model-detail__track ${isDragging ? 'maas-ai-model-detail__track--dragging' : ''}`}
+          ref={viewportRef}
+          className={`maas-ai-model-detail__viewport ${isDragging ? 'maas-ai-model-detail__viewport--dragging' : ''}`}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUpOrLeave}
+          onMouseLeave={handleMouseUpOrLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
         >
-          <div className="maas-ai-model-detail__list">{renderList()}</div>
+          <div className="maas-ai-model-detail__list" role="list">
+            {ROUTER_CARDS.map((card, index) => (
+              <article
+                key={card.key}
+                className="maas-ai-model-detail__card"
+                style={{ '--card-index': index } as React.CSSProperties}
+                role="listitem"
+              >
+                <div className="maas-ai-model-detail__card-image-wrap">
+                  <img
+                    className="maas-ai-model-detail__card-image"
+                    src={getAssetPath(card.image)}
+                    alt={card.imageAlt}
+                    draggable={false}
+                  />
+                </div>
+                <div className="maas-ai-model-detail__card-content">
+                  <h3 className="maas-ai-model-detail__card-title">{card.title}</h3>
+                  <p className="maas-ai-model-detail__card-desc">{card.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,142 +1,208 @@
-.maas-ai-model-detail {
-  padding: 72px 0 64px;
-  background: #ffffff;
-  overflow: hidden;
-
+﻿.maas-ai-model-detail {
+  position: relative;
+  padding: 0 0 86px;
+  background: #fff;
+  border-radius: 0 0 32px 32px;
+  margin-top: 120px;
+  margin-bottom: 120px;
   .maas-ai-model-detail__inner {
-    /* max-width: 1400px; */
+    width: 100%;
     margin: 0 auto;
-    padding: 0 24px;
   }
 
   .maas-ai-model-detail__header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 64px;
   }
 
   .maas-ai-model-detail__title {
     margin: 0;
-    font-size: 20px;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-size: clamp(34px, 2.2vw, 50px);
     font-weight: 700;
-    color: #111827;
-    letter-spacing: 0.2px;
     line-height: 1.3;
+    color: #1a1a1a;
   }
 
-  .maas-ai-model-detail__track {
-    display: flex;
+  .maas-ai-model-detail__viewport {
     width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: auto;
+    overflow-x: hidden;
+    overflow-y: visible;
     scrollbar-width: none;
     -ms-overflow-style: none;
     cursor: grab;
     user-select: none;
+  }
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  .maas-ai-model-detail__viewport::-webkit-scrollbar {
+    display: none;
+  }
 
-    &.maas-ai-model-detail__track--dragging {
-      cursor: grabbing;
-    }
+  .maas-ai-model-detail__viewport--dragging {
+    cursor: grabbing;
   }
 
   .maas-ai-model-detail__list {
     display: flex;
-    flex-shrink: 0;
-    align-items: stretch;
-    gap: 20px;
-    padding: 0 12px;
+    gap: 16px;
+    width: max-content;
+    min-width: 100%;
+    padding: 0 80px 4px 280px;
   }
 
   .maas-ai-model-detail__card {
-    flex-shrink: 0;
-    width: 268px;
-    padding: 0;
-    background: #ffffff;
-    border-radius: 14px;
+    width: 350px;
+    background: #f7f7f7;
+    border: 1px solid rgba(26, 26, 26, 0.08);
+    border-radius: 24px;
     overflow: hidden;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translate3d(84px, 0, 0);
+    transition:
+      opacity 0.64s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.64s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: calc(var(--card-index) * 90ms);
+    will-change: transform, opacity;
   }
 
-  .maas-ai-model-detail__card-visual {
-    width: 100%;
-    height: 156px;
-    background: #ffffff;
-    overflow: hidden;
-    padding: 16px;
-    box-sizing: border-box;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &.maas-ai-model-detail--visible .maas-ai-model-detail__card {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 
-  .maas-ai-model-detail__card-img {
+  .maas-ai-model-detail__card-image-wrap {
+    width: 348px;
+    height: 217px;
+    margin: 1px;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+    background: #efefef;
+  }
+
+  .maas-ai-model-detail__card-image {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
+    pointer-events: none;
+  }
+
+  .maas-ai-model-detail__card-content {
+    padding: 32px 40px 36px;
   }
 
   .maas-ai-model-detail__card-title {
     margin: 0;
-    padding: 14px 16px 8px;
-    font-size: 14px;
+    font-size: 20px;
+    line-height: 1.4;
     font-weight: 700;
-    color: #111827;
-    line-height: 1.35;
+    color: #1a1a1a;
   }
 
   .maas-ai-model-detail__card-desc {
-    margin: 0;
-    padding: 0 16px 16px;
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(17, 24, 39, 0.7);
-    line-height: 1.7;
+    margin: 16px 0 0;
+    font-size: 16px;
+    line-height: 1.9;
+    color: #727272;
   }
 
-  @media (max-width: 768px) {
-    padding: 48px 0 44px;
-
-    .maas-ai-model-detail__inner {
-      padding: 0 16px;
+  @media (max-width: 1600px) {
+    .maas-ai-model-detail__title {
+      font-size: clamp(30px, 2vw, 42px);
     }
+  }
+
+  @media (max-width: 1200px) {
+    padding-bottom: 60px;
 
     .maas-ai-model-detail__header {
-      margin-bottom: 24px;
-    }
-
-    .maas-ai-model-detail__title {
-      font-size: 16px;
+      margin-bottom: 40px;
     }
 
     .maas-ai-model-detail__list {
-      gap: 16px;
-      padding: 0 8px;
+      padding-left: 64px;
+      padding-right: 24px;
     }
 
     .maas-ai-model-detail__card {
-      width: 240px;
+      width: 320px;
     }
 
-    .maas-ai-model-detail__card-visual {
-      height: 132px;
-      padding: 14px;
+    .maas-ai-model-detail__card-image-wrap {
+      width: 318px;
+      height: 198px;
+    }
+
+    .maas-ai-model-detail__card-content {
+      padding: 24px 26px 28px;
     }
 
     .maas-ai-model-detail__card-title {
-      font-size: 13px;
-      padding: 12px 14px 6px;
+      font-size: 18px;
     }
 
     .maas-ai-model-detail__card-desc {
-      font-size: 12px;
-      padding: 0 14px 14px;
+      font-size: 14px;
+      line-height: 1.75;
+      margin-top: 12px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    border-radius: 0 0 22px 22px;
+
+    .maas-ai-model-detail__header {
+      margin-bottom: 28px;
+    }
+
+    .maas-ai-model-detail__title {
+      font-size: clamp(24px, 7.2vw, 32px);
+      line-height: 1.35;
+      padding: 0 12px;
+    }
+
+    .maas-ai-model-detail__viewport {
+      overflow-x: auto;
+      cursor: auto;
+    }
+
+    .maas-ai-model-detail__list {
+      gap: 12px;
+      padding: 0 12px 4px;
+    }
+
+    .maas-ai-model-detail__card {
+      width: 286px;
+      border-radius: 18px;
+    }
+
+    .maas-ai-model-detail__card-image-wrap {
+      width: 284px;
+      height: 172px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .maas-ai-model-detail__card-content {
+      padding: 18px 16px 20px;
+    }
+
+    .maas-ai-model-detail__card-title {
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .maas-ai-model-detail__card-desc {
+      font-size: 13px;
+      line-height: 1.65;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .maas-ai-model-detail__card {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 }

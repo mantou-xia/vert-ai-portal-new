@@ -1,6 +1,6 @@
 .home-subject {
   position: relative;
-  min-height: 200vh;
+  min-height: 100vh;
   background: #f4f5f5;
 
   .home-subject__spacer {
