@@ -1,7 +1,7 @@
 .product-main-img {
   position: relative;
   overflow: hidden;
-  padding: 96px 0 88px;
+  padding: 160px 0 88px;
   background: #0f1110;
   color: #fff;
 
@@ -10,10 +10,48 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(120% 90% at 50% -10%, rgba(174, 255, 33, 0.2), rgba(0, 0, 0, 0) 44%),
-      radial-gradient(82% 94% at 12% 84%, rgba(23, 89, 8, 0.24), rgba(0, 0, 0, 0) 66%),
-      radial-gradient(78% 90% at 88% 74%, rgba(23, 70, 8, 0.24), rgba(0, 0, 0, 0) 64%),
+      radial-gradient(120% 90% at 50% -10%, rgba(174, 255, 33, 0.18), rgba(0, 0, 0, 0) 44%),
+      radial-gradient(82% 94% at 12% 84%, rgba(23, 89, 8, 0.22), rgba(0, 0, 0, 0) 66%),
+      radial-gradient(78% 90% at 88% 74%, rgba(23, 70, 8, 0.22), rgba(0, 0, 0, 0) 64%),
       linear-gradient(180deg, #0c1013 0%, #101010 35%, #0d0f12 100%);
+    z-index: 0;
+  }
+
+  .product-main-img__background-arc-svg {
+    position: absolute;
+    top: 88px;
+    left: 50%;
+    width: max(100vw, 1920px);
+    height: auto;
+    aspect-ratio: 1920 / 1600;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.88;
+  }
+
+  .product-main-img__background-ring {
+    stroke: #727272;
+    stroke-width: 2;
+    opacity: 0.34;
+    fill: none;
+  }
+
+  .product-main-img__background-ring--3000 {
+    stroke: rgba(114, 114, 114, 0.42);
+  }
+
+  .product-main-img__background-ring--2602 {
+    stroke: rgba(174, 255, 33, 0.46);
+  }
+
+  .product-main-img__background-arc-trail {
+    mix-blend-mode: screen;
+  }
+
+  .product-main-img__background-arc-track {
+    fill: none;
+    stroke: none;
   }
 
   .product-main-img__container {
@@ -36,90 +74,104 @@
 
   .product-main-img__title {
     margin: 0;
-    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 1.35;
     color: #fff;
+    font-family: "Alibaba PuHuiTi 3.0";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 
   .product-main-img__subtitle {
     margin: 0;
     max-width: 785px;
-    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     font-size: 20px;
     line-height: 1.6;
+    text-align: center;
+    font-family: "Alibaba PuHuiTi 3.0";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+
     color: rgba(255, 255, 255, 0.6);
   }
 
   .product-main-img__cta {
     margin-top: 8px;
+    display: flex;
+    width: 180px;
+    height: 64px;
+    padding: 0 20px 0 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
   }
 
   .product-main-img__hero {
     position: relative;
     width: min(1088px, 100%);
-    margin: 0 auto;
+    margin: 80px auto 0;
     overflow: visible;
+    isolation: isolate;
   }
 
   .product-main-img__outer-aura {
     position: absolute;
     top: 50%;
-    width: 189px;
-    height: 371px;
+    width: 274.713px;
+    height: 274.713px;
     transform: translateY(-50%);
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     opacity: 0.56;
     transition: opacity 0.35s ease, filter 0.35s ease;
   }
 
   .product-main-img__outer-aura img {
-    display: block;
     position: absolute;
+    display: block;
     object-fit: contain;
   }
 
   .product-main-img__outer-aura-core {
-    width: 189px;
-    height: 371px;
-    left: 0;
-    top: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .product-main-img__outer-aura-line {
-    width: 66px;
-    height: 21px;
+    width: 82.372px;
+    height: 82.372px;
     top: 50%;
     transform: translateY(-50%);
-    opacity: 0.85;
+    opacity: 0.82;
   }
 
   .product-main-img__outer-aura--left {
-    left: -132px;
+    left: -138px;
   }
 
   .product-main-img__outer-aura--left .product-main-img__outer-aura-line {
-    left: 102px;
+    left: 148px;
   }
 
   .product-main-img__outer-aura--right {
-    right: -132px;
+    right: -138px;
   }
 
   .product-main-img__outer-aura--right .product-main-img__outer-aura-line {
-    left: 20px;
+    left: 44px;
   }
 
   .product-main-img__outer-aura.is-active {
     opacity: 0.9;
-    filter: brightness(1.08);
+    filter: brightness(1.1);
   }
 
   .product-main-img__hero-shell {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     aspect-ratio: 1088 / 496;
     border-radius: 40px;
@@ -129,7 +181,6 @@
     background:
       radial-gradient(58% 76% at 14% 82%, rgba(43, 132, 0, 0.3) 0%, rgba(6, 12, 6, 0) 70%),
       radial-gradient(58% 76% at 86% 18%, rgba(50, 151, 0, 0.28) 0%, rgba(6, 12, 6, 0) 68%),
-      radial-gradient(48% 56% at 50% 50%, rgba(14, 58, 25, 0.34) 0%, rgba(9, 18, 11, 0.04) 74%, rgba(0, 0, 0, 0) 100%),
       linear-gradient(180deg, #010302 0%, #020703 100%);
     box-shadow:
       inset 0 0 0 1px rgba(174, 255, 33, 0.2),
@@ -142,8 +193,50 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     background: radial-gradient(60% 70% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 72%, rgba(0, 0, 0, 0.46) 100%);
+  }
+
+  .product-main-img__corner-glow-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .product-main-img__concentric-disks {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .product-main-img__concentric-disk {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(209, 238, 251, 0) 0%, rgba(20, 81, 44, 0.15) 100%);
+  }
+
+  .product-main-img__concentric-disk--outer {
+    width: 41.6912%;
+    opacity: 0.6;
+  }
+
+  .product-main-img__concentric-disk--mid {
+    width: 32.4265%;
+    opacity: 0.76;
+  }
+
+  .product-main-img__concentric-disk--inner {
+    width: 21.0294%;
+    opacity: 0.94;
   }
 
   .product-main-img__topology-svg {
@@ -151,25 +244,8 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
-  }
-
-  .product-main-img__topology-ring {
-    fill: none;
-    stroke-width: 1.2;
-  }
-
-  .product-main-img__topology-ring--outer {
-    stroke: rgba(174, 255, 33, 0.08);
-  }
-
-  .product-main-img__topology-ring--mid {
-    stroke: rgba(174, 255, 33, 0.1);
-  }
-
-  .product-main-img__topology-ring--inner {
-    stroke: rgba(174, 255, 33, 0.13);
   }
 
   .product-main-img__topology-path {
@@ -184,41 +260,27 @@
     stroke: rgba(174, 255, 33, 0.2);
   }
 
-  .product-main-img__topology-path--lane-overlay {
-    stroke-width: 3.2;
-    stroke: rgba(174, 255, 33, 0.54);
-    opacity: 0.18;
-  }
-
   .product-main-img__topology-path--branch {
     stroke-width: 2.6;
     stroke: rgba(174, 255, 33, 0.24);
   }
 
-  .product-main-img__topology-path--branch-strong {
-    stroke-width: 2.8;
-    stroke: rgba(174, 255, 33, 0.32);
+  .product-main-img__topology-path--inner-fold {
+    stroke-width: 3.2;
+    stroke: rgba(174, 255, 33, 0.2);
   }
 
   .product-main-img__topology-path[data-lane='left'],
   .product-main-img__topology-path[data-lane='right'] {
-    opacity: 0.72;
+    opacity: 0.74;
   }
 
   .product-main-img__hero-shell--left .product-main-img__topology-path[data-lane='left'] {
-    stroke: rgba(174, 255, 33, 0.46);
+    stroke: rgba(174, 255, 33, 0.48);
   }
 
   .product-main-img__hero-shell--right .product-main-img__topology-path[data-lane='right'] {
-    stroke: rgba(174, 255, 33, 0.46);
-  }
-
-  .product-main-img__hero-shell--left .product-main-img__topology-path--lane-overlay[data-lane='left'] {
-    opacity: 0.76;
-  }
-
-  .product-main-img__hero-shell--right .product-main-img__topology-path--lane-overlay[data-lane='right'] {
-    opacity: 0.76;
+    stroke: rgba(174, 255, 33, 0.48);
   }
 
   .product-main-img__topology-trail {
@@ -234,7 +296,7 @@
   .product-main-img__node-layer {
     position: absolute;
     inset: 0;
-    z-index: 2;
+    z-index: 3;
     pointer-events: none;
   }
 
@@ -252,7 +314,7 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
-    box-shadow: 0 0 22px rgba(174, 255, 33, 0.4);
+    box-shadow: 0 0 20px rgba(174, 255, 33, 0.35);
   }
 
   .product-main-img__vert-pill span {
@@ -278,7 +340,6 @@
     width: var(--node-size);
     aspect-ratio: 1;
     height: auto;
-    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -306,84 +367,142 @@
     height: 100%;
   }
 
-  .product-main-img__gemini-glow {
+  .product-main-img__gemini-disc {
     position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     object-fit: contain;
   }
 
-  .product-main-img__gemini-disc {
+  .product-main-img__node-inner-white {
     position: absolute;
-    width: 63.9344%;
-    height: 63.9344%;
-    left: 18.0328%;
-    top: 18.0328%;
-    object-fit: contain;
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #fff;
+    z-index: 1;
   }
 
   .product-main-img__gemini-icon {
     position: absolute;
     width: 39.3443%;
     height: 39.3443%;
-    left: 30.3279%;
-    top: 30.3279%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     object-fit: contain;
+    z-index: 2;
   }
 
   .product-main-img__node--gemini.is-lane-active {
     filter: drop-shadow(0 0 20px rgba(174, 255, 33, 0.45));
   }
 
-  .product-main-img__center-node {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 10.2941%;
-    min-width: 72px;
-    aspect-ratio: 1;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-    pointer-events: none;
+  .product-main-img__node--claude {
+    overflow: visible;
   }
 
-  .product-main-img__center-node::before {
-    content: '';
-    position: absolute;
-    inset: -34%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(174, 255, 33, 0.52) 0%, rgba(174, 255, 33, 0.1) 52%, rgba(174, 255, 33, 0) 84%);
-  }
-
-  .product-main-img__center-core {
+  .product-main-img__claude-layered {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    background: #aeff21;
-    color: #111;
+  }
+
+  .product-main-img__claude-disc {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+  }
+
+  .product-main-img__claude-icon {
+    position: absolute;
+    width: 48.5%;
+    height: 48.5%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+    z-index: 2;
+  }
+
+  .product-main-img__node--claude.is-lane-active {
+    filter: drop-shadow(0 0 16px rgba(174, 255, 33, 0.34));
+  }
+
+  .product-main-img__center-node {
+    position: absolute;
+    left: var(--center-x);
+    top: var(--center-y);
+    width: var(--center-size);
+    aspect-ratio: 1;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .product-main-img__center-glow {
+    position: absolute;
+    width: 230%;
+    height: 230%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+    mix-blend-mode: screen;
+    opacity: 0.96;
+    filter: saturate(1.06);
+  }
+
+  .product-main-img__center-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 36.24%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 4px;
-    box-shadow: 0 0 30px rgba(174, 255, 33, 0.48);
+    color: #000;
+    z-index: 1;
   }
 
-  .product-main-img__center-core img {
-    width: 36.24%;
-    max-width: 40.58px;
+  .product-main-img__center-logo::before {
+    content: '';
+    position: absolute;
+    width: 220%;
+    height: 220%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(174, 255, 33, 0.86) 0%, rgba(174, 255, 33, 0.42) 46%, rgba(174, 255, 33, 0) 78%);
+    filter: blur(6px);
+    z-index: -1;
+  }
+
+  .product-main-img__center-logo img {
+    width: 100%;
     aspect-ratio: 40.58 / 25.6;
     object-fit: contain;
   }
 
-  .product-main-img__center-core span {
+  .product-main-img__center-logo span {
     font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: clamp(10px, 0.86vw, 12.8px);
     font-weight: 800;
     line-height: 1;
     letter-spacing: 0.03em;
+    text-transform: uppercase;
   }
 
   .product-main-img__values {
@@ -479,6 +598,10 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       row-gap: 28px;
     }
+
+    .product-main-img__outer-aura {
+      transform: translateY(-50%) scale(0.88);
+    }
   }
 
   @media (max-width: 1024px) {
@@ -486,17 +609,21 @@
       border-radius: 30px;
     }
 
+    .product-main-img__background-arc-svg {
+      opacity: 0.64;
+    }
+
     .product-main-img__outer-aura {
-      transform: translateY(-50%) scale(0.86);
-      opacity: 0.42;
+      transform: translateY(-50%) scale(0.72);
+      opacity: 0.4;
     }
 
     .product-main-img__outer-aura--left {
-      left: -144px;
+      left: -158px;
     }
 
     .product-main-img__outer-aura--right {
-      right: -144px;
+      right: -158px;
     }
 
     .product-main-img__vert-pill {
@@ -525,21 +652,25 @@
       line-height: 1.65;
     }
 
+    .product-main-img__background-arc-svg {
+      opacity: 0.38;
+    }
+
     .product-main-img__hero-shell {
       border-radius: 24px;
     }
 
     .product-main-img__outer-aura {
-      transform: translateY(-50%) scale(0.66);
-      opacity: 0.24;
+      transform: translateY(-50%) scale(0.52);
+      opacity: 0.2;
     }
 
     .product-main-img__outer-aura--left {
-      left: -162px;
+      left: -188px;
     }
 
     .product-main-img__outer-aura--right {
-      right: -162px;
+      right: -188px;
     }
 
     .product-main-img__vert-pill {
