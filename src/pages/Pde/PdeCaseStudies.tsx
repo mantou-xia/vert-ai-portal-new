@@ -3,9 +3,9 @@ import MessageBoard from '../MessageBoard';
 import PartnerCtaButton from '../../components/common/PartnerCtaButton';
 import './PdeCaseStudies.css';
 
-const CASE_IMAGE_BACK = 'https://www.figma.com/api/mcp/asset/0e3d9e48-e1f0-4f76-acc5-9c43cd7756c5';
-const CASE_IMAGE_MIDDLE = 'https://www.figma.com/api/mcp/asset/f85ff421-f408-4903-be99-4dcd1bc652f8';
-const CASE_IMAGE_FRONT = 'https://www.figma.com/api/mcp/asset/ae55b782-9e5c-465a-9761-1d427c27e3ac';
+// const CASE_IMAGE_BACK = 'https://www.figma.com/api/mcp/asset/0e3d9e48-e1f0-4f76-acc5-9c43cd7756c5';
+// const CASE_IMAGE_MIDDLE = 'https://www.figma.com/api/mcp/asset/f85ff421-f408-4903-be99-4dcd1bc652f8';
+// const CASE_IMAGE_FRONT = 'https://www.figma.com/api/mcp/asset/ae55b782-9e5c-465a-9761-1d427c27e3ac';
 
 const PdeCaseStudies: React.FC = () => {
   const [isMessageOpen, setIsMessageOpen] = useState(false);

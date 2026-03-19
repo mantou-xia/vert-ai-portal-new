@@ -1,0 +1,401 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - img "VERT" [ref=e8] [cursor=pointer]
+      - menu [ref=e11]:
+        - menuitem "首页" [ref=e12] [cursor=pointer]
+        - menuitem "FDE解决方案" [ref=e13] [cursor=pointer]
+        - menuitem "MAAS" [ref=e14] [cursor=pointer]
+        - menuitem "产品" [ref=e15] [cursor=pointer]
+        - menuitem "关于我们" [ref=e16] [cursor=pointer]
+        - menuitem [disabled]:
+          - img:
+            - img
+  - generic [ref=e17]:
+    - main [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - heading "VERT 大模型中台 - 企业级一体化智能服务平台" [level=1] [ref=e24]
+            - paragraph [ref=e25]: 一站式实现大模型统一管理、智能 Agent 构建、知识库 & RAG 引擎、可视化工作流编排与工具生态集成， 低代码降低企业 AI 开发门槛，高可扩展赋能全场景 AI 落地执行
+            - button "立即开始" [ref=e26] [cursor=pointer]:
+              - generic [ref=e27]: 立即开始
+          - generic [ref=e30]:
+            - generic [ref=e36]: VERT
+            - generic [ref=e37]: VERT
+            - img "OpenAI GPT-4" [ref=e39]
+            - img "通义千问" [ref=e41]
+            - img "Kimi" [ref=e43]
+            - img "Gemini Pro" [ref=e45]
+            - img "OpenAI GPT-4" [ref=e47]
+            - img "通义千问" [ref=e49]
+            - img "DeepSeek" [ref=e51]
+            - img "Claude 3" [ref=e53]
+            - generic [ref=e55]:
+              - img [ref=e56]
+              - generic [ref=e57]: VERT
+          - generic [ref=e58]:
+            - heading "五大核心价值，重构企业 AI 开发效率" [level=2] [ref=e59]
+            - generic [ref=e60]:
+              - article [ref=e61]:
+                - img [ref=e63]
+                - heading "统一管理" [level=3] [ref=e64]
+                - paragraph [ref=e65]: 多模型统一接入 / 监控 / 调度，支持国内外厂商 + 本地模型，一站式管控模型生命周期
+              - article [ref=e66]:
+                - img [ref=e68]
+                - heading "快速构建" [level=3] [ref=e69]
+                - paragraph [ref=e70]: 低代码可视化设计 Agent / 工作流，节点级调试，一键发布部署
+              - article [ref=e71]:
+                - img [ref=e73]
+                - heading "知识驱动" [level=3] [ref=e74]
+                - paragraph [ref=e75]: 全流程 RAG 能力，多格式文档解析 + 智能检索 + 幻觉抑制，为 AI 提供精准知识支撑
+              - article [ref=e76]:
+                - img [ref=e78]
+                - heading "工具生态" [level=3] [ref=e79]
+                - paragraph [ref=e80]: 海量内置工具组件，支持自定义开发 + 第三方集成，无限扩展 AI 能力边界
+              - article [ref=e81]:
+                - img [ref=e83]
+                - heading "流程编排" [level=3] [ref=e84]
+                - paragraph [ref=e85]: 多模式工作流设计，支持复杂分支 / 并行 / 断点重试，适配企业复杂业务逻辑
+        - generic [ref=e88]:
+          - generic [ref=e89]:
+            - heading "海量插件，即插即用" [level=2] [ref=e90]
+            - paragraph [ref=e91]: 覆盖办公、AI能力、数据处理等多场景，无需开发即可集成
+          - generic [ref=e92]:
+            - img [ref=e93]
+            - img "插件中心" [ref=e105]
+            - generic [ref=e107]: PDF处理
+            - generic [ref=e109]: SearchApi
+            - generic [ref=e111]: JSON处理
+            - generic [ref=e113]: Chat BI
+            - generic [ref=e115]: MCP server
+            - generic [ref=e117]: OCR识别服务
+            - generic [ref=e119]: 企业微信 Bot
+            - generic [ref=e121]: AgentQL
+            - generic [ref=e123]: PPT
+            - generic [ref=e125]: Discord
+            - generic [ref=e127]: Github
+          - generic [ref=e128]:
+            - generic [ref=e129]:
+              - paragraph [ref=e130]: 200+
+              - paragraph [ref=e131]: 插件总数
+            - generic [ref=e132]:
+              - paragraph [ref=e133]: 100w+
+              - paragraph [ref=e134]: 使用次数
+            - generic [ref=e135]:
+              - paragraph [ref=e136]: 5000+
+              - paragraph [ref=e137]: 开发者
+            - generic [ref=e138]:
+              - paragraph [ref=e139]: 500+
+              - paragraph [ref=e140]: 企业用户
+        - generic [ref=e144]:
+          - generic [ref=e145]:
+            - heading "无代码工作流引擎，稳定易用" [level=2] [ref=e146]
+            - paragraph [ref=e147]: 拖拽式搭建 AI 工作流，可视化配置执行逻辑，降低自动化门槛
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - list [ref=e150]:
+                - listitem [ref=e151]:
+                  - text: 拖拽式
+                  - strong [ref=e153]: 可视化编排
+                  - text: ，无需编写代码
+                - listitem [ref=e154]:
+                  - text: 支持
+                  - strong [ref=e156]: 条件分支、循环
+                  - text: 等复杂逻辑
+                - listitem [ref=e157]:
+                  - strong [ref=e159]: 实时预览
+                  - text: 执行结果，快速调试
+                - listitem [ref=e160]:
+                  - text: 丰富的
+                  - strong [ref=e162]: 模板库
+                  - text: ，一键开始使用
+              - button "立即试用" [ref=e163] [cursor=pointer]:
+                - generic [ref=e164]: 立即试用
+            - generic [ref=e166]:
+              - generic [ref=e167]:
+                - generic [ref=e168]: 工作流示意图
+                - generic [ref=e169]: 运行中
+                - img [ref=e170]
+              - generic [ref=e171]:
+                - generic [ref=e176]:
+                  - img [ref=e178]
+                  - generic [ref=e179]: Setup Automation
+                - generic [ref=e180]:
+                  - img [ref=e182]
+                  - generic [ref=e183]: Data Collection
+                - generic [ref=e184]:
+                  - img [ref=e186]
+                  - generic [ref=e187]: Trigger Automation
+                - generic [ref=e188]:
+                  - img [ref=e190]
+                  - generic [ref=e191]: Direct Processing
+                - generic [ref=e192]:
+                  - img [ref=e194]
+                  - generic [ref=e195]: Action Trigger
+                - generic [ref=e196]:
+                  - img [ref=e198]
+                  - generic [ref=e199]: Output Generation
+                - generic [ref=e200]:
+                  - generic [ref=e201]: Data Validation
+                  - generic [ref=e202]: "|"
+                  - generic [ref=e203]: Else
+          - generic [ref=e204]:
+            - generic [ref=e205]:
+              - paragraph [ref=e206]: 200+
+              - paragraph [ref=e207]: 工作流模板
+            - generic [ref=e208]:
+              - paragraph [ref=e209]: 100w+
+              - paragraph [ref=e210]: 日均执行
+            - generic [ref=e211]:
+              - paragraph [ref=e212]: 99.9%
+              - paragraph [ref=e213]: 成功率
+        - generic [ref=e217]:
+          - generic [ref=e218]:
+            - heading "实时调试预览，支持性能监控" [level=2] [ref=e219]
+            - paragraph [ref=e220]: 实时查看接口调用耗时、错误日志,在线调试参数,快速定位问题
+          - generic [ref=e221]:
+            - article [ref=e222]:
+              - generic [ref=e223]:
+                - heading "实时性能监控" [level=3] [ref=e224]
+                - paragraph [ref=e225]: 监控API响应时间、成功率等关键指标
+              - generic [ref=e226]:
+                - generic [ref=e227]:
+                  - paragraph [ref=e228]: 200ms
+                  - generic [ref=e229]: 平均响应时间
+                - generic [ref=e230]:
+                  - paragraph [ref=e231]: 200ms
+                  - generic [ref=e232]: 平均响应时间
+                - generic [ref=e233]:
+                  - paragraph [ref=e234]: 99.6%
+                  - generic [ref=e235]: 成功率
+              - generic [ref=e236]:
+                - img [ref=e238]
+                - generic [ref=e241]: 响应时间:150ms
+            - article [ref=e242]:
+              - generic [ref=e243]:
+                - heading "在线调试控制台" [level=3] [ref=e244]
+                - paragraph [ref=e245]: 实时查看请求日志、错误堆栈信息
+              - generic [ref=e246]:
+                - generic [ref=e247]:
+                  - generic [ref=e248]: START TIME
+                  - generic [ref=e249]: STATUS
+                  - generic [ref=e250]: RUN TIME
+                  - generic [ref=e251]: TOKEN
+                - generic [ref=e252]:
+                  - generic [ref=e253]: 2025/05/05 15:15:45
+                  - generic [ref=e254]: success
+                  - generic [ref=e255]: 4.285s
+                  - generic [ref=e256]: "1400"
+                - generic [ref=e257]:
+                  - generic [ref=e258]: 2025/05/03 17:02:33
+                  - generic [ref=e259]: success
+                  - generic [ref=e260]: 1.285s
+                  - generic [ref=e261]: "1400"
+                - generic [ref=e262]:
+                  - generic [ref=e263]: 2025/04/05 09:35:15
+                  - generic [ref=e264]: success
+                  - generic [ref=e265]: 2.759s
+                  - generic [ref=e266]: "1400"
+              - generic [ref=e267]:
+                - generic [ref=e268]: Log Detail
+                - generic [ref=e269]:
+                  - paragraph [ref=e270]: INPUT
+                  - code [ref=e271]: "{ \"code\":0, \"msg\":\"success\" }"
+                - generic [ref=e272]:
+                  - paragraph [ref=e273]: OUTPUT
+                  - code [ref=e274]: "{ \"content_type\":1, \"token\":1400 }"
+            - article [ref=e275]:
+              - generic [ref=e276]:
+                - heading "参数在线调试" [level=3] [ref=e277]
+                - paragraph [ref=e278]: 可视化编辑请求参数，即时预览结果
+              - generic [ref=e279]:
+                - generic [ref=e280]:
+                  - generic [ref=e281]:
+                    - img [ref=e282]
+                    - generic [ref=e283]: Trigger Automation
+                  - generic [ref=e284]:
+                    - img [ref=e285]
+                    - generic [ref=e286]: Action Trigger
+                - generic [ref=e287]: →
+                - generic [ref=e288]:
+                  - generic [ref=e289]:
+                    - img [ref=e290]
+                    - generic [ref=e291]: Trigger Automation
+                  - generic [ref=e292]:
+                    - heading "input" [level=4] [ref=e293]
+                    - paragraph [ref=e294]:
+                      - generic [ref=e295]: str
+                      - generic [ref=e296]: text
+                    - paragraph [ref=e297]:
+                      - generic [ref=e298]: url
+                      - generic [ref=e299]: response_for_model
+                  - generic [ref=e300]:
+                    - heading "output" [level=4] [ref=e301]
+                    - paragraph [ref=e302]:
+                      - generic [ref=e303]: code
+                      - generic [ref=e304]: Number
+                    - paragraph [ref=e305]:
+                      - generic [ref=e306]: msg
+                      - generic [ref=e307]: String
+            - article [ref=e308]:
+              - generic [ref=e309]:
+                - heading "性能分析报告" [level=3] [ref=e310]
+                - paragraph [ref=e311]: 生成详细的性能分析和优化建议
+              - generic [ref=e312]:
+                - generic [ref=e320]:
+                  - img [ref=e321]
+                  - paragraph [ref=e322]: AI概览
+                - generic [ref=e323]:
+                  - img [ref=e324]
+                  - paragraph [ref=e325]: AI归因
+                - generic [ref=e326]:
+                  - img [ref=e327]
+                  - paragraph [ref=e328]: AI优化建议
+          - generic [ref=e329]:
+            - generic [ref=e330]:
+              - paragraph [ref=e331]: <200ms
+              - paragraph [ref=e332]: 平均响应时间
+            - generic [ref=e333]:
+              - paragraph [ref=e334]: 80%
+              - paragraph [ref=e335]: 监控覆盖率
+            - generic [ref=e336]:
+              - paragraph [ref=e337]: 80%
+              - paragraph [ref=e338]: 问题定位速度提升
+        - generic [ref=e342]:
+          - generic [ref=e343]:
+            - heading "通用大模型集成能力" [level=2] [ref=e344]
+            - paragraph [ref=e345]: 支持市场主流大模型快速匹配集成，一键连接顶尖AI能力
+          - generic [ref=e346]:
+            - article [ref=e347]:
+              - generic [ref=e348]:
+                - img "OpenAI GPT-4" [ref=e350]
+                - generic [ref=e351]:
+                  - heading "OpenAI GPT-4" [level=3] [ref=e352]
+                  - generic [ref=e353]:
+                    - generic [ref=e354]: 文本生成
+                    - generic [ref=e355]: 代码辅助
+                    - generic [ref=e356]: 多模态
+              - generic [ref=e357]:
+                - generic [ref=e358]:
+                  - paragraph [ref=e359]: 200ms
+                  - paragraph [ref=e360]: 延迟
+                - generic [ref=e361]:
+                  - paragraph [ref=e362]: 98.5%
+                  - paragraph [ref=e363]: 准确率
+            - article [ref=e364]:
+              - generic [ref=e365]:
+                - img "Claude 3" [ref=e367]
+                - generic [ref=e368]:
+                  - heading "Claude 3" [level=3] [ref=e369]
+                  - generic [ref=e370]:
+                    - generic [ref=e371]: 长文本理解
+                    - generic [ref=e372]: 分析推理
+                    - generic [ref=e373]: 创作
+              - generic [ref=e374]:
+                - generic [ref=e375]:
+                  - paragraph [ref=e376]: 200ms
+                  - paragraph [ref=e377]: 延迟
+                - generic [ref=e378]:
+                  - paragraph [ref=e379]: 98.5%
+                  - paragraph [ref=e380]: 准确率
+            - article [ref=e381]:
+              - generic [ref=e382]:
+                - img "deepseek" [ref=e384]
+                - generic [ref=e385]:
+                  - heading "deepseek" [level=3] [ref=e386]
+                  - generic [ref=e387]:
+                    - generic [ref=e388]: 文本生成
+                    - generic [ref=e389]: 代码辅助
+                    - generic [ref=e390]: 多模态
+              - generic [ref=e391]:
+                - generic [ref=e392]:
+                  - paragraph [ref=e393]: 200ms
+                  - paragraph [ref=e394]: 延迟
+                - generic [ref=e395]:
+                  - paragraph [ref=e396]: 98.5%
+                  - paragraph [ref=e397]: 准确率
+            - article [ref=e398]:
+              - generic [ref=e399]:
+                - img "通义千问" [ref=e401]
+                - generic [ref=e402]:
+                  - heading "通义千问" [level=3] [ref=e403]
+                  - generic [ref=e404]:
+                    - generic [ref=e405]: 多语言
+                    - generic [ref=e406]: 多模态
+                    - generic [ref=e407]: 代码生成
+              - generic [ref=e408]:
+                - generic [ref=e409]:
+                  - paragraph [ref=e410]: 200ms
+                  - paragraph [ref=e411]: 延迟
+                - generic [ref=e412]:
+                  - paragraph [ref=e413]: 98.5%
+                  - paragraph [ref=e414]: 准确率
+            - article [ref=e415]:
+              - generic [ref=e416]:
+                - img "Gemini Pro" [ref=e418]
+                - generic [ref=e419]:
+                  - heading "Gemini Pro" [level=3] [ref=e420]
+                  - generic [ref=e421]:
+                    - generic [ref=e422]: 推理
+                    - generic [ref=e423]: 创意
+                    - generic [ref=e424]: 多模态
+              - generic [ref=e425]:
+                - generic [ref=e426]:
+                  - paragraph [ref=e427]: 200ms
+                  - paragraph [ref=e428]: 延迟
+                - generic [ref=e429]:
+                  - paragraph [ref=e430]: 98.5%
+                  - paragraph [ref=e431]: 准确率
+            - article [ref=e432]:
+              - generic [ref=e433]:
+                - img "Kimi" [ref=e435]
+                - generic [ref=e436]:
+                  - heading "Kimi" [level=3] [ref=e437]
+                  - generic [ref=e438]:
+                    - generic [ref=e439]: 文本生成
+                    - generic [ref=e440]: 代码辅助
+                    - generic [ref=e441]: 多模态
+              - generic [ref=e442]:
+                - generic [ref=e443]:
+                  - paragraph [ref=e444]: 200ms
+                  - paragraph [ref=e445]: 延迟
+                - generic [ref=e446]:
+                  - paragraph [ref=e447]: 98.5%
+                  - paragraph [ref=e448]: 准确率
+    - contentinfo [ref=e449]:
+      - generic [ref=e450]:
+        - banner [ref=e451]:
+          - navigation [ref=e453]:
+            - button "首页" [ref=e455] [cursor=pointer]
+            - generic [ref=e456]:
+              - generic [ref=e457]: "|"
+              - button "FDE解决方案" [ref=e458] [cursor=pointer]
+            - generic [ref=e459]:
+              - generic [ref=e460]: "|"
+              - button "MAAS" [ref=e461] [cursor=pointer]
+            - generic [ref=e462]:
+              - generic [ref=e463]: "|"
+              - button "产品" [ref=e464] [cursor=pointer]
+            - generic [ref=e465]:
+              - generic [ref=e466]: "|"
+              - button "关于我们" [ref=e467] [cursor=pointer]
+        - generic [ref=e468]:
+          - generic:
+            - heading "准备好迎接下一代AI应用了吗？" [level=2] [ref=e469]
+            - paragraph [ref=e470]:
+              - text: 集RAG pipeline、丰富的集成和全面可观测性于一体，
+              - text: 轻松上线可投产的AI Agents，无需繁琐操作。
+          - generic [ref=e472]:
+            - generic [ref=e473]:
+              - img "微信号" [ref=e474]
+              - generic [ref=e475]: 微信号
+            - generic [ref=e476]:
+              - heading "联系我们" [level=3] [ref=e477]
+              - generic [ref=e478]:
+                - paragraph [ref=e479]: 联系电话：18751969612
+                - paragraph [ref=e480]: 邮箱地址：m278398343@163.com
+                - paragraph [ref=e481]:
+                  - text: 公司地址：深圳市宝安区新安街道海旺社区宝兴路6号
+                  - text: 海纳百川大厦B座6层
+        - paragraph [ref=e483]: © 2025 Breakthrough Energy, LLC. All Rights Reserved

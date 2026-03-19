@@ -1,100 +1,91 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+﻿import React from 'react';
+import { getAssetPath } from '../../utils/path';
 import './ProductPlugins.css';
 
+type PluginNode = {
+  key: string;
+  label: string;
+  className: string;
+};
+
+const pluginNodes: PluginNode[] = [
+  { key: 'l1', label: 'PDF处理', className: 'product-plugins__node--l1' },
+  { key: 'l2', label: 'SearchApi', className: 'product-plugins__node--l2' },
+  { key: 'l3', label: 'JSON处理', className: 'product-plugins__node--l3' },
+  { key: 'l4', label: 'Chat BI', className: 'product-plugins__node--l4' },
+  { key: 'b1', label: 'MCP server', className: 'product-plugins__node--b1 product-plugins__node--lg' },
+  { key: 'b2', label: 'OCR识别服务', className: 'product-plugins__node--b2 product-plugins__node--lg' },
+  { key: 'b3', label: '企业微信 Bot', className: 'product-plugins__node--b3 product-plugins__node--lg' },
+  { key: 'b4', label: 'AgentQL', className: 'product-plugins__node--b4 product-plugins__node--lg' },
+  { key: 'r1', label: 'PPT', className: 'product-plugins__node--r1' },
+  { key: 'r2', label: 'Discord', className: 'product-plugins__node--r2' },
+  { key: 'r3', label: 'Github', className: 'product-plugins__node--r3' },
+];
+
+const stats = [
+  { value: '200+', label: '插件总数' },
+  { value: '100w+', label: '使用次数' },
+  { value: '5000+', label: '开发者' },
+  { value: '500+', label: '企业用户' },
+];
+
 const ProductPlugins: React.FC = () => {
-  const { t } = useTranslation();
-
-  const leftPlugins = [
-    t('plugins.pdfReader'),
-    t('plugins.searchApi'),
-    t('plugins.chatAi'),
-    t('plugins.soon'),
-  ];
-
-  const bottomPlugins = [
-    t('plugins.dcpServer'),
-    t('plugins.formulaModel'),
-    t('plugins.agentSql'),
-    t('plugins.privateBot'),
-  ];
-
-  const rightPlugins = [
-    t('plugins.ppt'),
-    t('plugins.shareAi'),
-    t('plugins.github'),
-  ];
-
-  const stats = [
-    { value: '200+', label: t('plugins.statPlugins') },
-    { value: '100w+', label: t('plugins.statUsage') },
-    { value: '5000+', label: t('plugins.statDevelopers') },
-    { value: '500+', label: t('plugins.statEnterprises') },
-  ];
-
   return (
     <section className="product-plugins">
-      <div className="product-plugins__header">
-        <h2 className="product-plugins__title">{t('plugins.title')}</h2>
-        <p className="product-plugins__subtitle">{t('plugins.subtitle')}</p>
-      </div>
+      <div className="product-plugins__container">
+        <header className="product-plugins__header">
+          <h2 className="product-plugins__title">海量插件，即插即用</h2>
+          <p className="product-plugins__subtitle">覆盖办公、AI能力、数据处理等多场景，无需开发即可集成</p>
+        </header>
 
-      <div className="product-plugins__diagram">
-        <svg className="product-plugins__lines" viewBox="0 0 600 400" preserveAspectRatio="none">
-          {/* 左侧连线 */}
-          <line x1="180" y1="200" x2="120" y2="60" stroke="#3b82f6" strokeWidth="1.5" />
-          <line x1="180" y1="200" x2="120" y2="120" stroke="#3b82f6" strokeWidth="1.5" />
-          <line x1="180" y1="200" x2="120" y2="200" stroke="#3b82f6" strokeWidth="1.5" />
-          <line x1="180" y1="200" x2="120" y2="280" stroke="#3b82f6" strokeWidth="1.5" />
-          {/* 底部连线 */}
-          <line x1="300" y1="280" x2="120" y2="340" stroke="#3b82f6" strokeWidth="1.5" />
-          <line x1="300" y1="280" x2="240" y2="340" stroke="#3b82f6" strokeWidth="1.5" />
-          <line x1="300" y1="280" x2="360" y2="340" stroke="#3b82f6" strokeWidth="1.5" />
-          <line x1="300" y1="280" x2="480" y2="340" stroke="#3b82f6" strokeWidth="1.5" />
-          {/* 右侧连线 */}
-          <line x1="420" y1="200" x2="480" y2="80" stroke="#3b82f6" strokeWidth="1.5" />
-          <line x1="420" y1="200" x2="480" y2="200" stroke="#3b82f6" strokeWidth="1.5" />
-          <line x1="420" y1="200" x2="480" y2="320" stroke="#3b82f6" strokeWidth="1.5" />
-        </svg>
+        <div className="product-plugins__diagram">
+          <svg className="product-plugins__lines" viewBox="0 0 1360 560" preserveAspectRatio="none" aria-hidden>
+            <path d="M470 242L215 132" />
+            <path d="M470 268L177 233" />
+            <path d="M470 296L220 352" />
+            <path d="M470 323L160 432" />
 
-        <div className="product-plugins__center">
-          <div className="product-plugins__center-icon">Q</div>
-          <span className="product-plugins__center-zh">{t('plugins.center')}</span>
-          <span className="product-plugins__center-en">{t('plugins.centerEn')}</span>
-        </div>
+            <path d="M652 330L560 387" />
+            <path d="M652 330L678 390" />
+            <path d="M652 330L797 432" />
+            <path d="M652 330L913 390" />
 
-        <div className="product-plugins__nodes product-plugins__nodes--left">
-          {leftPlugins.map((name, i) => (
-            <div key={i} className="product-plugins__node" style={{ top: `${15 + i * 22}%` }}>
-              {name}
+            <path d="M896 242L1082 123" />
+            <path d="M896 268L1072 235" />
+            <path d="M896 296L1083 370" />
+          </svg>
+
+          <img
+            className="product-plugins__center"
+            src={getAssetPath('/images/icons/product/插件中心.svg')}
+            alt="插件中心"
+            loading="lazy"
+          />
+          <img
+            className="product-plugins__center-icon"
+            src={getAssetPath('/images/icons/product/插件中心icon.png')}
+            alt=""
+            aria-hidden
+            loading="lazy"
+          />
+
+          {pluginNodes.map((node) => (
+            <div key={node.key} className={`product-plugins__node ${node.className}`}>
+              <span>{node.label}</span>
             </div>
           ))}
         </div>
 
-        <div className="product-plugins__nodes product-plugins__nodes--bottom">
-          {bottomPlugins.map((name, i) => (
-            <div key={i} className="product-plugins__node">
-              {name}
+        <div className="product-plugins__stats">
+          {stats.map((stat) => (
+            <div key={stat.label} className="product-plugins__stat">
+              <p className="product-plugins__stat-value">{stat.value}</p>
+              <p className="product-plugins__stat-label">{stat.label}</p>
             </div>
           ))}
         </div>
 
-        <div className="product-plugins__nodes product-plugins__nodes--right">
-          {rightPlugins.map((name, i) => (
-            <div key={i} className="product-plugins__node" style={{ top: `${20 + i * 30}%` }}>
-              {name}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="product-plugins__stats">
-        {stats.map((stat, i) => (
-          <div key={i} className="product-plugins__stat">
-            <span className="product-plugins__stat-value">{stat.value}</span>
-            <span className="product-plugins__stat-label">{stat.label}</span>
-          </div>
-        ))}
+        <div className="product-plugins__divider" />
       </div>
     </section>
   );
