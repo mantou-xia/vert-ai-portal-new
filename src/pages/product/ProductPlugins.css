@@ -26,7 +26,7 @@
     font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 36px;
     font-weight: 700;
-    line-height: 1.35;
+    line-height: normal;
     color: #1a1a1a;
   }
 
@@ -34,14 +34,16 @@
     margin: 0;
     font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 20px;
-    line-height: 1.6;
-    color: rgba(26, 26, 26, 0.6);
+    font-weight: 400;
+    line-height: 32px;
+    color: rgba(114, 114, 114, 0.6);
+    white-space: nowrap;
   }
 
   .product-plugins__diagram {
     position: relative;
     width: 100%;
-    height: 560px;
+    aspect-ratio: 1360 / 560;
     border-radius: 30px;
     border: 1px solid #e4e4e4;
     background: #f4f5f5;
@@ -54,130 +56,180 @@
     width: 100%;
     height: 100%;
     z-index: 1;
+    pointer-events: none;
   }
 
-  .product-plugins__lines path {
-    fill: none;
-    stroke: #9da1ff;
-    stroke-width: 1.8;
-    stroke-linecap: round;
+  .product-plugins__connector {
+    position: absolute;
+    left: calc(var(--line-x) / 1360 * 100%);
+    top: calc(var(--line-y) / 560 * 100%);
+    width: calc(var(--line-w) / 1360 * 100%);
+    height: calc(var(--line-h) / 560 * 100%);
   }
 
-  .product-plugins__center {
+  .product-plugins__center-base {
+    position: absolute;
+    left: calc(542.531 / 1360 * 100%);
+    top: calc(106.454 / 560 * 100%);
+    width: calc(335.113 / 1360 * 100%);
+    height: calc(208.705 / 560 * 100%);
+    z-index: 3;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.16));
+  }
+
+  .product-plugins__center-top-group {
+    position: absolute;
+    left: calc(530.016 / 1360 * 100%);
+    top: calc(100.52 / 560 * 100%);
+    width: calc(360.143 / 1360 * 100%);
+    height: calc(195.542 / 560 * 100%);
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .product-plugins__center-top-card-shell {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  .product-plugins__center-top-card {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -47%);
-    width: 336px;
-    max-width: 38%;
-    z-index: 3;
-    filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.14));
+    width: calc(208.392 / 360.143 * 100%);
+    aspect-ratio: 1 / 1;
+    transform: translate(-50%, -50%) rotate(-18deg) skewX(33deg) scaleY(0.84);
+    transform-origin: center;
+    border-radius: 25px;
+    border: 0.626px solid rgba(0, 0, 0, 0.75);
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(7px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14);
+    z-index: 0;
   }
 
-  .product-plugins__center-icon {
+  .product-plugins__center-top-icon {
     position: absolute;
-    left: 50%;
-    top: 48%;
-    transform: translate(-50%, -120%);
-    width: 140px;
-    z-index: 4;
+    left: calc(120.47 / 360.143 * 100%);
+    top: calc(58.75 / 195.542 * 100%);
+    width: calc(65.286 / 360.143 * 100%);
+    height: calc(32.196 / 195.542 * 100%);
+    object-fit: contain;
+  }
+
+  .product-plugins__center-top-title-wrap {
+    position: absolute;
+    left: calc(158.03 / 360.143 * 100%);
+    top: calc(100.77 / 195.542 * 100%);
+    width: calc(104.154 / 360.143 * 100%);
+    height: calc(45.146 / 195.542 * 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-plugins__center-top-title {
+    margin: 0;
+    transform: rotate(-18deg) skewX(33deg) scaleY(0.84);
+    transform-origin: center;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
+    font-size: 21.464px;
+    font-weight: 700;
+    line-height: normal;
+    color: #1a1a1a;
+    white-space: nowrap;
+  }
+
+  .product-plugins__center-top-subtitle-wrap {
+    position: absolute;
+    left: calc(176.82 / 360.143 * 100%);
+    top: calc(119.53 / 195.542 * 100%);
+    width: calc(104.942 / 360.143 * 100%);
+    height: calc(41.634 / 195.542 * 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-plugins__center-top-subtitle {
+    margin: 0;
+    transform: rotate(-18deg) skewX(33deg) scaleY(0.84);
+    transform-origin: center;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
+    font-size: 14.309px;
+    font-weight: 700;
+    line-height: normal;
+    color: #8f8f8f;
+    white-space: nowrap;
   }
 
   .product-plugins__node {
     position: absolute;
-    height: 66px;
-    min-width: 112px;
-    padding: 0 18px;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.14);
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: skewX(-18deg);
+    left: calc(var(--node-x) / 1360 * 100%);
+    top: calc(var(--node-y) / 560 * 100%);
+    width: calc(var(--node-w) / 1360 * 100%);
+    height: calc(var(--node-h) / 560 * 100%);
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .product-plugins__node--under-center {
     z-index: 2;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
   }
 
-  .product-plugins__node span {
+  .product-plugins__node-plate {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     display: block;
-    transform: skewX(18deg);
-    font-family: 'Source Han Sans CN', 'Alibaba PuHuiTi 3.0', sans-serif;
-    font-size: 15px;
-    color: #2b2b2b;
+    filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.12));
+  }
+
+  .product-plugins__node-top-card {
+    position: absolute;
+    left: calc(50% + var(--card-dx));
+    top: calc(45.84% + var(--card-dy));
+    width: 57.86%;
+    aspect-ratio: 1 / 1;
+    transform: translate(-50%, -50%) rotate(-18deg) skewX(33deg) scaleY(calc(0.84 * var(--card-scale)));
+    transform-origin: center;
+    border-radius: 8.652px;
+    border: 0.289px solid rgba(0, 0, 0, 0.85);
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: block;
+    z-index: 6;
+  }
+
+  .product-plugins__node-top-label {
+    position: absolute;
+    left: 50%;
+    bottom: 14%;
+    margin: 0;
+    transform: translateX(-50%) translate(var(--label-dx), var(--label-dy));
+    font-family: 'Source Han Sans CN', 'PingFang SC', sans-serif;
+    font-size: var(--label-font-size);
+    font-weight: 400;
+    line-height: 1;
+    color: #1f1f1f;
     white-space: nowrap;
-  }
-
-  .product-plugins__node--lg {
-    min-width: 168px;
-    height: 98px;
-  }
-
-  .product-plugins__node--l1 {
-    left: 160px;
-    top: 70px;
-  }
-
-  .product-plugins__node--l2 {
-    left: 120px;
-    top: 156px;
-  }
-
-  .product-plugins__node--l3 {
-    left: 184px;
-    top: 278px;
-  }
-
-  .product-plugins__node--l4 {
-    left: 112px;
-    top: 382px;
-  }
-
-  .product-plugins__node--b1 {
-    left: 540px;
-    top: 388px;
-  }
-
-  .product-plugins__node--b2 {
-    left: 678px;
-    top: 354px;
-  }
-
-  .product-plugins__node--b3 {
-    left: 626px;
-    top: 464px;
-  }
-
-  .product-plugins__node--b4 {
-    left: 812px;
-    top: 422px;
-  }
-
-  .product-plugins__node--r1 {
-    right: 120px;
-    top: 144px;
-  }
-
-  .product-plugins__node--r2 {
-    right: 276px;
-    top: 308px;
-  }
-
-  .product-plugins__node--r3 {
-    right: 104px;
-    top: 366px;
+    text-align: center;
   }
 
   .product-plugins__stats {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
   }
 
   .product-plugins__stat {
     padding: 20px 30px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
 
   .product-plugins__stat-value {
@@ -185,15 +237,15 @@
     font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
     font-size: 48px;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1;
     color: #1a1a1a;
   }
 
   .product-plugins__stat-label {
-    margin: 12px 0 0;
-    font-family: 'Source Han Sans CN', 'Alibaba PuHuiTi 3.0', sans-serif;
+    margin: 0;
+    font-family: 'Source Han Sans CN', 'PingFang SC', sans-serif;
     font-size: 20px;
-    line-height: 1.4;
+    line-height: 1.25;
     color: rgba(60, 60, 67, 0.6);
   }
 
@@ -216,24 +268,19 @@
 
     .product-plugins__subtitle {
       font-size: 18px;
+      line-height: 1.6;
     }
 
-    .product-plugins__diagram {
-      height: 500px;
+    .product-plugins__center-top-title {
+      font-size: 19px;
     }
 
-    .product-plugins__node {
-      transform: skewX(-16deg) scale(0.88);
-      transform-origin: center;
-    }
-
-    .product-plugins__node span {
-      transform: skewX(16deg);
-      font-size: 14px;
+    .product-plugins__center-top-subtitle {
+      font-size: 12px;
     }
 
     .product-plugins__stat-value {
-      font-size: 40px;
+      font-size: 42px;
     }
 
     .product-plugins__stat-label {
@@ -243,22 +290,19 @@
 
   @media (max-width: 1024px) {
     .product-plugins__diagram {
-      height: 420px;
+      border-radius: 24px;
     }
 
-    .product-plugins__center {
-      max-width: 42%;
-    }
-
-    .product-plugins__node--b1,
-    .product-plugins__node--b2,
-    .product-plugins__node--b3,
-    .product-plugins__node--b4 {
+    .product-plugins__node--compact-tablet {
       display: none;
     }
 
     .product-plugins__stats {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .product-plugins__stat {
+      padding: 14px 20px;
     }
   }
 
@@ -281,23 +325,34 @@
     .product-plugins__subtitle {
       font-size: 14px;
       line-height: 1.6;
+      white-space: normal;
     }
 
     .product-plugins__diagram {
-      height: 320px;
       border-radius: 20px;
     }
 
-    .product-plugins__node {
+    .product-plugins__node--md,
+    .product-plugins__node--compact-mobile {
       display: none;
+    }
+
+    .product-plugins__center-top-title {
+      font-size: 14px;
+    }
+
+    .product-plugins__center-top-subtitle {
+      font-size: 9px;
     }
 
     .product-plugins__stats {
       grid-template-columns: minmax(0, 1fr);
+      gap: 0;
     }
 
     .product-plugins__stat {
-      padding: 10px;
+      padding: 8px 0;
+      gap: 8px;
     }
 
     .product-plugins__stat-value {
@@ -305,7 +360,6 @@
     }
 
     .product-plugins__stat-label {
-      margin-top: 6px;
       font-size: 16px;
     }
   }

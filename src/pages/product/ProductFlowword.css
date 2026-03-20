@@ -60,44 +60,33 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 32px;
   }
 
   .product-flowwork__features li {
     display: flex;
     align-items: center;
-    gap: 16px;
-    font-family: 'Source Han Sans CN', 'Alibaba PuHuiTi 3.0', sans-serif;
+    font-family: 'Alibaba PuHuiTi 3.0';
     font-size: 24px;
     line-height: 1.4;
     color: rgba(60, 60, 67, 0.6);
   }
-
-  .product-flowwork__features strong {
-    color: #1a1a1a;
-    font-weight: 600;
+  .product-flowwork__features li img{
+    margin-right: 16px;
   }
 
-  .product-flowwork__check {
+  .product-flowwork__features span {
+    color: rgb(0, 0, 0);
+    
+    font-family: 'Alibaba PuHuiTi 3.0';
+  }
+
+  .product-flowwork__check-icon {
     flex: 0 0 auto;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: rgba(35, 196, 116, 0.16);
-    border: 1px solid rgba(35, 196, 116, 0.4);
-    position: relative;
-  }
-
-  .product-flowwork__check::after {
-    content: '';
-    position: absolute;
-    left: 7px;
-    top: 3px;
-    width: 5px;
-    height: 10px;
-    border: solid #23c474;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+    width: 22.456px;
+    height: 20px;
+    display: block;
+    object-fit: contain;
   }
 
   .product-flowwork__cta {
@@ -109,6 +98,25 @@
     background: #333;
     display: flex;
     flex-direction: column;
+  }
+
+  .product-flowwork__image-placeholder {
+    position: relative;
+    z-index: 2;
+    width: min(540px, calc(100% - 48px));
+    height: 390px;
+    margin: auto;
+    border-radius: 16px;
+    border: 2px dashed rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
   }
 
   .product-flowwork__right::before {
@@ -388,6 +396,10 @@
       padding-bottom: 22px;
     }
 
+    .product-flowwork__image-placeholder {
+      width: min(540px, calc(100% - 36px));
+    }
+
     .product-flowwork__stats {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -428,6 +440,12 @@
 
     .product-flowwork__right {
       min-height: 300px;
+    }
+
+    .product-flowwork__image-placeholder {
+      width: calc(100% - 24px);
+      height: 220px;
+      font-size: 14px;
     }
 
     .product-flowwork__canvas-head {

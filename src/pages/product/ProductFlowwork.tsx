@@ -4,21 +4,7 @@ import { getAssetPath } from '../../utils/path';
 import MessageBoard from '../MessageBoard';
 import './ProductFlowword.css';
 
-type FlowNode = {
-  key: string;
-  title: string;
-  icon: string;
-  className: string;
-};
-
-const flowNodes: FlowNode[] = [
-  { key: 'setup', title: 'Setup Automation', icon: '/images/icons/product/Frame_63.svg', className: 'product-flowwork__node--setup' },
-  { key: 'collect', title: 'Data Collection', icon: '/images/icons/product/Frame.svg', className: 'product-flowwork__node--collect' },
-  { key: 'trigger', title: 'Trigger Automation', icon: '/images/icons/product/Frame (1).svg', className: 'product-flowwork__node--trigger' },
-  { key: 'direct', title: 'Direct Processing', icon: '/images/icons/product/Frame (2).svg', className: 'product-flowwork__node--direct' },
-  { key: 'action', title: 'Action Trigger', icon: '/images/icons/product/Frame (3).svg', className: 'product-flowwork__node--action' },
-  { key: 'output', title: 'Output Generation', icon: '/images/icons/product/Vector (1).svg', className: 'product-flowwork__node--output' },
-];
+const checkIcon = getAssetPath('/images/icons/product/绿色对钩.svg');
 
 const stats = [
   { value: '200+', label: '工作流模板' },
@@ -41,20 +27,20 @@ const ProductFlowwork: React.FC = () => {
           <div className="product-flowwork__left">
             <ul className="product-flowwork__features">
               <li>
-                <span className="product-flowwork__check" />
-                拖拽式 <strong>可视化编排</strong>，无需编写代码
+                <img src={checkIcon} alt="" aria-hidden className="product-flowwork__check-icon" />
+                拖拽式<span>可视化编排</span>，无需编写代码
               </li>
               <li>
-                <span className="product-flowwork__check" />
-                支持 <strong>条件分支、循环</strong> 等复杂逻辑
+                <img src={checkIcon} alt="" aria-hidden className="product-flowwork__check-icon" />
+                支持<span>条件分支、循环</span>等复杂逻辑
               </li>
               <li>
-                <span className="product-flowwork__check" />
-                <strong>实时预览</strong> 执行结果，快速调试
+                <img src={checkIcon} alt="" aria-hidden className="product-flowwork__check-icon" />
+                <span>实时预览</span>执行结果，快速调试
               </li>
               <li>
-                <span className="product-flowwork__check" />
-                丰富的 <strong>模板库</strong>，一键开始使用
+                <img src={checkIcon} alt="" aria-hidden className="product-flowwork__check-icon" />
+                丰富的<span>模板库</span>，一键开始使用
               </li>
             </ul>
 
@@ -64,32 +50,8 @@ const ProductFlowwork: React.FC = () => {
           </div>
 
           <div className="product-flowwork__right">
-            <div className="product-flowwork__canvas-head">
-              <span className="product-flowwork__canvas-title">工作流示意图</span>
-              <span className="product-flowwork__canvas-running">运行中</span>
-              <img src={getAssetPath('/images/icons/product/工作流.png')} alt="" aria-hidden className="product-flowwork__canvas-toolbar" />
-            </div>
-
-            <div className="product-flowwork__canvas-map">
-              <span className="product-flowwork__line product-flowwork__line--1" />
-              <span className="product-flowwork__line product-flowwork__line--2" />
-              <span className="product-flowwork__line product-flowwork__line--3" />
-              <span className="product-flowwork__line product-flowwork__line--4" />
-
-              {flowNodes.map((node) => (
-                <div key={node.key} className={`product-flowwork__node ${node.className}`}>
-                  <div className="product-flowwork__node-icon">
-                    <img src={getAssetPath(node.icon)} alt="" aria-hidden />
-                  </div>
-                  <span>{node.title}</span>
-                </div>
-              ))}
-
-              <div className="product-flowwork__node-subrow">
-                <span>Data Validation</span>
-                <span>|</span>
-                <span>Else</span>
-              </div>
+            <div className="product-flowwork__image-placeholder" role="img" aria-label="工作流示意图图片占位">
+              工作流示意图图片占位
             </div>
           </div>
         </div>

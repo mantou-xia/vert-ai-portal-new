@@ -9,12 +9,12 @@ type ModelItem = {
 };
 
 const models: ModelItem[] = [
-  { name: 'OpenAI GPT-4', capabilities: ['文本生成', '代码辅助', '多模态'], icon: '/images/icons/product/gpt.svg' },
-  { name: 'Claude 3', capabilities: ['长文本理解', '分析推理', '创作'], icon: '/images/icons/product/Group_7.svg' },
-  { name: 'deepseek', capabilities: ['文本生成', '代码辅助', '多模态'], icon: '/images/icons/product/DeepSeek.svg' },
-  { name: '通义千问', capabilities: ['多语言', '多模态', '代码生成'], icon: '/images/icons/product/通义千问.svg' },
-  { name: 'Gemini Pro', capabilities: ['推理', '创意', '多模态'], icon: '/images/icons/product/gemini (2).png' },
-  { name: 'Kimi', capabilities: ['文本生成', '代码辅助', '多模态'], icon: '/images/icons/product/kimi.svg' },
+  { name: 'OpenAI GPT-4', capabilities: ['文本生成', '代码辅助', '多模态'], icon: '/images/icons/product/gpt用于大模型组件.svg' },
+  { name: 'Claude 3', capabilities: ['长文本理解', '分析推理', '创作'], icon: '/images/icons/product/claude用于大模型组件.svg' },
+  { name: 'deepseek', capabilities: ['文本生成', '代码辅助', '多模态'], icon: '/images/icons/product/DeepSeek用于大模型组件.svg' },
+  { name: '通义千问', capabilities: ['多语言', '多模态', '代码生成'], icon: '/images/icons/product/通义千问用于大模型组件.svg' },
+  { name: 'Gemini Pro', capabilities: ['推理', '创意', '多模态'], icon: '/images/icons/product/gemini用于大模型组件.png' },
+  { name: 'Kimi', capabilities: ['文本生成', '代码辅助', '多模态'], icon: '/images/icons/product/kimi用于大模型组件.svg' },
 ];
 
 const ProductModel: React.FC = () => {

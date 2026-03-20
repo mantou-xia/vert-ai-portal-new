@@ -41,6 +41,7 @@ type ValueCard = {
   icon: string;
   title: string;
   description: string;
+  iconTitleGap: 28 | 32;
 };
 
 type CardTrailRouteId =
@@ -98,27 +99,32 @@ const valueCards: ValueCard[] = [
   {
     icon: '/images/icons/product/统一管理.svg',
     title: '统一管理',
-    description: '多模型统一接入 / 监控 / 调度，支持国内外厂商 + 本地模型，一站式管控模型生命周期',
+    description: '多模型统一接入 / 监控 / 调度，支持国内外厂商+本地模型，一站式管控模型生命周期',
+    iconTitleGap: 32,
   },
   {
     icon: '/images/icons/product/快速构建.svg',
     title: '快速构建',
     description: '低代码可视化设计 Agent / 工作流，节点级调试，一键发布部署',
+    iconTitleGap: 32,
   },
   {
     icon: '/images/icons/product/知识驱动.svg',
     title: '知识驱动',
-    description: '全流程 RAG 能力，多格式文档解析 + 智能检索 + 幻觉抑制，为 AI 提供精准知识支撑',
+    description: '全流程RAG能力，多格式文档解析 + 智能检索 + 幻觉抑制，为 AI 提供精准知识支撑',
+    iconTitleGap: 28,
   },
   {
     icon: '/images/icons/product/工具生态.svg',
     title: '工具生态',
     description: '海量内置工具组件，支持自定义开发 + 第三方集成，无限扩展 AI 能力边界',
+    iconTitleGap: 28,
   },
   {
     icon: '/images/icons/product/流程编排.svg',
     title: '流程编排',
     description: '多模式工作流设计，支持复杂分支 / 并行 / 断点重试，适配企业复杂业务逻辑',
+    iconTitleGap: 28,
   },
 ];
 
@@ -771,15 +777,23 @@ const ProductMainImg: React.FC = () => {
         </div>
 
         <section className="product-main-img__values">
-          <h2 className="product-main-img__values-title">五大核心价值，重构企业 AI 开发效率</h2>
+          <div className="product-main-img__values-title-wrap">
+            <h2 className="product-main-img__values-title">五大核心价值，重构企业 AI 开发效率</h2>
+          </div>
           <div className="product-main-img__values-grid">
             {valueCards.map((card) => (
-              <article key={card.title} className="product-main-img__value-card">
+              <article
+                key={card.title}
+                className="product-main-img__value-card"
+                style={{ ['--icon-title-gap' as string]: `${card.iconTitleGap}px` } as React.CSSProperties}
+              >
                 <div className="product-main-img__value-icon">
                   <img src={getAssetPath(card.icon)} alt="" aria-hidden loading="lazy" />
                 </div>
-                <h3 className="product-main-img__value-title">{card.title}</h3>
-                <p className="product-main-img__value-desc">{card.description}</p>
+                <div className="product-main-img__value-text-block">
+                  <h3 className="product-main-img__value-title">{card.title}</h3>
+                  <p className="product-main-img__value-desc">{card.description}</p>
+                </div>
               </article>
             ))}
           </div>
