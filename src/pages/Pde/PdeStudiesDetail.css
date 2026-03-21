@@ -31,7 +31,8 @@
 
       .pde-studies-detail__expand {
         opacity: 1;
-        max-height: 400px;
+        clip-path: inset(0 0 0 0 round var(--expand-radius));
+        pointer-events: auto;
       }
     }
   }
@@ -103,17 +104,20 @@
   }
 
   .pde-studies-detail__expand {
+    --expand-radius: 32px;
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
     background: #101010;
     padding: 24px 40px 40px;
-    border-radius: 0 0 32px 32px;
+    border-radius: var(--expand-radius);
     opacity: 0;
-    max-height: 0;
     overflow: hidden;
-    transition: opacity 0.35s ease, max-height 0.35s ease;
+    clip-path: inset(34% 0 0 0 round var(--expand-radius));
+    pointer-events: none;
+    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+      clip-path 1s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .pde-studies-detail__expand-block {
@@ -198,8 +202,8 @@
     }
 
     .pde-studies-detail__expand {
+      --expand-radius: 24px;
       padding: 20px 24px 24px;
-      border-radius: 0 0 24px 24px;
     }
 
     .pde-studies-detail__expand-title {

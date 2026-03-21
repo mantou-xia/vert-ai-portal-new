@@ -10,24 +10,11 @@ const HOLD_MS = 1500;
 const NEXT_TEXT_DELAY_MS = 500;
 const TYPE_RANDOM_VARIANCE_MS = 50;
 
-type ArcItem = {
-  baseX: number;
-  baseY: number;
-  rx: number;
-  ry: number;
-  rotation: number;
-  driftX: number;
-  driftY: number;
-  phase: number;
-  floatSpeed: number;
-  strokeWidth: number;
-  strokeColor: string;
-};
-
 type StreakItem = {
   x: number;
   y: number;
   angle: number;
+  direction: 'ltr' | 'rtl';
   length: number;
   speed: number;
   tailOpacity: number;
@@ -35,52 +22,40 @@ type StreakItem = {
   lineWidth: number;
 };
 
+type DecorTrailRouteId = 'top-left' | 'right-oval' | 'bottom-left';
+
+type DecorTrailPoint = {
+  x: number;
+  y: number;
+};
+
+type DecorTrailState = {
+  id: DecorTrailRouteId;
+  head: { x: number; y: number };
+  tail: DecorTrailPoint[];
+};
+
+const DECOR_TRAIL_POINT_COUNT = 64;
+const DECOR_TRAIL_TAIL_RATIO = 0.26;
+
+const decorTrailRoutes: Array<{ id: DecorTrailRouteId; speed: number; phase: number }> = [
+  { id: 'top-left', speed: 96, phase: 0 },
+  { id: 'right-oval', speed: 102, phase: 0.33 },
+  { id: 'bottom-left', speed: 98, phase: 0.66 },
+];
+
+const buildTrailPath = (points: Array<{ x: number; y: number }>) => {
+  if (points.length === 0) {
+    return '';
+  }
+  if (points.length === 1) {
+    return `M ${points[0].x} ${points[0].y}`;
+  }
+  return `M ${points[0].x} ${points[0].y} ${points.slice(1).map((p) => `L ${p.x} ${p.y}`).join(' ')}`;
+};
+
 const randomBetween = (min: number, max: number) =>
   min + Math.random() * (max - min);
-
-function createArcs(width: number, height: number): ArcItem[] {
-  return [
-    {
-      baseX: width * 0.02,
-      baseY: -height * 0.1,
-      rx: Math.max(280, width * 0.28),
-      ry: Math.max(180, height * 0.35),
-      rotation: 0.08,
-      driftX: 10,
-      driftY: 7,
-      phase: 0.2,
-      floatSpeed: 0.22,
-      strokeWidth: 1.5,
-      strokeColor: 'rgba(170,255,50,0.9)',
-    },
-    {
-      baseX: width + width * 0.035,
-      baseY: height * 0.42,
-      rx: Math.max(120, width * 0.1),
-      ry: Math.max(140, height * 0.23),
-      rotation: -0.25,
-      driftX: 7,
-      driftY: 5,
-      phase: 1.5,
-      floatSpeed: 0.18,
-      strokeWidth: 1.35,
-      strokeColor: 'rgba(168,255,48,0.82)',
-    },
-    {
-      baseX: width * 0.08,
-      baseY: height + height * 0.12,
-      rx: Math.max(160, width * 0.15),
-      ry: Math.max(130, height * 0.22),
-      rotation: 0.33,
-      driftX: 8,
-      driftY: 6,
-      phase: 2.3,
-      floatSpeed: 0.2,
-      strokeWidth: 1.3,
-      strokeColor: 'rgba(168,255,48,0.78)',
-    },
-  ];
-}
 
 function createStreaks(
   width: number,
@@ -90,11 +65,19 @@ function createStreaks(
   const streaks: StreakItem[] = [];
 
   for (let i = 0; i < count; i += 1) {
+    const direction: StreakItem['direction'] = Math.random() > 0.5 ? 'ltr' : 'rtl';
     streaks.push({
-      x: randomBetween(-width * 0.25, width * 0.9),
+      x:
+        direction === 'ltr'
+          ? randomBetween(-width * 0.25, width * 0.9)
+          : randomBetween(width * 0.2, width * 1.25),
       y: randomBetween(-height * 0.35, height * 0.78),
-      angle: randomBetween(0.66, 0.9),
-      length: randomBetween(110, 220),
+      angle:
+        direction === 'ltr'
+          ? randomBetween(0.66, 0.9)
+          : randomBetween(Math.PI - 0.9, Math.PI - 0.66),
+      direction,
+      length: randomBetween(180, 320),
       speed: randomBetween(20, 38),
       tailOpacity: randomBetween(0.1, 0.2),
       headOpacity: randomBetween(0.58, 0.9),
@@ -125,7 +108,6 @@ const AnimatedTechBackground: React.FC = () => {
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
     let lastTimestamp = 0;
 
-    let arcs: ArcItem[] = [];
     let streaks: StreakItem[] = [];
 
     const resize = () => {
@@ -140,7 +122,6 @@ const AnimatedTechBackground: React.FC = () => {
       canvas.style.height = `${height}px`;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      arcs = createArcs(width, height);
       streaks = createStreaks(width, height);
     };
 
@@ -150,32 +131,6 @@ const AnimatedTechBackground: React.FC = () => {
       base.addColorStop(0.55, '#020307');
       base.addColorStop(1, '#030406');
       ctx.fillStyle = base;
-      ctx.fillRect(0, 0, width, height);
-
-      const glowTopLeft = ctx.createRadialGradient(
-        width * 0.06,
-        height * 0.06,
-        0,
-        width * 0.06,
-        height * 0.06,
-        Math.max(width * 0.42, height * 0.56)
-      );
-      glowTopLeft.addColorStop(0, 'rgba(0,102,70,0.3)');
-      glowTopLeft.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = glowTopLeft;
-      ctx.fillRect(0, 0, width, height);
-
-      const glowRight = ctx.createRadialGradient(
-        width * 0.96,
-        height * 0.44,
-        0,
-        width * 0.96,
-        height * 0.44,
-        Math.max(width * 0.25, height * 0.42)
-      );
-      glowRight.addColorStop(0, 'rgba(0,120,80,0.24)');
-      glowRight.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = glowRight;
       ctx.fillRect(0, 0, width, height);
 
       const vignette = ctx.createRadialGradient(
@@ -192,38 +147,22 @@ const AnimatedTechBackground: React.FC = () => {
       ctx.fillRect(0, 0, width, height);
     };
 
-    const drawArc = (arc: ArcItem, timeSec: number) => {
-      const x =
-        arc.baseX + Math.sin(timeSec * arc.floatSpeed + arc.phase) * arc.driftX;
-      const y =
-        arc.baseY + Math.cos(timeSec * arc.floatSpeed + arc.phase) * arc.driftY;
-
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(arc.rotation);
-
-      ctx.beginPath();
-      ctx.ellipse(0, 0, arc.rx, arc.ry, 0, 0, Math.PI * 2);
-      ctx.lineWidth = arc.strokeWidth;
-      ctx.strokeStyle = arc.strokeColor;
-      ctx.stroke();
-
-      ctx.restore();
-    };
-
     const drawStreak = (streak: StreakItem) => {
       const headX = streak.x + Math.cos(streak.angle) * streak.length;
       const headY = streak.y + Math.sin(streak.angle) * streak.length;
+      const peakOpacity = Math.min(
+        0.36,
+        streak.tailOpacity * 1.65 + streak.headOpacity * 0.06
+      );
 
       const trail = ctx.createLinearGradient(streak.x, streak.y, headX, headY);
       trail.addColorStop(0, 'rgba(110,255,96,0)');
-      trail.addColorStop(
-        0.55,
-        `rgba(102,255,88,${streak.tailOpacity * 0.4})`
-      );
-      trail.addColorStop(0.88, `rgba(120,255,104,${streak.tailOpacity})`);
-      trail.addColorStop(0.97, `rgba(198,255,170,${streak.headOpacity * 0.8})`);
-      trail.addColorStop(1, `rgba(232,255,214,${streak.headOpacity})`);
+      trail.addColorStop(0.18, `rgba(102,255,88,${peakOpacity * 0.12})`);
+      trail.addColorStop(0.36, `rgba(108,255,96,${peakOpacity * 0.28})`);
+      trail.addColorStop(0.54, `rgba(116,255,102,${peakOpacity * 0.46})`);
+      trail.addColorStop(0.72, `rgba(124,255,110,${peakOpacity * 0.66})`);
+      trail.addColorStop(0.86, `rgba(150,255,132,${peakOpacity * 0.82})`);
+      trail.addColorStop(1, `rgba(186,255,162,${peakOpacity})`);
 
       ctx.save();
       ctx.beginPath();
@@ -231,8 +170,8 @@ const AnimatedTechBackground: React.FC = () => {
       ctx.lineTo(headX, headY);
       ctx.strokeStyle = trail;
       ctx.lineWidth = streak.lineWidth;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = `rgba(112,255,108,${streak.tailOpacity})`;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = `rgba(112,255,108,${peakOpacity * 0.55})`;
       ctx.stroke();
       ctx.restore();
     };
@@ -242,28 +181,37 @@ const AnimatedTechBackground: React.FC = () => {
         streak.x += Math.cos(streak.angle) * streak.speed * deltaSec;
         streak.y += Math.sin(streak.angle) * streak.speed * deltaSec;
 
-        if (streak.x > width + 240 || streak.y > height + 240) {
-          streak.x = randomBetween(-width * 0.35, width * 0.8);
+        const isOut =
+          streak.direction === 'ltr'
+            ? streak.x > width + 240 || streak.y > height + 240
+            : streak.x < -240 || streak.y > height + 240;
+
+        if (isOut) {
+          const direction: StreakItem['direction'] = Math.random() > 0.5 ? 'ltr' : 'rtl';
+          streak.direction = direction;
+          streak.x =
+            direction === 'ltr'
+              ? randomBetween(-width * 0.35, width * 0.8)
+              : randomBetween(width * 0.2, width * 1.28);
           streak.y = randomBetween(-height * 0.4, height * 0.75);
-          streak.length = randomBetween(110, 220);
+          streak.angle =
+            direction === 'ltr'
+              ? randomBetween(0.66, 0.9)
+              : randomBetween(Math.PI - 0.9, Math.PI - 0.66);
+          streak.length = randomBetween(180, 320);
           streak.speed = randomBetween(20, 38);
           streak.tailOpacity = randomBetween(0.1, 0.2);
           streak.headOpacity = randomBetween(0.58, 0.9);
           streak.lineWidth = randomBetween(0.7, 1.2);
-          streak.angle = randomBetween(0.66, 0.9);
         }
       }
     };
 
-    const render = (timeSec: number) => {
+    const render = () => {
       drawBackground();
 
       for (const streak of streaks) {
         drawStreak(streak);
-      }
-
-      for (const arc of arcs) {
-        drawArc(arc, timeSec);
       }
     };
 
@@ -275,12 +223,12 @@ const AnimatedTechBackground: React.FC = () => {
       lastTimestamp = timestamp;
 
       updateStreaks(deltaSec);
-      render(timestamp / 1000);
+      render();
       animationRef.current = window.requestAnimationFrame(animate);
     };
 
     resize();
-    render(0);
+    render();
     animationRef.current = window.requestAnimationFrame(animate);
     window.addEventListener('resize', resize);
 
@@ -307,6 +255,13 @@ const MaasMainImg: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [isMessageOpen, setIsMessageOpen] = useState(false);
+  const [decorTrailStates, setDecorTrailStates] = useState<DecorTrailState[]>([]);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const decorPathRefs = useRef<Record<DecorTrailRouteId, SVGGeometryElement | null>>({
+    'top-left': null,
+    'right-oval': null,
+    'bottom-left': null,
+  });
   const typewriterTexts = useMemo(
     () => (t('maas.main.typewriter', { returnObjects: true }) as string[]) ?? [],
     [t]
@@ -343,10 +298,301 @@ const MaasMainImg: React.FC = () => {
   const openMessageBoard = () => setIsMessageOpen(true);
   const closeMessageBoard = () => setIsMessageOpen(false);
 
+  useEffect(() => {
+    let rafId = 0;
+    let geometryRafId = 0;
+    let lastTimestamp = 0;
+    let elapsedMs = 0;
+
+    type SegmentSample = {
+      x: number;
+      y: number;
+      d: number;
+      visible: boolean;
+    };
+    type RouteGeometry = {
+      id: DecorTrailRouteId;
+      samples: Array<{ x: number; y: number; d: number }>;
+      totalDistance: number;
+    };
+    const routeGeometryRef: { current: Record<DecorTrailRouteId, RouteGeometry | null> } = {
+      current: { 'top-left': null, 'right-oval': null, 'bottom-left': null },
+    };
+    const getPointAtDistance = (samples: Array<{ x: number; y: number; d: number }>, targetDistance: number) => {
+      if (samples.length === 0) {
+        return { x: 0, y: 0 };
+      }
+      if (targetDistance <= 0) {
+        return { x: samples[0].x, y: samples[0].y };
+      }
+      const last = samples[samples.length - 1];
+      if (targetDistance >= last.d) {
+        return { x: last.x, y: last.y };
+      }
+      for (let i = 1; i < samples.length; i += 1) {
+        const prev = samples[i - 1];
+        const next = samples[i];
+        if (targetDistance <= next.d) {
+          const span = Math.max(0.0001, next.d - prev.d);
+          const t = (targetDistance - prev.d) / span;
+          return {
+            x: prev.x + (next.x - prev.x) * t,
+            y: prev.y + (next.y - prev.y) * t,
+          };
+        }
+      }
+      return { x: last.x, y: last.y };
+    };
+    const buildVisibleGeometry = (id: DecorTrailRouteId, path: SVGGeometryElement, sectionRect: DOMRect): RouteGeometry | null => {
+      const matrix = path.getScreenCTM();
+      if (!matrix) {
+        return null;
+      }
+      const totalLength = path.getTotalLength();
+      if (!Number.isFinite(totalLength) || totalLength <= 0) {
+        return null;
+      }
+      const sampleCount = 720;
+      const rawSamples: SegmentSample[] = Array.from({ length: sampleCount }, (_, index) => {
+        const lengthAt = (totalLength * index) / sampleCount;
+        const point = path.getPointAtLength(lengthAt);
+        const screenPoint = new DOMPoint(point.x, point.y).matrixTransform(matrix);
+        return {
+          x: screenPoint.x - sectionRect.left,
+          y: screenPoint.y - sectionRect.top,
+          d: 0,
+          visible:
+            screenPoint.x >= sectionRect.left &&
+            screenPoint.x <= sectionRect.right &&
+            screenPoint.y >= sectionRect.top &&
+            screenPoint.y <= sectionRect.bottom,
+        };
+      });
+
+      let bestStart = 0;
+      let bestLength = 0;
+      let runStart = -1;
+      let runLength = 0;
+      for (let i = 0; i < sampleCount * 2; i += 1) {
+        if (rawSamples[i % sampleCount].visible) {
+          if (runStart < 0) {
+            runStart = i;
+            runLength = 1;
+          } else {
+            runLength += 1;
+          }
+          if (runLength > bestLength) {
+            bestLength = runLength;
+            bestStart = runStart;
+          }
+        } else {
+          runStart = -1;
+          runLength = 0;
+        }
+      }
+      if (bestLength < 6) {
+        return null;
+      }
+
+      const segmentLength = Math.min(bestLength, sampleCount);
+      const segment = Array.from({ length: segmentLength }, (_, offset) => rawSamples[(bestStart + offset) % sampleCount]);
+      const normalizedSamples: Array<{ x: number; y: number; d: number }> = [{ x: segment[0].x, y: segment[0].y, d: 0 }];
+      let distance = 0;
+      for (let i = 1; i < segment.length; i += 1) {
+        const prev = segment[i - 1];
+        const next = segment[i];
+        distance += Math.hypot(next.x - prev.x, next.y - prev.y);
+        normalizedSamples.push({ x: next.x, y: next.y, d: distance });
+      }
+      if (distance < 1) {
+        return null;
+      }
+      return { id, samples: normalizedSamples, totalDistance: distance };
+    };
+    const refreshGeometry = () => {
+      const section = sectionRef.current;
+      if (!section) {
+        return;
+      }
+      const sectionRect = section.getBoundingClientRect();
+      decorTrailRoutes.forEach((route) => {
+        const path = decorPathRefs.current[route.id];
+        routeGeometryRef.current[route.id] = path ? buildVisibleGeometry(route.id, path, sectionRect) : null;
+      });
+    };
+    const scheduleGeometryRefresh = () => {
+      if (geometryRafId) {
+        window.cancelAnimationFrame(geometryRafId);
+      }
+      geometryRafId = window.requestAnimationFrame(refreshGeometry);
+    };
+
+    const tick = (timestamp: number) => {
+      if (lastTimestamp === 0) {
+        lastTimestamp = timestamp;
+      }
+      const deltaSeconds = (timestamp - lastTimestamp) / 1000;
+      lastTimestamp = timestamp;
+      elapsedMs += deltaSeconds * 1000;
+
+      const section = sectionRef.current;
+      if (!section) {
+        rafId = window.requestAnimationFrame(tick);
+        return;
+      }
+
+      const nextStates = decorTrailRoutes
+        .map((route) => {
+          const geometry = routeGeometryRef.current[route.id];
+          if (!geometry) {
+            return null;
+          }
+
+          const baseProgress = ((elapsedMs * route.speed) / 1000 + geometry.totalDistance * route.phase) % geometry.totalDistance;
+          const head = getPointAtDistance(geometry.samples, baseProgress);
+          const tailLength = geometry.totalDistance * DECOR_TRAIL_TAIL_RATIO;
+          const step = tailLength / Math.max(1, DECOR_TRAIL_POINT_COUNT - 1);
+          const tail = Array.from({ length: DECOR_TRAIL_POINT_COUNT }, (_, index) => {
+            const dist = Math.max(0, baseProgress - index * step);
+            return getPointAtDistance(geometry.samples, dist);
+          });
+
+          return {
+            id: route.id,
+            head,
+            tail,
+          } satisfies DecorTrailState;
+        })
+        .filter((item): item is DecorTrailState => Boolean(item));
+
+      setDecorTrailStates(nextStates);
+      rafId = window.requestAnimationFrame(tick);
+    };
+
+    scheduleGeometryRefresh();
+    window.addEventListener('resize', scheduleGeometryRefresh);
+    window.addEventListener('scroll', scheduleGeometryRefresh, { passive: true });
+    rafId = window.requestAnimationFrame(tick);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      if (geometryRafId) {
+        window.cancelAnimationFrame(geometryRafId);
+      }
+      window.removeEventListener('resize', scheduleGeometryRefresh);
+      window.removeEventListener('scroll', scheduleGeometryRefresh);
+    };
+  }, []);
+
   return (
-    <section className="maas-main-img">
+    <section ref={sectionRef} className="maas-main-img">
       <div className="maas-main-img__bg">
         <AnimatedTechBackground />
+        <div className="maas-main-img__decor" aria-hidden="true">
+          <div className="maas-main-img__decor-item maas-main-img__decor-top-left">
+            <svg xmlns="http://www.w3.org/2000/svg" width="686" height="234" viewBox="0 0 686 234" fill="none">
+              <path
+                ref={(node) => {
+                  decorPathRefs.current['top-left'] = node;
+                }}
+                className="maas-main-img__decor-shape maas-main-img__decor-shape--top-left"
+                pathLength={1000}
+                d="M683.085 -1L681.78 0.625977C566.134 144.694 322.019 264.085 -0.118164 225.754L-1 225.649V-1H683.085Z"
+                fill="url(#maasMainImgTopFill)"
+              />
+              <defs>
+                <linearGradient id="maasMainImgTopFill" x1="99.7%" y1="44.8%" x2="0.3%" y2="55.2%">
+                  <stop stopColor="#021F17" />
+                  <stop offset="1" stopColor="#101010" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <div className="maas-main-img__decor-item maas-main-img__decor-right-oval">
+            <svg width="240" height="473" viewBox="0 0 240 473" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                ref={(node) => {
+                  decorPathRefs.current['right-oval'] = node;
+                }}
+                className="maas-main-img__decor-shape maas-main-img__decor-shape--right-oval"
+                pathLength={1000}
+                x="478.167"
+                y="-57.9031"
+                width="322"
+                height="619"
+                rx="161"
+                transform="rotate(60 478.167 -57.9031)"
+                fill="url(#maasMainImgRightFill)"
+              />
+              <defs>
+                <linearGradient id="maasMainImgRightFill" x1="99.7%" y1="44.8%" x2="0.3%" y2="55.2%">
+                  <stop stopColor="#021F17" />
+                  <stop offset="1" stopColor="#101010" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <div className="maas-main-img__decor-item maas-main-img__decor-bottom-left">
+            <svg width="433" height="176" viewBox="0 0 433 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                ref={(node) => {
+                  decorPathRefs.current['bottom-left'] = node;
+                }}
+                className="maas-main-img__decor-shape maas-main-img__decor-shape--bottom-left"
+                pathLength={1000}
+                x="157.134"
+                y="-72.5369"
+                width="402"
+                height="619"
+                rx="201"
+                transform="rotate(30 157.134 -72.5369)"
+                fill="url(#maasMainImgBottomFill)"
+              />
+              <defs>
+                <linearGradient id="maasMainImgBottomFill" x1="99.7%" y1="44.8%" x2="0.3%" y2="55.2%">
+                  <stop stopColor="#021F17" />
+                  <stop offset="1" stopColor="#101010" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+
+        <svg className="maas-main-img__decor-trail-layer" aria-hidden>
+          <defs>
+            <filter id="maasMainDecorTrailBlur" x="-30" y="-30" width="60" height="60" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
+              <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+              <feGaussianBlur stdDeviation="2.6" result="effect1_foregroundBlur_0_0" />
+            </filter>
+          </defs>
+          {decorTrailStates.map((state) => (
+            <g key={`decor-trail-${state.id}`}>
+              {(() => {
+                const trailPoints = [...state.tail].reverse();
+                const trailPath = buildTrailPath(trailPoints);
+                const tailStart = trailPoints[0] ?? state.head;
+                const tailEnd = trailPoints[trailPoints.length - 1] ?? state.head;
+                const gradientId = `maasMainDecorTrailGrad-${state.id}`;
+                return (
+                  <>
+                    <defs>
+                      <linearGradient id={gradientId} x1={tailStart.x} y1={tailStart.y} x2={tailEnd.x} y2={tailEnd.y} gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stopColor="#D5FF7D" stopOpacity="0.02" />
+                        <stop offset="0.46" stopColor="#D5FF7D" stopOpacity="0.2" />
+                        <stop offset="0.8" stopColor="#D5FF7D" stopOpacity="0.48" />
+                        <stop offset="1" stopColor="#E6FFC0" stopOpacity="0.82" />
+                      </linearGradient>
+                    </defs>
+                    <path d={trailPath} className="maas-main-img__decor-trail-path maas-main-img__decor-trail-path--glow" />
+                    <path d={trailPath} className="maas-main-img__decor-trail-path maas-main-img__decor-trail-path--core" stroke={`url(#${gradientId})`} />
+                  </>
+                );
+              })()}
+            </g>
+          ))}
+        </svg>
       </div>
 
       <div className="maas-main-img__content">

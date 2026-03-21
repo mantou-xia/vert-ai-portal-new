@@ -759,14 +759,14 @@ const ProductMainImg: React.FC = () => {
                 className="product-main-img__center-node"
                 style={
                   {
-                    ['--center-x' as string]: toCanvasXPercent(488),
-                    ['--center-y' as string]: toCanvasYPercent(192),
-                    ['--center-size' as string]: toCanvasXPercent(112),
+                    ['--center-x' as string]: toCanvasXPercent(478),
+                    ['--center-y' as string]: toCanvasYPercent(182),
+                    ['--center-size' as string]: toCanvasXPercent(132),
                   } as React.CSSProperties
                 }
                 aria-hidden
               >
-                <img className="product-main-img__center-glow" src={getAssetPath('/images/icons/product/绿色光团.svg')} alt="" />
+                <img className="product-main-img__center-base" src={getAssetPath('/images/icons/product/vert底座.svg')} alt="" />
                 <div className="product-main-img__center-logo">
                   <img src={getAssetPath('/images/icons/product/Union.svg')} alt="" />
                   <span>VERT</span>

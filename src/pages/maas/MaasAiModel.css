@@ -13,8 +13,6 @@
     align-items: center;
     justify-content: space-between;
     gap: 22px;
-    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 7.5%, rgba(0, 0, 0, 0.7) 92.5%, rgba(0, 0, 0, 0) 100%);
-    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 7.5%, rgba(0, 0, 0, 0.7) 92.5%, rgba(0, 0, 0, 0) 100%);
   }
 
   .maas-ai-model__item {
@@ -60,8 +58,6 @@
       justify-content: flex-start;
       gap: 14px;
       padding: 0 4px;
-      -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 7%, rgba(0, 0, 0, 0.7) 93%, rgba(0, 0, 0, 0) 100%);
-      mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 7%, rgba(0, 0, 0, 0.7) 93%, rgba(0, 0, 0, 0) 100%);
     }
 
     .maas-ai-model__logo {

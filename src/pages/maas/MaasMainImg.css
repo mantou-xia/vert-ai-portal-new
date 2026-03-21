@@ -16,14 +16,97 @@
   }
 
   .maas-main-img__canvas {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
   }
 
+  .maas-main-img__decor {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .maas-main-img__decor-item {
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: normal;
+  }
+
+  .maas-main-img__decor-item svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .maas-main-img__decor-trail-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .maas-main-img__decor-trail-path {
+    fill: none;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+  }
+
+  .maas-main-img__decor-trail-path--glow {
+    stroke: rgba(174, 255, 33, 0.24);
+    stroke-width: 5.2;
+    filter: url(#maasMainDecorTrailBlur);
+  }
+
+  .maas-main-img__decor-trail-path--core {
+    stroke-width: 2.1;
+  }
+
+  .maas-main-img__decor-shape {
+    stroke: rgba(174, 255, 33, 0);
+    stroke-width: 2;
+    stroke-opacity: 0;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    paint-order: stroke fill markers;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none;
+    filter: none;
+    opacity: 1;
+  }
+
+  .maas-main-img__decor-top-left {
+    top: 0;
+    left: 0;
+    width: clamp(420px, 47vw, 686px);
+    opacity: 0.72;
+  }
+
+  .maas-main-img__decor-right-oval {
+    top: 48px;
+    right: -34px;
+    width: clamp(132px, 17vw, 240px);
+    opacity: 0.66;
+  }
+
+  .maas-main-img__decor-bottom-left {
+    left: -16px;
+    bottom: -8px;
+    width: clamp(240px, 30vw, 433px);
+    opacity: 0.62;
+  }
+
   .maas-main-img__content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     width: min(1761px, 100%);
     text-align: center;
   }
@@ -153,6 +236,25 @@
       margin-bottom: 46px;
     }
 
+    .maas-main-img__decor-top-left {
+      width: clamp(360px, 48vw, 620px);
+      opacity: 0.62;
+    }
+
+    .maas-main-img__decor-right-oval {
+      top: 62px;
+      right: -42px;
+      width: clamp(114px, 18vw, 212px);
+      opacity: 0.56;
+    }
+
+    .maas-main-img__decor-bottom-left {
+      left: -24px;
+      bottom: -10px;
+      width: clamp(210px, 32vw, 360px);
+      opacity: 0.54;
+    }
+
     .maas-main-img__input-wrap {
       min-height: 82px;
     }
@@ -177,6 +279,25 @@
   @media (max-width: 768px) {
     min-height: 560px;
     padding: 104px 16px 96px;
+
+    .maas-main-img__decor-top-left {
+      width: clamp(220px, 62vw, 420px);
+      opacity: 0.36;
+    }
+
+    .maas-main-img__decor-right-oval {
+      top: 84px;
+      right: -58px;
+      width: clamp(96px, 30vw, 170px);
+      opacity: 0.32;
+    }
+
+    .maas-main-img__decor-bottom-left {
+      left: -42px;
+      bottom: -12px;
+      width: clamp(150px, 52vw, 290px);
+      opacity: 0.3;
+    }
 
     .maas-main-img__content {
       width: min(640px, 100%);
@@ -229,6 +350,21 @@
     padding-left: 12px;
     padding-right: 12px;
 
+    .maas-main-img__decor-top-left {
+      opacity: 0.28;
+    }
+
+    .maas-main-img__decor-right-oval {
+      right: -72px;
+      top: 96px;
+      opacity: 0.24;
+    }
+
+    .maas-main-img__decor-bottom-left {
+      bottom: -14px;
+      opacity: 0.22;
+    }
+
     .maas-main-img__title {
       font-size: clamp(26px, 9.5vw, 34px);
     }
@@ -247,6 +383,15 @@
     .maas-main-img__input-btn {
       animation: none !important;
       transition: none !important;
+    }
+
+    .maas-main-img__decor-shape {
+      animation: none !important;
+      stroke: rgba(174, 255, 33, 0);
+      stroke-opacity: 0;
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+      filter: none;
     }
   }
 }
