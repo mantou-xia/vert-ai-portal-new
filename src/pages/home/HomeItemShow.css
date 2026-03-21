@@ -3,10 +3,6 @@
   background: #ffffff;
 
   &.home-item-show--locked {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-
     .home-item-show__inner {
       width: 100%;
     }

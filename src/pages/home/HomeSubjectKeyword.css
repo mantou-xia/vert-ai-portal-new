@@ -1,6 +1,6 @@
 .home-subject {
   position: relative;
-  min-height: 100vh;
+  min-height: 220vh;
   background: #f4f5f5;
 
   .home-subject__spacer {
@@ -74,6 +74,8 @@
 
 @media (max-width: 768px) {
   .home-subject {
+    min-height: 220vh;
+
     .home-subject__label {
       font-size: 24px;
     }

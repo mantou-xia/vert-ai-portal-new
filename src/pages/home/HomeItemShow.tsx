@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useWheelScroll } from '../../hooks/useWheelScroll';
 import { getAssetPath } from '../../utils/path';
 import './HomeItemShow.css';
 
@@ -47,12 +46,7 @@ const HomeItemShow: React.FC = () => {
     [t]
   );
 
-  const { sectionRef, activeIndex, setActiveIndex, isLocked } = useWheelScroll(items.length, {
-    scrollThreshold: 120,
-    lockMode: true,
-    lockEnterThreshold: 0.78,
-    lockExitThreshold: 0.58,
-  });
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const activeItem = items[activeIndex] ?? items[0];
   const listRef = useRef<HTMLDivElement>(null);
@@ -94,7 +88,7 @@ const HomeItemShow: React.FC = () => {
   }, [updateAnchorPosition]);
 
   return (
-    <section ref={sectionRef} className={`home-item-show ${isLocked ? 'home-item-show--locked' : ''}`}>
+    <section className="home-item-show">
       <div className="home-item-show__inner">
         <header className="home-item-show__header">
           <h2 className="home-item-show__title">{t('home.itemShow.title')}</h2>
@@ -157,15 +151,15 @@ const HomeItemShow: React.FC = () => {
 
           <div className="home-item-show__image">
             <div className="home-item-show__image-frame">
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.img
                   key={activeItem.id}
                   src={activeItem.image}
                   alt={activeItem.title}
                   className="home-item-show__image-el"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 />
               </AnimatePresence>
