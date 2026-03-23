@@ -10,6 +10,7 @@
   }
 
   .home-video-title-layer {
+    --title-layer-top: 170px;
     position: absolute;
     top: 0;
     left: 0;
@@ -17,41 +18,87 @@
     z-index: 10;
     text-align: center;
     pointer-events: none;
-    padding-top: 170px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
   }
 
+  .home-video-title-text-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  .home-video-title-text-layer {
+    padding-top: var(--title-layer-top);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    pointer-events: none;
+  }
+
+  .home-video-title-text-layer--base {
+    position: relative;
+    z-index: 0;
+  }
+
+  .home-video-title-text-layer--inverse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    .home-video-github-label,
+    .home-video-title {
+      color: #fff;
+    }
+
+    .home-video-github-label a {
+      color: #2d6cff;
+    }
+  }
+
   .home-video-github-label {
     margin: 0;
+    color: #000;
+    font-family: "Alibaba PuHuiTi 3.0";
     font-size: 16px;
-    line-height: 22px;
-    transition: color 0.05s linear;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
     a {
       color: #2d6cff;
       text-decoration: none;
-      transition: color 0.05s linear;
+      color: #2D6CFF;
+      font-family: "Alibaba PuHuiTi 3.0";
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
     }
   }
 
   .home-video-title {
-    font-size: 64px;
-    line-height: 80px;
-    font-weight: 700;
     margin: 0;
-    transition: color 0.05s linear;
     max-width: 1180px;
     /* 换行 */
     text-align: center;
+    color: #000;
+    font-family: "Alibaba PuHuiTi 3.0";
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 72px;
+    /* 128.571% */
   }
 
   .home-video-cta-wrap {
     pointer-events: auto;
     transition: opacity 0.08s linear;
-    margin-top: 8px;
+    margin-top: 40px;
   }
 
 
@@ -94,7 +141,7 @@
 @media (max-width: 768px) {
   .home-video-section {
     .home-video-title-layer {
-      padding-top: 120px;
+      --title-layer-top: 120px;
     }
 
     .home-video-title {

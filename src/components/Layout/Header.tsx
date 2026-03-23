@@ -11,7 +11,12 @@ import './Header.css';
 
 const { Header: AntHeader } = Layout;
 
-const MINI_SCROLL_THRESHOLD = 40;
+const ENTER_THRESHOLD = 56;
+const EXIT_THRESHOLD = 24;
+const DIRECTION_EPSILON = 4;
+const SWITCH_TRAVEL_PX = 18;
+const SWITCH_LOCK_MS = 320;
+const HEADER_LOGO_SRC = '/images/logo/VERT_logo.svg';
 
 type HeaderMenuItem = {
   key: string;
@@ -28,6 +33,9 @@ const Header: React.FC = () => {
   const [isMessageOpen, setIsMessageOpen] = useState(false);
   const miniStateRef = useRef(false);
   const lastScrollYRef = useRef(0);
+  const switchLockUntilRef = useRef(0);
+  const directionRef = useRef<0 | 1 | -1>(0);
+  const directionTravelRef = useRef(0);
 
   useEffect(() => {
     let rafId: number | null = null;
@@ -35,19 +43,42 @@ const Header: React.FC = () => {
     const syncHeaderMode = () => {
       const currentScrollY = window.scrollY;
       const prevScrollY = lastScrollYRef.current;
+      const deltaY = currentScrollY - prevScrollY;
       let nextMini = miniStateRef.current;
+      const now = window.performance.now();
 
-      if (currentScrollY <= MINI_SCROLL_THRESHOLD) {
+      if (currentScrollY <= EXIT_THRESHOLD) {
         nextMini = false;
-      } else if (currentScrollY > prevScrollY) {
-        nextMini = true;
-      } else if (currentScrollY < prevScrollY) {
-        nextMini = false;
+        directionRef.current = 0;
+        directionTravelRef.current = 0;
+      } else if (now >= switchLockUntilRef.current) {
+        if (deltaY > DIRECTION_EPSILON) {
+          if (directionRef.current !== 1) {
+            directionRef.current = 1;
+            directionTravelRef.current = 0;
+          }
+          directionTravelRef.current += deltaY;
+          if (!miniStateRef.current && currentScrollY >= ENTER_THRESHOLD && directionTravelRef.current >= SWITCH_TRAVEL_PX) {
+            nextMini = true;
+          }
+        } else if (deltaY < -DIRECTION_EPSILON) {
+          if (directionRef.current !== -1) {
+            directionRef.current = -1;
+            directionTravelRef.current = 0;
+          }
+          directionTravelRef.current += -deltaY;
+          if (miniStateRef.current && directionTravelRef.current >= SWITCH_TRAVEL_PX) {
+            nextMini = false;
+          }
+        }
       }
 
       if (miniStateRef.current !== nextMini) {
         miniStateRef.current = nextMini;
         setIsMiniHeader(nextMini);
+        switchLockUntilRef.current = now + SWITCH_LOCK_MS;
+        directionRef.current = 0;
+        directionTravelRef.current = 0;
       }
       lastScrollYRef.current = currentScrollY;
       rafId = null;
@@ -61,6 +92,9 @@ const Header: React.FC = () => {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     lastScrollYRef.current = window.scrollY;
+    switchLockUntilRef.current = 0;
+    directionRef.current = 0;
+    directionTravelRef.current = 0;
     syncHeaderMode();
 
     return () => {
@@ -97,7 +131,8 @@ const Header: React.FC = () => {
         <div className="header-content">
           <div className={`header-normal ${isMiniHeader ? 'header-normal--hidden' : ''}`}>
             <div className="header-brand" onClick={() => navigate(routes.home)}>
-              <img src={getAssetPath('/images/home/logo.png')} alt="VERT" />
+              <img className="header-brand-icon" src={getAssetPath(HEADER_LOGO_SRC)} alt="" aria-hidden="true" />
+              <span className="header-brand-text">VERT</span>
             </div>
 
             <div className="header-center-group">
@@ -127,14 +162,16 @@ const Header: React.FC = () => {
             </div>
 
             <div className="header-balance" aria-hidden="true">
-              <img src={getAssetPath('/images/home/logo.png')} alt="" />
+              <img className="header-balance-icon" src={getAssetPath(HEADER_LOGO_SRC)} alt="" />
+              <span className="header-balance-text">VERT</span>
             </div>
           </div>
 
           <div className={`header-mini ${isMiniHeader ? 'header-mini--visible' : ''}`}>
             <div className="header-mini-pill">
               <div className="header-mini-logo" onClick={() => navigate(routes.home)}>
-                <img src={getAssetPath('/images/home/logo.png')} alt="VERT" />
+                <img className="header-mini-logo-icon" src={getAssetPath(HEADER_LOGO_SRC)} alt="" aria-hidden="true" />
+                <span className="header-mini-logo-text">VERT</span>
               </div>
               <CTAButton className="header-mini-cta" onClick={() => setIsMessageOpen(true)}>
                 {t('layout.header.miniCta')}

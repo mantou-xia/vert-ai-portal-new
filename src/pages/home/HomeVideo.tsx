@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useLayoutEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getAssetPath } from '../../utils/path';
 import { useScrollContext } from '../../contexts/ScrollContext';
@@ -20,16 +20,19 @@ function lerp(a: number, b: number, t: number) {
 const HomeVideo: React.FC = () => {
   const { t, i18n } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
+  const stickyRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const ctaWrapRef = useRef<HTMLDivElement | null>(null);
   const [isMessageOpen, setIsMessageOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const [videoStartBase, setVideoStartBase] = useState(440);
+  const [titleTopOffset, setTitleTopOffset] = useState(170);
   const { setVideoFullscreen, setVideoProgress } = useScrollContext();
 
   const handleScroll = useCallback(() => {
     const section = sectionRef.current;
     if (!section) return;
+
     const rect = section.getBoundingClientRect();
     const sectionHeight = section.offsetHeight;
     const viewportHeight = window.innerHeight;
@@ -40,62 +43,104 @@ const HomeVideo: React.FC = () => {
     setProgress(p);
     setVideoProgress(p);
     setVideoFullscreen(p >= 0.92);
+
+    const header = document.querySelector<HTMLElement>('.app-header');
+    const headerBottom = header?.getBoundingClientRect().bottom ?? 96;
+    const nextTitleTopOffset = Math.round(headerBottom + 74);
+    setTitleTopOffset((prev) => (Math.abs(prev - nextTitleTopOffset) >= 1 ? nextTitleTopOffset : prev));
+
+    const ctaWrap = ctaWrapRef.current;
+    if (ctaWrap) {
+      const nextVideoStartBase = Math.round(ctaWrap.offsetTop + ctaWrap.offsetHeight + 64);
+      setVideoStartBase((prev) => (Math.abs(prev - nextVideoStartBase) >= 1 ? nextVideoStartBase : prev));
+    }
   }, [setVideoFullscreen, setVideoProgress]);
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
+  useLayoutEffect(() => {
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
-
-  const measureVideoStartBase = useCallback(() => {
-    const ctaWrap = ctaWrapRef.current;
-    if (!ctaWrap) return;
-    const nextTop = ctaWrap.offsetTop + ctaWrap.offsetHeight + 64;
-    setVideoStartBase(nextTop);
-  }, []);
+  }, [handleScroll, i18n.language]);
 
   useEffect(() => {
-    const raf = window.requestAnimationFrame(measureVideoStartBase);
-    const handleResize = () => measureVideoStartBase();
-    window.addEventListener('resize', handleResize, { passive: true });
-    return () => {
-      window.cancelAnimationFrame(raf);
-      window.removeEventListener('resize', handleResize);
+    let rafId: number | null = null;
+    let trackUntil = 0;
+    const header = document.querySelector<HTMLElement>('.app-header');
+
+    const tick = () => {
+      handleScroll();
+      if (window.performance.now() < trackUntil) {
+        rafId = window.requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
     };
-  }, [measureVideoStartBase, i18n.language]);
+
+    const startTracking = (durationMs = 260) => {
+      trackUntil = Math.max(trackUntil, window.performance.now() + durationMs);
+      if (rafId === null) {
+        rafId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    const onScroll = () => startTracking(280);
+    const onResize = () => startTracking(360);
+    const onHeaderTransitionStart = () => startTracking(460);
+    const onHeaderTransitionEnd = () => startTracking(140);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
+    header?.addEventListener('transitionstart', onHeaderTransitionStart);
+    header?.addEventListener('transitionend', onHeaderTransitionEnd);
+    startTracking(520);
+
+    return () => {
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      header?.removeEventListener('transitionstart', onHeaderTransitionStart);
+      header?.removeEventListener('transitionend', onHeaderTransitionEnd);
+    };
+  }, [handleScroll, i18n.language]);
 
   const phase1 = clamp(progress / 0.6, 0, 1);
-  const phase2 = clamp((progress - 0.6) / 0.4, 0, 1);
 
   const videoInset = lerp(5, 0, phase1);
   const videoRadius = lerp(24, 0, phase1);
 
-  const colorT = clamp(phase1 * 0.5 + phase2 * 0.5, 0, 1);
-  const r = Math.round(lerp(26, 255, colorT));
-  const g = Math.round(lerp(26, 255, colorT));
-  const b = Math.round(lerp(26, 255, colorT));
-  const titleColor = `rgb(${r},${g},${b})`;
-
-  const githubLinkColor = `rgb(${Math.round(lerp(45, 255, colorT))},${Math.round(lerp(108, 255, colorT))},${Math.round(lerp(255, 255, colorT))})`;
-
   const ctaOpacity = clamp(1 - phase1 * 2, 0, 1);
-  const labelOpacity = clamp(1 - phase1 * 1.5, 0, 1);
   const playBtnOpacity = clamp(1 - phase1 * 2, 0, 1);
-  const titleLayerY = lerp(-90, 0, clamp(progress / 0.15, 0, 1));
-  const videoStartTop = videoStartBase + titleLayerY;
+  const videoStartTop = videoStartBase;
   const videoTopOffset = lerp(videoStartTop, 0, phase1);
+  const titleWhiteClipTop = Math.max(0, videoTopOffset);
+  const titleLayerStyle = { ['--title-layer-top' as string]: `${titleTopOffset}px` } as React.CSSProperties;
 
   return (
     <section ref={sectionRef} className="home-video-section">
-      <div className="home-video-sticky">
-        <div className="home-video-title-layer" style={{ transform: `translateY(${titleLayerY}px)` }}>
-          <p className="home-video-github-label" style={{ opacity: labelOpacity, color: titleColor }}>
-            160.6k stars on <a href="https://github.com" style={{ color: githubLinkColor }}>GitHub</a>
-          </p>
-          <h2 className="home-video-title" style={{ color: titleColor }}>
-            {t('home.video.title')}
-          </h2>
+      <div ref={stickyRef} className="home-video-sticky">
+        <div className="home-video-title-layer" style={titleLayerStyle}>
+          <div className="home-video-title-text-wrap">
+            <div className="home-video-title-text-layer home-video-title-text-layer--base">
+              <p className="home-video-github-label">
+                160.6k stars on <a href="https://github.com">GitHub</a>
+              </p>
+              <h2 className="home-video-title">
+                {t('home.video.title')}
+              </h2>
+            </div>
+          </div>
+          <div
+            className="home-video-title-text-layer home-video-title-text-layer--inverse"
+            style={{ clipPath: `inset(${titleWhiteClipTop}px 0 0 0)` }}
+            aria-hidden="true"
+          >
+            <p className="home-video-github-label">
+              160.6k stars on <a href="https://github.com">GitHub</a>
+            </p>
+            <h2 className="home-video-title">
+              {t('home.video.title')}
+            </h2>
+          </div>
           <div
             className="home-video-cta-wrap"
             ref={ctaWrapRef}

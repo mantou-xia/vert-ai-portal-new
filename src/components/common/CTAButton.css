@@ -4,9 +4,6 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0 20px 0 24px;
-  height: 64px;
-  width: 180px;
   border: none;
   border-radius: 100px;
   background: #aeff21;
@@ -18,9 +15,18 @@
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  height: 48px;
+  padding: 0 20px 0 24px;
 
   .cta-button__text {
     display: inline-block;
+    color: #000;
+    font-family: "PingFang SC";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    /* 150% */
   }
 
   .cta-button__icon {
