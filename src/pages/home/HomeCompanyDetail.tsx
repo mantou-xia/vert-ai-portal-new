@@ -4,120 +4,61 @@ import { getAssetPath } from '../../utils/path';
 import HomeBrand from './HomeBrand';
 import './HomeCompanyDetail.css';
 
-const DEFAULT_POSTER = getAssetPath('/images/home/keyboard.png');
+type StatItem = {
+  label: string;
+  value: string;
+};
 
 type CaseItem = {
   id: string;
-  videoPoster: string;
-  videoSrc?: string;
+  image: string;
   companyName: string;
   companyNameEn: string;
   quote: string;
-  stats: { label: string; value: string }[];
-  brandKey: string;
+  stats: StatItem[];
 };
 
+const CASE_CONFIG = [
+  { id: 'yitoa', image: '/images/home/image英唐.png', showStats: true },
+  { id: 'yousoft', image: '/images/home/image_优软.png', showStats: false },
+  { id: 'aeon', image: '/images/home/image_永旺.png', showStats: false },
+  { id: 'daoying', image: '/images/home/image_道影.png', showStats: false },
+  { id: 'nuaa', image: '/images/home/image_南航.png', showStats: false },
+] as const;
+
 const HomeCompanyDetail: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const isEnglish = i18n.language === 'en-US';
-
-  const caseItems = useMemo<CaseItem[]>(
+  const primaryStats = useMemo<StatItem[]>(
     () => [
       {
-        id: 'jinying',
-        videoPoster: '/images/home/case-jinying-poster.jpg',
-        videoSrc: '/videos/case-jinying.mp4',
-        companyName: isEnglish ? 'Golden Eagle Group' : '金鹰集团',
-        companyNameEn: 'Golden Eagle',
-        quote: isEnglish
-          ? '"In the early stage of the AI revolution, models and ecosystems evolve rapidly. We need tools that help us validate ideas quickly, and that is exactly the value for teams fully embracing AI."'
-          : '"我们处在AI革命的早期，其特点是模型和生态快速演进，因此我们更加需要可以快速验证想法的工具，这就是全面拥抱AI的关键价值。"',
-        stats: [
-          { label: t('home.companyDetail.stat1'), value: '80%' },
-          { label: t('home.companyDetail.stat2'), value: '95%' },
-          { label: t('home.companyDetail.stat3'), value: '90%' },
-        ],
-        brandKey: 'jinying',
+        label: t('home.companyDetail.primaryStats.inputEfficiencyLabel'),
+        value: t('home.companyDetail.primaryStats.inputEfficiencyValue'),
       },
       {
-        id: 'toa',
-        videoPoster: DEFAULT_POSTER,
-        companyName: isEnglish ? 'TOA Yingteng' : 'TOA 英腾',
-        companyNameEn: 'TOA',
-        quote: isEnglish
-          ? '"The VERT platform helped us build an intelligent customer service system rapidly, significantly improving satisfaction and operational efficiency."'
-          : '"VERT 平台帮助我们快速构建智能客服，显著提升了客户满意度与运营效率。"',
-        stats: [
-          { label: t('home.companyDetail.statResponse'), value: '75%' },
-          { label: t('home.companyDetail.statSatisfaction'), value: '92%' },
-          { label: t('home.companyDetail.statCostSave'), value: '40%' },
-        ],
-        brandKey: 'toa',
+        label: t('home.companyDetail.primaryStats.recognitionRateLabel'),
+        value: t('home.companyDetail.primaryStats.recognitionRateValue'),
       },
       {
-        id: 'skieer',
-        videoPoster: DEFAULT_POSTER,
-        companyName: isEnglish ? 'SKIEER DataRead' : 'SKIEER 数阅',
-        companyNameEn: 'SKIEER',
-        quote: isEnglish
-          ? '"From data collection to intelligent analysis, VERT provides end-to-end AI capabilities and powers our intelligent upgrade."'
-          : '"从数据采集到智能分析，VERT 提供了端到端的 AI 解决方案，助力我们实现智能化升级。"',
-        stats: [
-          { label: t('home.companyDetail.statQaAccuracy'), value: '98%' },
-          { label: t('home.companyDetail.statCapacity'), value: '35%' },
-          { label: t('home.companyDetail.statForecast'), value: '85%' },
-        ],
-        brandKey: 'skieber',
-      },
-      {
-        id: 'aeon',
-        videoPoster: DEFAULT_POSTER,
-        companyName: 'AEON',
-        companyNameEn: 'AEON',
-        quote: isEnglish
-          ? '"VERT\'s AI platform enabled a comprehensive digital transformation of our retail business."'
-          : '"VERT 的 AI 平台让我们的零售业务实现了全面数字化转型。"',
-        stats: [
-          { label: t('home.companyDetail.statConversion'), value: '60%' },
-          { label: t('home.companyDetail.statInventory'), value: '45%' },
-          { label: t('home.companyDetail.statRetention'), value: '88%' },
-        ],
-        brandKey: 'aeon',
-      },
-      {
-        id: '7eleven',
-        videoPoster: DEFAULT_POSTER,
-        companyName: '7-ELEVEN',
-        companyNameEn: '7-ELEVEN',
-        quote: isEnglish
-          ? '"With VERT, we successfully applied AI across every key step of store operations."'
-          : '"通过 VERT，我们成功将 AI 应用于门店运营的各个环节。"',
-        stats: [
-          { label: t('home.companyDetail.statOperation'), value: '70%' },
-          { label: t('home.companyDetail.statLoss'), value: '55%' },
-          { label: t('home.companyDetail.statReplenish'), value: '93%' },
-        ],
-        brandKey: '7eleven',
-      },
-      {
-        id: 'gmart',
-        videoPoster: DEFAULT_POSTER,
-        companyName: isEnglish ? 'Gmart Golden Eagle' : 'Gmart 金鹰',
-        companyNameEn: 'Gmart',
-        quote: isEnglish
-          ? '"VERT helped us leap from traditional retail to intelligent retail."'
-          : '"VERT 帮助我们实现了从传统零售到智能零售的跨越。"',
-        stats: [
-          { label: t('home.companyDetail.statSalesGrowth'), value: '50%' },
-          { label: t('home.companyDetail.statAcquisition'), value: '-30%' },
-          { label: t('home.companyDetail.statRepurchase'), value: '82%' },
-        ],
-        brandKey: 'gmart',
+        label: t('home.companyDetail.primaryStats.qaRateLabel'),
+        value: t('home.companyDetail.primaryStats.qaRateValue'),
       },
     ],
-    [isEnglish, t]
+    [t]
+  );
+
+  const caseItems = useMemo<CaseItem[]>(
+    () =>
+      CASE_CONFIG.map((item) => ({
+        id: item.id,
+        image: item.image,
+        companyName: t(`home.companyDetail.cases.${item.id}.name`),
+        companyNameEn: t(`home.companyDetail.cases.${item.id}.nameEn`),
+        quote: t(`home.companyDetail.cases.${item.id}.quote`),
+        stats: item.showStats ? primaryStats : [],
+      })),
+    [primaryStats, t]
   );
 
   const activeItem = caseItems[activeIndex] ?? caseItems[0];
@@ -131,20 +72,14 @@ const HomeCompanyDetail: React.FC = () => {
 
         <div className="home-company-detail__card">
           <div className="home-company-detail__content">
-            <div className="home-company-detail__video">
-              <div className="home-company-detail__video-frame">
-                <video
+            <div className="home-company-detail__media">
+              <div className="home-company-detail__media-frame">
+                <img
                   key={activeItem.id}
-                  className="home-company-detail__video-el"
-                  src={activeItem.videoSrc}
-                  poster={activeItem.videoPoster}
-                  controls
-                >
-                  {t('home.companyDetail.videoUnsupported')}
-                </video>
-                <div className="home-company-detail__video-play">
-                  <span className="home-company-detail__video-play-icon">▶</span>
-                </div>
+                  className="home-company-detail__media-image"
+                  src={getAssetPath(activeItem.image)}
+                  alt={activeItem.companyName}
+                />
               </div>
             </div>
 
@@ -156,16 +91,19 @@ const HomeCompanyDetail: React.FC = () => {
 
               <blockquote className="home-company-detail__quote">{activeItem.quote}</blockquote>
 
-              <hr className="home-company-detail__divider" />
-
-              <div className="home-company-detail__stats">
-                {activeItem.stats.map((stat) => (
-                  <div key={`${activeItem.id}-${stat.label}`} className="home-company-detail__stat">
-                    <span className="home-company-detail__stat-label">{stat.label}</span>
-                    <span className="home-company-detail__stat-value">{stat.value}</span>
+              {activeItem.stats.length > 0 && (
+                <>
+                  <hr className="home-company-detail__divider" />
+                  <div className="home-company-detail__stats">
+                    {activeItem.stats.map((stat) => (
+                      <div key={`${activeItem.id}-${stat.label}`} className="home-company-detail__stat">
+                        <span className="home-company-detail__stat-label">{stat.label}</span>
+                        <span className="home-company-detail__stat-value">{stat.value}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -182,11 +120,7 @@ const HomeCompanyDetail: React.FC = () => {
           </div>
         </div>
 
-        <HomeBrand
-          activeIndex={activeIndex}
-          onBrandClick={(index) => setActiveIndex(index)}
-          total={caseItems.length}
-        />
+        <HomeBrand />
       </div>
     </section>
   );

@@ -3,25 +3,25 @@
   background: #fff;
 
   .home-data__inner {
-    width: 90%;
-    max-width: 1840px;
-    max-height: 760px;
+    width: min(1840px, calc(100% - 80px));
+    min-height: 760px;
+    
     margin: 0 auto;
-    padding: 48px 48px 56px;
+    padding: 80px 48px 72px;
     border-radius: 32px;
     background: #101010;
-    color: #e5e7eb;
+    color: #ffffff;
     box-sizing: border-box;
   }
 
   .home-data__header {
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto 48px;
+    max-width: 1008px;
+    margin: 0 auto 95px;
   }
 
   .home-data__title {
-    margin: 0 0 16px;
+    margin: 0 0 34px;
     color: var(--Labels-White, #fff);
     font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
     font-size: 36px;
@@ -31,7 +31,8 @@
   }
 
   .home-data__subtitle {
-    margin: 0;
+    margin: 0 auto;
+    max-width: 1008px;
     text-align: center;
     color: var(--Labels-White, #fff);
     font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
@@ -43,10 +44,10 @@
   }
 
   .home-data__cards {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 320px);
     justify-content: center;
     gap: 24px;
-    flex-wrap: wrap;
   }
 
   .home-data__card {
@@ -54,23 +55,29 @@
     height: 360px;
     flex-shrink: 0;
     border-radius: 24px;
-    padding: 24px;
+    padding: 40px 32px 32px;
     background: #1b1c1d;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
   }
 
+  .home-data__card-info {
+    width: 100%;
+  }
+
   .home-data__card-title {
-    margin: 0 0 16px;
+    margin: 0 0 19px;
     color: var(--Labels-White, #fff);
     font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
-    font-size: 20px;
+    font-size: 24px;
+    line-height: 32px;
     font-weight: 700;
   }
 
   .home-data__card-desc {
     margin: 0;
+    max-width: 256px;
     color: var(--Labels-White, #fff);
     font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
     font-size: 16px;
@@ -80,41 +87,52 @@
 
   .home-data__stat {
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;
+    gap: 24px;
     margin-top: auto;
     overflow: hidden;
   }
 
   .home-data__stat-label {
     font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
-    font-size: 16px;
-    padding-right: 8px;
+    font-size: 24px;
+    line-height: normal;
     color: #fff;
-    opacity: 0.6;
   }
 
   .home-data__stat-value {
     font-family: "Alibaba PuHuiTi 3.0", "PingFang SC", sans-serif;
-    margin-left: 24px;
-    font-size: 40px;
+    margin-left: 0;
+    font-size: 48px;
     font-weight: 700;
-    line-height: 1;
+    line-height: 80px;
     color: #aeff21;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     padding: 72px 0;
 
     .home-data__inner {
+      width: calc(100% - 48px);
       min-height: auto;
-      padding: 32px 24px 40px;
+      padding: 56px 32px 48px;
+    }
+
+    .home-data__header {
+      margin-bottom: 64px;
+    }
+
+    .home-data__cards {
+      width: 100%;
+      max-width: 920px;
+      margin: 0 auto;
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+      gap: 24px;
     }
 
     .home-data__card {
       width: 100%;
-      max-width: 320px;
-      height: auto;
-      min-height: 360px;
+      max-width: none;
     }
   }
 
@@ -122,11 +140,18 @@
     padding: 56px 0;
 
     .home-data__inner {
-      padding: 24px 20px 32px;
+      width: calc(100% - 32px);
+      border-radius: 24px;
+      padding: 40px 20px 36px;
+    }
+
+    .home-data__header {
+      margin-bottom: 40px;
     }
 
     .home-data__title {
       font-size: 24px;
+      margin: 0 0 20px;
     }
 
     .home-data__subtitle {
@@ -134,13 +159,41 @@
       line-height: 28px;
     }
 
+    .home-data__cards {
+      max-width: 360px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
     .home-data__card {
-      max-width: 100%;
-      min-height: 320px;
+      height: auto;
+      min-height: 300px;
+      padding: 32px 24px 24px;
+    }
+
+    .home-data__card-title {
+      font-size: 22px;
+      line-height: 30px;
+      margin: 0 0 16px;
+    }
+
+    .home-data__card-desc {
+      font-size: 14px;
+      line-height: 22px;
+      max-width: none;
+    }
+
+    .home-data__stat {
+      gap: 16px;
+    }
+
+    .home-data__stat-label {
+      font-size: 20px;
     }
 
     .home-data__stat-value {
-      font-size: 28px;
+      font-size: 40px;
+      line-height: 56px;
     }
   }
 }

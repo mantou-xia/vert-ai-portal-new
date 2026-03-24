@@ -14,6 +14,8 @@ const BASE_ICON_HEIGHT = 38;
 const ICON_ANCHOR_Y = 24.2692;
 const EASE_OUT = [0.4, 0, 0.2, 1] as const;
 const TRANSITION_DURATION = 0.4;
+const WHEEL_SWITCH_THRESHOLD = 60;
+const WHEEL_SWITCH_LOCK_MS = 180;
 
 type Item = {
   id: string;
@@ -45,28 +47,34 @@ const HomeItemShow: React.FC = () => {
   const items = useMemo<Item[]>(
     () => [
       {
-        id: 'workflow',
-        title: t('home.itemShow.workflowTitle'),
-        subtitle: t('home.itemShow.workflowSubtitle'),
-        image: '/images/home/keyboard.png',
+        id: 'fde',
+        title: t('home.itemShow.fdeTitle'),
+        subtitle: t('home.itemShow.fdeSubtitle'),
+        image: '/images/home/image1.png',
       },
       {
-        id: 'models',
-        title: t('home.itemShow.modelsTitle'),
-        subtitle: t('home.itemShow.modelsSubtitle'),
-        image: '/images/home/keyboard.png',
+        id: 'maas',
+        title: t('home.itemShow.maasTitle'),
+        subtitle: t('home.itemShow.maasSubtitle'),
+        image: '/images/home/image2.png',
       },
       {
-        id: 'publish',
-        title: t('home.itemShow.publishTitle'),
-        subtitle: t('home.itemShow.publishSubtitle'),
-        image: '/images/home/keyboard.png',
+        id: 'flow',
+        title: t('home.itemShow.flowTitle'),
+        subtitle: t('home.itemShow.flowSubtitle'),
+        image: '/images/home/image3.png',
       },
       {
-        id: 'share',
-        title: t('home.itemShow.shareTitle'),
-        subtitle: t('home.itemShow.shareSubtitle'),
-        image: '/images/home/keyboard.png',
+        id: 'insight',
+        title: t('home.itemShow.insightTitle'),
+        subtitle: t('home.itemShow.insightSubtitle'),
+        image: '/images/home/image4.png',
+      },
+      {
+        id: 'core',
+        title: t('home.itemShow.coreTitle'),
+        subtitle: t('home.itemShow.coreSubtitle'),
+        image: '/images/home/image5.png',
       },
     ],
     [t]
@@ -75,11 +83,14 @@ const HomeItemShow: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const activeItem = items[activeIndex] ?? items[0];
+  const sectionRef = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const axisRef = useRef<HTMLDivElement>(null);
   const titleRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const [anchorTopPx, setAnchorTopPx] = useState(0);
   const [extendY, setExtendY] = useState(0);
+  const wheelDeltaRef = useRef(0);
+  const wheelLockUntilRef = useRef(0);
   const anchorMotion = useMotionValue(0);
   const extendMotion = useMotionValue(0);
   const [animatedAnchorTopPx, setAnimatedAnchorTopPx] = useState(0);
@@ -149,8 +160,56 @@ const HomeItemShow: React.FC = () => {
   const lowerStarPath = useMemo(() => getLowerStarPath(animatedExtendY), [animatedExtendY]);
   const upperStarPath = useMemo(() => getUpperStarPath(animatedExtendY), [animatedExtendY]);
 
+  const isSectionCenterInViewport = useCallback((): boolean => {
+    const section = sectionRef.current;
+    if (!section) return false;
+
+    const rect = section.getBoundingClientRect();
+    const viewportCenterY = window.innerHeight / 2;
+    return rect.top <= viewportCenterY && rect.bottom >= viewportCenterY;
+  }, []);
+
+  useEffect(() => {
+    const handleWindowWheel = (event: WheelEvent) => {
+      if (!isSectionCenterInViewport()) {
+        wheelDeltaRef.current = 0;
+        return;
+      }
+
+      const direction = event.deltaY > 0 ? 1 : event.deltaY < 0 ? -1 : 0;
+      if (direction === 0) return;
+
+      const atStart = activeIndex <= 0;
+      const atEnd = activeIndex >= items.length - 1;
+      const canConsume = (direction > 0 && !atEnd) || (direction < 0 && !atStart);
+
+      if (!canConsume) {
+        wheelDeltaRef.current = 0;
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const now = window.performance.now();
+      if (now < wheelLockUntilRef.current) return;
+
+      wheelDeltaRef.current += event.deltaY;
+      if (Math.abs(wheelDeltaRef.current) < WHEEL_SWITCH_THRESHOLD) return;
+
+      const switchDirection = wheelDeltaRef.current > 0 ? 1 : -1;
+      wheelDeltaRef.current = 0;
+      wheelLockUntilRef.current = now + WHEEL_SWITCH_LOCK_MS;
+
+      setActiveIndex((prev) => clamp(prev + switchDirection, 0, items.length - 1));
+    };
+
+    window.addEventListener('wheel', handleWindowWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWindowWheel);
+  }, [activeIndex, isSectionCenterInViewport, items.length]);
+
   return (
-    <section className="home-item-show">
+    <section ref={sectionRef} className="home-item-show">
       <div className="home-item-show__inner">
         <header className="home-item-show__header">
           <h2 className="home-item-show__title">{t('home.itemShow.title')}</h2>
@@ -184,12 +243,9 @@ const HomeItemShow: React.FC = () => {
             </div>
             <div className="home-item-show__items">
               {items.map((item, index) => (
-                <button
+                <div
                   key={item.id}
-                  type="button"
                   className={`home-item-show__item ${index === activeIndex ? 'home-item-show__item--active' : ''}`}
-                  onMouseEnter={() => setActiveIndex(index)}
-                  onClick={() => setActiveIndex(index)}
                 >
                   <div className="home-item-show__item-text">
                     <div className="home-item-show__item-title-row">
@@ -204,7 +260,7 @@ const HomeItemShow: React.FC = () => {
                     </div>
                     <p className="home-item-show__item-desc">{item.subtitle}</p>
                   </div>
-                </button>
+                </div>
               ))}
             </div>
           </div>

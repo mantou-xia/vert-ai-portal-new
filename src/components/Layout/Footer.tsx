@@ -25,65 +25,69 @@ const Footer: React.FC = () => {
 
   return (
     <AntFooter className="app-footer">
-      <div className="app-footer__inner">
-        <header className="app-footer__top">
-          <div className="app-footer__logo" onClick={() => navigate(routes.home)}>
-            <img src={getAssetPath('/images/home/logo_write.png')} alt="" />
-          </div>
-          <nav className="app-footer__nav">
-            {footerNav.map((item, index) => (
-              <span key={item.path}>
-                {index > 0 && <span className="app-footer__nav-sep">|</span>}
-                <button
-                  type="button"
-                  className="app-footer__nav-link"
-                  onClick={() => navigate(item.path)}
-                >
-                  {item.label}
-                </button>
-              </span>
-            ))}
-          </nav>
-        </header>
+      <div className='app-footer__container'>
+        <div className="app-footer__inner">
+          <header className="app-footer__top">
+            <div className="app-footer__logo" onClick={() => navigate(routes.home)}>
+              <img src={getAssetPath('/public/images/logo/VERT_logo_白色.svg')} alt="" />
+              <span>VERT</span>
+            </div>
+            <nav className="app-footer__nav">
+              {footerNav.map((item, index) => (
+                <span key={item.path}>
+                  {index > 0 && <span className="app-footer__nav-sep">|</span>}
+                  <button
+                    type="button"
+                    className="app-footer__nav-link"
+                    onClick={() => navigate(item.path)}
+                  >
+                    {item.label}
+                  </button>
+                </span>
+              ))}
+            </nav>
+          </header>
 
-        <div className="app-footer__middle">
-          <div className="app-footer__cta">
-            <h2 className="app-footer__cta-title">{t('layout.footer.ctaTitle')}</h2>
-            <p className="app-footer__cta-desc">
-              {t('layout.footer.ctaDescLine')}
-            </p>
-          </div>
-          <div className="app-footer__contact">
-            <div className="app-footer__contact-body">
-              <div className="app-footer__qr-wrap">
-                <img
-                  className="app-footer__qr-img"
-                  src={getAssetPath('/images/icons/home/微信号二维码.png')}
-                  alt={t('layout.footer.qrLabel')}
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-                <span className="app-footer__qr-label">{t('layout.footer.qrLabel')}</span>
-              </div>
-              <div className="app-footer__contact-info">
-                <h3 className="app-footer__contact-title">{t('layout.footer.contactTitle')}</h3>
-                <div className="app-footer__contact-list">
-                  <p>{t('layout.footer.phone')}</p>
-                  <p>{t('layout.footer.email')}</p>
-                  <p>
-                    {t('layout.footer.addressLine')}
-                  </p>
+          <div className="app-footer__middle">
+            <div className="app-footer__cta">
+              <h2 className="app-footer__cta-title">{t('layout.footer.ctaTitle')}</h2>
+              <p className="app-footer__cta-desc">
+                {t('layout.footer.ctaDescLine')}
+              </p>
+            </div>
+            <div className="app-footer__contact">
+              <div className="app-footer__contact-body">
+                <div className="app-footer__qr-wrap">
+                  <img
+                    className="app-footer__qr-img"
+                    src={getAssetPath('/images/icons/home/微信号二维码.png')}
+                    alt={t('layout.footer.qrLabel')}
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                  <span className="app-footer__qr-label">{t('layout.footer.qrLabel')}</span>
+                </div>
+                <div className="app-footer__contact-info">
+                  <h3 className="app-footer__contact-title">{t('layout.footer.contactTitle')}</h3>
+                  <div className="app-footer__contact-list">
+                    <p>{t('layout.footer.phone')}</p>
+                    <p>{t('layout.footer.email')}</p>
+                    <p>
+                      {t('layout.footer.addressLine')}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="app-footer__bottom">
-          <p className="app-footer__copyright">{t('layout.footer.copyright')}</p>
+          <div className="app-footer__bottom">
+            <p className="app-footer__copyright">{t('layout.footer.copyright')}</p>
+          </div>
         </div>
       </div>
+
     </AntFooter>
   );
 };
