@@ -21,14 +21,15 @@ const ROUTER_CARD_IMAGES: Record<string, string> = {
   landing: '/images/maas/image_mass_5.png',
   'web-search': '/images/maas/image_mass_6.png',
   mcp: '/images/maas/image_mass_7.png',
-  rag: '/images/maas/image_mass_7.png',
-  'fine-tuning': '/images/maas/image_mass_7.png',
+  rag: '/images/maas/image_mass_5.png',
+  'fine-tuning': '/images/maas/image_mass_1.png',
 };
 
 const MaasAiModelDetail: React.FC = () => {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement | null>(null);
   const viewportRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
   const dragStartXRef = useRef(0);
   const dragStartScrollRef = useRef(0);
   const touchStartXRef = useRef(0);
@@ -36,6 +37,7 @@ const MaasAiModelDetail: React.FC = () => {
 
   const [isVisible, setIsVisible] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [isCenteredLayout, setIsCenteredLayout] = useState(false);
   const routerCards = useMemo<RouterCard[]>(
     () =>
       (t('maas.aiModelDetail.cards', { returnObjects: true }) as LocalizedRouterCard[]).map((card) => ({
@@ -75,6 +77,10 @@ const MaasAiModelDetail: React.FC = () => {
       return;
     }
 
+    if (isCenteredLayout) {
+      return;
+    }
+
     const handleWheel = (event: WheelEvent) => {
       const maxScrollLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
       if (maxScrollLeft <= 0) {
@@ -99,11 +105,44 @@ const MaasAiModelDetail: React.FC = () => {
 
     viewport.addEventListener('wheel', handleWheel, { passive: false });
     return () => viewport.removeEventListener('wheel', handleWheel);
-  }, []);
+  }, [isCenteredLayout]);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    const list = listRef.current;
+    if (!viewport || !list) {
+      return;
+    }
+
+    const updateLayoutMode = () => {
+      const cards = Array.from(list.querySelectorAll<HTMLElement>('.maas-ai-model-detail__card'));
+      if (cards.length === 0) {
+        setIsCenteredLayout(false);
+        return;
+      }
+
+      const listStyle = window.getComputedStyle(list);
+      const gapValue = listStyle.columnGap || listStyle.gap || '0';
+      const gap = Number.parseFloat(gapValue) || 0;
+      const cardsWidth = cards.reduce((sum, card) => sum + card.offsetWidth, 0);
+      const totalCardsWidth = cardsWidth + gap * Math.max(0, cards.length - 1);
+      const canCenter = totalCardsWidth <= viewport.clientWidth;
+
+      setIsCenteredLayout((prev) => (prev === canCenter ? prev : canCenter));
+    };
+
+    updateLayoutMode();
+
+    const resizeObserver = new ResizeObserver(updateLayoutMode);
+    resizeObserver.observe(viewport);
+    resizeObserver.observe(list);
+
+    return () => resizeObserver.disconnect();
+  }, [routerCards.length]);
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     const viewport = viewportRef.current;
-    if (!viewport) {
+    if (!viewport || isCenteredLayout) {
       return;
     }
 
@@ -113,7 +152,7 @@ const MaasAiModelDetail: React.FC = () => {
   };
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging || !viewportRef.current) {
+    if (!isDragging || !viewportRef.current || isCenteredLayout) {
       return;
     }
 
@@ -130,7 +169,7 @@ const MaasAiModelDetail: React.FC = () => {
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     const viewport = viewportRef.current;
-    if (!viewport || event.touches.length === 0) {
+    if (!viewport || event.touches.length === 0 || isCenteredLayout) {
       return;
     }
 
@@ -140,7 +179,7 @@ const MaasAiModelDetail: React.FC = () => {
 
   const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
     const viewport = viewportRef.current;
-    if (!viewport || event.touches.length === 0) {
+    if (!viewport || event.touches.length === 0 || isCenteredLayout) {
       return;
     }
 
@@ -161,7 +200,7 @@ const MaasAiModelDetail: React.FC = () => {
 
         <div
           ref={viewportRef}
-          className={`maas-ai-model-detail__viewport ${isDragging ? 'maas-ai-model-detail__viewport--dragging' : ''}`}
+          className={`maas-ai-model-detail__viewport ${isDragging ? 'maas-ai-model-detail__viewport--dragging' : ''} ${isCenteredLayout ? 'maas-ai-model-detail__viewport--centered' : ''}`}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUpOrLeave}
@@ -169,7 +208,11 @@ const MaasAiModelDetail: React.FC = () => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
         >
-          <div className="maas-ai-model-detail__list" role="list">
+          <div
+            ref={listRef}
+            className={`maas-ai-model-detail__list ${isCenteredLayout ? 'maas-ai-model-detail__list--centered' : ''}`}
+            role="list"
+          >
             {routerCards.map((card, index) => (
               <article
                 key={card.key}

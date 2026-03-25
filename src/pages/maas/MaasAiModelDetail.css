@@ -42,6 +42,10 @@
     cursor: grabbing;
   }
 
+  .maas-ai-model-detail__viewport--centered {
+    cursor: default;
+  }
+
   .maas-ai-model-detail__list {
     display: flex;
     gap: 16px;
@@ -50,7 +54,15 @@
     padding: 0 80px 4px 280px;
   }
 
+  .maas-ai-model-detail__list--centered {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    padding: 0 0 4px;
+  }
+
   .maas-ai-model-detail__card {
+    flex: 0 0 auto;
     width: 350px;
     background: #f7f7f7;
     border: 1px solid rgba(26, 26, 26, 0.08);

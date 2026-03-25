@@ -113,20 +113,25 @@
 
   .maas-main-img__title {
     margin: 0;
-    font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    font-size: clamp(32px, 2.65vw, 50px);
-    font-weight: 700;
-    line-height: 1.24;
     letter-spacing: 0.01em;
     color: #ffffff;
+    font-family: "Alibaba PuHuiTi 3.0";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 
   .maas-main-img__desc {
     margin: 16px auto 64px;
-    width: min(578px, 100%);
-    font-size: clamp(14px, 0.95vw, 16px);
-    line-height: 2;
-    color: rgba(255, 255, 255, 0.58);
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-family: "Alibaba PuHuiTi 3.0";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    /* 160% */
   }
 
   .maas-main-img__input-wrap {
@@ -135,19 +140,24 @@
     align-items: center;
     gap: 12px;
     width: min(720px, 100%);
-    min-height: 96px;
+    min-height: 80px;
     margin: 0 auto;
-    padding: 0 14px 0 24px;
+    padding: 0 24px 0 20px;
     border-radius: 24px;
-    border: 1px solid rgba(165, 255, 78, 0.46);
-    background: linear-gradient(105deg, rgba(0, 0, 0, 0.76) 0%, rgba(4, 32, 20, 0.6) 64%, rgba(10, 44, 27, 0.52) 100%);
-    box-shadow:
+    /* border: 1px solid rgba(165, 255, 78, 0.46); */
+    /* background: linear-gradient(105deg, rgba(0, 0, 0, 0.76) 0%, rgba(4, 32, 20, 0.6) 64%, rgba(10, 44, 27, 0.52) 100%); */
+    /* box-shadow:
       inset 0 0 0 1px rgba(140, 255, 88, 0.12),
       0 16px 36px rgba(0, 0, 0, 0.42),
-      0 0 22px rgba(136, 255, 83, 0.12);
+      0 0 22px rgba(136, 255, 83, 0.12); */
     backdrop-filter: blur(8px);
     cursor: pointer;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    height: 80px;
+    border-radius: 24px;
+    border: 1px solid #AEFF21;
+    background: var(--Labels-Quinary, rgba(0, 0, 0, 0.05));
+    box-shadow: 0 6px 16px 0 rgba(174, 255, 33, 0.16);
   }
 
   .maas-main-img__input-wrap:hover {
@@ -162,8 +172,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
     border-radius: 50%;
     border: 1px solid rgba(154, 255, 70, 0.28);
@@ -181,11 +191,12 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     color: var(--Labels-White, #fff);
-    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    font-size: 20px;
+    font-family: "PingFang SC";
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+    line-height: 24px;
+    /* 150% */
   }
 
   .maas-main-img__cursor {
@@ -203,20 +214,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 56px;
-    height: 56px;
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
     border: none;
     border-radius: 50%;
     background: #aeff21;
-    box-shadow: 0 4px 14px rgba(174, 255, 33, 0.36);
+    /* box-shadow: 0 4px 14px rgba(174, 255, 33, 0.36); */
     cursor: pointer;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
 
   .maas-main-img__input-btn img {
-    width: 15px;
-    height: 15px;
+    width: 11.429px;
+    height: 11.429px;
   }
 
   .maas-main-img__input-btn:hover {
@@ -379,6 +390,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+
     .maas-main-img__cursor,
     .maas-main-img__input-btn {
       animation: none !important;
@@ -397,6 +409,7 @@
 }
 
 @keyframes maas-main-cursor-blink {
+
   0%,
   45% {
     opacity: 1;
