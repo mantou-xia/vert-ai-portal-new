@@ -1,4 +1,4 @@
-const zhCN = {
+﻿const zhCN = {
   common: {
     ctaStart: '立即开始',
     becomePartner: '成为合作伙伴',

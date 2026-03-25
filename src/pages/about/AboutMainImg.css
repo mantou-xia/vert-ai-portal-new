@@ -6,9 +6,9 @@
   background-repeat: no-repeat;
   background-color: #0b1425;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 112px 24px 64px;
+  padding: 112px 24px 0px;
   overflow: hidden;
 
   .about-main-img__overlay {
@@ -22,11 +22,11 @@
 
   .about-main-img__content {
     position: relative;
-    top: 80px;
     z-index: 1;
     text-align: center;
     width: min(785px, 100%);
     color: #ffffff;
+    margin-bottom: 80px;
   }
 
   .about-main-img__title {
@@ -39,20 +39,12 @@
   }
 
   .about-main-img__desc {
-    margin: 0 auto 36px;
+    margin: 0 auto 40px;
     width: min(785px, 100%);
     font-family: 'Alibaba PuHuiTi 3.0', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     font-size: clamp(16px, 1.05vw, 20px);
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.78);
-  }
-
-  .about-main-img__cta {
-    width: 180px;
-    height: 64px;
-    padding-left: 24px;
-    padding-right: 20px;
-    font-size: 20px;
   }
 
   @media (max-width: 1440px) {

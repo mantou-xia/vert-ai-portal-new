@@ -26,7 +26,7 @@ const AboutDescript: React.FC = () => {
             <ul className="about-descript__list">
               {columnOneItems.map((item) => (
                 <li key={item.label} className="about-descript__item">
-                  <span className="about-descript__item-label">{item.label}：</span>
+                  <span className="about-descript__item-label">{`${item.label}\uFF1A`}</span>
                   <span className="about-descript__item-value">{item.value}</span>
                 </li>
               ))}
@@ -36,17 +36,13 @@ const AboutDescript: React.FC = () => {
           <article className="about-descript__col">
             <h3 className="about-descript__col-title">{t('about.descript.col2Title')}</h3>
             <div className="about-descript__divider" />
-            <p className="about-descript__text">
-              {t('about.descript.col2Text')}
-            </p>
+            <p className="about-descript__text">{t('about.descript.col2Text')}</p>
           </article>
 
           <article className="about-descript__col">
             <h3 className="about-descript__col-title">{t('about.descript.col3Title')}</h3>
             <div className="about-descript__divider" />
-            <p className="about-descript__text">
-              {t('about.descript.col3Text')}
-            </p>
+            <p className="about-descript__text">{t('about.descript.col3Text')}</p>
           </article>
         </div>
       </div>

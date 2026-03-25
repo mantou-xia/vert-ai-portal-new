@@ -24,7 +24,7 @@ const INITIAL_FORM: FormState = {
   wechat: '',
 };
 
-const LOGO_SRC = getAssetPath('/images/message-board/logo-union.svg');
+const LOGO_SRC = getAssetPath('/public/images/logo/VERT_logo_白色.svg');
 const QR_SRC = getAssetPath('/images/message-board/qr.png');
 const SUCCESS_SRC = getAssetPath('/images/message-board/success.svg');
 

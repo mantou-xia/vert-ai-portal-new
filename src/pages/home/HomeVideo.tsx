@@ -92,12 +92,29 @@ const HomeVideo: React.FC = () => {
   }, [handleScroll, i18n.language]);
 
   const phase1 = clamp(progress / 0.6, 0, 1);
+  const isVideoFullyFilled = phase1 >= 0.999;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Keep the hero video muted for the entire lifecycle.
+    video.defaultMuted = true;
+    video.muted = true;
+    video.volume = 0;
+
+    if (isVideoFullyFilled) {
+      void video.play().catch(() => {});
+      return;
+    }
+
+    video.pause();
+  }, [isVideoFullyFilled]);
 
   const videoInset = lerp(5, 0, phase1);
   const videoRadius = lerp(24, 0, phase1);
 
   const ctaOpacity = clamp(1 - phase1 * 2, 0, 1);
-  const playBtnOpacity = clamp(1 - phase1 * 2, 0, 1);
   const titleViewportTop = getTitleViewportTop();
   const videoStartTop = videoStartBase;
   const videoTopOffset = lerp(videoStartTop, 0, phase1);
@@ -123,7 +140,7 @@ const HomeVideo: React.FC = () => {
             aria-hidden="true"
           >
             <p className="home-video-github-label">
-              160.6k stars on <a href="https://github.com">GitHub</a>
+              160.6k stars on <a>GitHub</a>
             </p>
             <h2 className="home-video-title">
               {t('home.video.title')}
@@ -134,7 +151,7 @@ const HomeVideo: React.FC = () => {
             ref={ctaWrapRef}
             style={{ opacity: ctaOpacity, pointerEvents: ctaOpacity < 0.1 ? 'none' : 'auto' }}
           >
-            <CTAButton className="home-video-cta" onClick={() => setIsMessageOpen(true)} />
+            <CTAButton width={180} height={64} fontSize={20} className="home-video-cta" onClick={() => setIsMessageOpen(true)} />
           </div>
         </div>
 
@@ -153,19 +170,18 @@ const HomeVideo: React.FC = () => {
             className="home-video-element"
             src={VIDEO_SRC}
             poster={POSTER_SRC}
-            autoPlay
             muted
             playsInline
             loop
           >
             {t('home.video.videoUnsupported')}
           </video>
-          <div className="home-video-play-btn" style={{ opacity: playBtnOpacity }}>
+          {/* <div className="home-video-play-btn" style={{ opacity: playBtnOpacity }}>
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
               <circle cx="24" cy="24" r="24" fill="rgba(255,255,255,0.9)" />
               <path d="M20 16L34 24L20 32V16Z" fill="#0f172a" />
             </svg>
-          </div>
+          </div> */}
         </div>
       </div>
 
