@@ -13,7 +13,7 @@ const Root = () => {
   const currentTheme = themeMode === 'dark' ? darkTheme : lightTheme;
 
   // GitHub Pages部署时使用base路径
-  const basename = import.meta.env.PROD ? '/vert-ai-portal' : '/';
+  const basename = import.meta.env.PROD ? '/vert-ai-portal-new' : '/';
   
   return (
     <ConfigProvider theme={currentTheme}>
