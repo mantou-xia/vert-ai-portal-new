@@ -7,7 +7,6 @@ import CTAButton from '../../components/common/CTAButton';
 import './HomeVideo.css';
 
 const VIDEO_SRC = getAssetPath('/videos/home/home_video.mp4');
-const POSTER_SRC = getAssetPath('/images/home/video-poster.png');
 const DESKTOP_TITLE_VIEWPORT_TOP = 170;
 const MOBILE_TITLE_VIEWPORT_TOP = 120;
 
@@ -31,6 +30,7 @@ const HomeVideo: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const hasPrimedCoverRef = useRef(false);
   const ctaWrapRef = useRef<HTMLDivElement | null>(null);
   const [isMessageOpen, setIsMessageOpen] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -103,12 +103,26 @@ const HomeVideo: React.FC = () => {
     video.muted = true;
     video.volume = 0;
 
+    const primeVideoCover = async () => {
+      if (hasPrimedCoverRef.current) return;
+      hasPrimedCoverRef.current = true;
+
+      try {
+        await video.play();
+        video.pause();
+        video.currentTime = 0;
+      } catch {
+        hasPrimedCoverRef.current = false;
+      }
+    };
+
     if (isVideoFullyFilled) {
       void video.play().catch(() => {});
       return;
     }
 
     video.pause();
+    void primeVideoCover();
   }, [isVideoFullyFilled]);
 
   const videoInset = lerp(5, 0, phase1);
@@ -169,9 +183,9 @@ const HomeVideo: React.FC = () => {
             ref={videoRef}
             className="home-video-element"
             src={VIDEO_SRC}
-            poster={POSTER_SRC}
             muted
             playsInline
+            preload="auto"
             loop
           >
             {t('home.video.videoUnsupported')}
