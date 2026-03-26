@@ -1,0 +1,121 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - img "VERT" [ref=e8] [cursor=pointer]
+      - menu [ref=e11]:
+        - menuitem "首页" [ref=e12] [cursor=pointer]
+        - menuitem "FDE解决方案" [ref=e13] [cursor=pointer]
+        - menuitem "MAAS" [ref=e14] [cursor=pointer]
+        - menuitem "产品" [ref=e15] [cursor=pointer]
+        - menuitem "关于我们" [ref=e16] [cursor=pointer]
+        - menuitem [disabled]:
+          - img:
+            - img
+  - generic [ref=e17]:
+    - main [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e22]:
+          - heading "助力企业，快人一步跨入AI时代" [level=1] [ref=e23]
+          - paragraph [ref=e24]: VERT 深度探索 AI 应用潜能，通过构建稳定工作流，敏捷开发、迭代并交付切实可用的产品。
+          - button "把今天的待办任务按优先级自动整理成执行清单。 打开留言面板" [ref=e137] [cursor=pointer]:
+            - generic [ref=e26]: AI
+            - generic [ref=e27]: 把今天的待办任务按优先级自动整理成执行清单。
+            - button "打开留言面板" [ref=e29]
+        - region "模型生态 Logo 条" [ref=e31]:
+          - list [ref=e33]:
+            - listitem [ref=e34]:
+              - img "OpenAI GPT-4" [ref=e35]
+            - listitem [ref=e36]:
+              - img "Claude 3" [ref=e37]
+            - listitem [ref=e38]:
+              - img "DeepSeek" [ref=e39]
+            - listitem [ref=e40]:
+              - img "通义千问" [ref=e41]
+            - listitem [ref=e42]:
+              - img "Gemini Pro" [ref=e43]
+            - listitem [ref=e44]:
+              - img "Kimi" [ref=e45]
+        - region "AI 专家插件矩阵" [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e49]:
+              - heading "AI 专家插件矩阵" [level=2] [ref=e50]
+              - paragraph [ref=e51]: 面向企业管理关键场景，提供可组合、可扩展、可落地的专家级 AI 插件能力。
+            - generic [ref=e52]:
+              - article [ref=e53]:
+                - img "AI 智能客服能力可视化" [ref=e55]
+                - generic [ref=e56]:
+                  - heading "AI智能客服（企业管理全场景）" [level=3] [ref=e57]
+                  - generic [ref=e58]:
+                    - generic [ref=e59]: 痛点
+                    - paragraph [ref=e60]: 高频咨询占用大量人力，响应慢且无全时段服务；知识上线慢，培训与宣贯成本高。
+                  - generic [ref=e62]:
+                    - generic [ref=e63]:
+                      - heading "AI服务" [level=4] [ref=e64]
+                      - paragraph [ref=e65]: 通过统一知识中台与多模型路由，实现 7x24 小时 自动应答、工单分流与多端触达。
+                    - generic [ref=e66]:
+                      - heading "核心价值" [level=4] [ref=e67]
+                      - paragraph [ref=e68]: 客服响应时延下降 65%，重复咨询自动化覆盖率提升至 80%+。
+              - article [ref=e69]:
+                - img "AI 法务咨询专家流程图" [ref=e71]
+                - generic [ref=e72]:
+                  - heading "AI法务咨询专家" [level=3] [ref=e73]
+                  - generic [ref=e74]:
+                    - generic [ref=e75]: 痛点
+                    - paragraph [ref=e76]: 人工审核易出错引发法律纠纷，常规条款筛查占用人手，审批流转慢、沟通成本高。
+                  - generic [ref=e78]:
+                    - generic [ref=e79]:
+                      - heading "AI服务" [level=4] [ref=e80]
+                      - paragraph [ref=e81]: 智能条款识别与法规比对，支持 合同风险自动标注 与版本差异追踪。
+                    - generic [ref=e82]:
+                      - heading "核心价值" [level=4] [ref=e83]
+                      - paragraph [ref=e84]: 法务预审效率提升 58%，关键风险漏检率下降 70%。
+              - article [ref=e85]:
+                - img "AI 管理审计专家展示" [ref=e87]
+                - generic [ref=e88]:
+                  - heading "AI管理审计（集团管理）" [level=3] [ref=e89]
+                  - generic [ref=e90]:
+                    - generic [ref=e91]: 痛点
+                    - paragraph [ref=e92]: 门店存在业绩操控与数据失真，人工审计成本高且滞后，难以快速穿透异常数据。
+                  - generic [ref=e94]:
+                    - generic [ref=e95]:
+                      - heading "AI服务" [level=4] [ref=e96]
+                      - paragraph [ref=e97]: 构建审计规则引擎与异常检测 Agent，实现 经营数据秒级预警。
+                    - generic [ref=e98]:
+                      - heading "核心价值" [level=4] [ref=e99]
+                      - paragraph [ref=e100]: 审计覆盖范围提升 3 倍，人工复核成本降低 45%。
+    - contentinfo [ref=e101]:
+      - generic [ref=e102]:
+        - banner [ref=e103]:
+          - navigation [ref=e105]:
+            - button "首页" [ref=e107] [cursor=pointer]
+            - generic [ref=e108]:
+              - generic [ref=e109]: "|"
+              - button "FDE解决方案" [ref=e110] [cursor=pointer]
+            - generic [ref=e111]:
+              - generic [ref=e112]: "|"
+              - button "MAAS" [ref=e113] [cursor=pointer]
+            - generic [ref=e114]:
+              - generic [ref=e115]: "|"
+              - button "产品" [ref=e116] [cursor=pointer]
+            - generic [ref=e117]:
+              - generic [ref=e118]: "|"
+              - button "关于我们" [ref=e119] [cursor=pointer]
+        - generic [ref=e120]:
+          - generic:
+            - heading "准备好迎接下一代AI应用了吗？" [level=2] [ref=e121]
+            - paragraph [ref=e122]:
+              - text: 集RAG pipeline、丰富的集成和全面可观测性于一体，
+              - text: 轻松上线可投产的AI Agents，无需繁琐操作。
+          - generic [ref=e124]:
+            - generic [ref=e125]:
+              - img "微信号" [ref=e126]
+              - generic [ref=e127]: 微信号
+            - generic [ref=e128]:
+              - heading "联系我们" [level=3] [ref=e129]
+              - generic [ref=e130]:
+                - paragraph [ref=e131]: 联系电话：18751969612
+                - paragraph [ref=e132]: 邮箱地址：m278398343@163.com
+                - paragraph [ref=e133]:
+                  - text: 公司地址：深圳市宝安区新安街道海旺社区宝兴路6号
+                  - text: 海纳百川大厦B座6层
+        - paragraph [ref=e135]: © 2025 Breakthrough Energy, LLC. All Rights Reserved

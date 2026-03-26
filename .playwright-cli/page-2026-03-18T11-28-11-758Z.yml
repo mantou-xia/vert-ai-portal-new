@@ -1,0 +1,199 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - img "VERT" [ref=e8] [cursor=pointer]
+      - menu [ref=e11]:
+        - menuitem "首页" [ref=e12] [cursor=pointer]
+        - menuitem "FDE解决方案" [ref=e13] [cursor=pointer]
+        - menuitem "MAAS" [ref=e14] [cursor=pointer]
+        - menuitem "产品" [ref=e15] [cursor=pointer]
+        - menuitem "关于我们" [ref=e16] [cursor=pointer]
+        - menuitem [disabled]:
+          - img:
+            - img
+  - generic [ref=e17]:
+    - main [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e21]:
+          - generic [ref=e23]:
+            - paragraph [ref=e24]: VERT 大模型中台
+            - heading "企业级一体化智能服务平台" [level=1] [ref=e25]
+            - paragraph [ref=e26]: 一站式完成大模型集成、管理、多智能 Agent 编排、知识库和 RAG 引擎。智能化工作流编排与 工具生态连接帮助传统系统升级为 AI 驱动，激活可用的数据资产，全面提升企业 AI 落地效率。
+            - button "立即开始" [ref=e27] [cursor=pointer]:
+              - generic [ref=e28]: 立即开始
+          - generic [ref=e49]:
+            - heading "五大核心价值，重构企业 AI 开发效率" [level=2] [ref=e50]
+            - generic [ref=e51]:
+              - generic [ref=e52]:
+                - heading "统一管理" [level=3] [ref=e54]
+                - paragraph [ref=e55]: 多模型、多工具统一中台管理，方便运维与治理。
+              - generic [ref=e56]:
+                - heading "快速构建" [level=3] [ref=e58]
+                - paragraph [ref=e59]: 面向业务场景的 Agent 低代码搭建，加速上线。
+              - generic [ref=e60]:
+                - heading "知识驱动" [level=3] [ref=e62]
+                - paragraph [ref=e63]: 内置知识库与 RAG 能力，让数据真正“会说话”。
+              - generic [ref=e64]:
+                - heading "工具生态" [level=3] [ref=e66]
+                - paragraph [ref=e67]: 丰富的 API 与工具连接，串联企业现有系统。
+              - generic [ref=e68]:
+                - heading "流程编排" [level=3] [ref=e70]
+                - paragraph [ref=e71]: 复杂业务流程可视化编排，自动化运行与监控。
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - heading "海量插件，即插即用" [level=2] [ref=e75]
+            - paragraph [ref=e76]: 覆盖办公、AI能力、数据处理等多场景,无需开发即可集成
+          - generic [ref=e77]:
+            - img
+            - generic [ref=e78]:
+              - generic [ref=e79]: Q
+              - generic [ref=e80]: 插件中心
+              - generic [ref=e81]: Plugin Center
+            - generic [ref=e82]:
+              - generic [ref=e83]: PDF阅读器
+              - generic [ref=e84]: SearchAPI
+              - generic [ref=e85]: Chat AI
+              - generic [ref=e86]: SOON!
+            - generic [ref=e87]:
+              - generic [ref=e88]: DCP server
+              - generic [ref=e89]: 公式模型服务
+              - generic [ref=e90]: AgentSQL
+              - generic [ref=e91]: 私有化部署 Bot
+            - generic [ref=e92]:
+              - generic [ref=e93]: PPT
+              - generic [ref=e94]: Share AI
+              - generic [ref=e95]: Github
+          - generic [ref=e96]:
+            - generic [ref=e97]:
+              - generic [ref=e98]: 200+
+              - generic [ref=e99]: 插件总数
+            - generic [ref=e100]:
+              - generic [ref=e101]: 100w+
+              - generic [ref=e102]: 使用次数
+            - generic [ref=e103]:
+              - generic [ref=e104]: 5000+
+              - generic [ref=e105]: 开发者
+            - generic [ref=e106]:
+              - generic [ref=e107]: 500+
+              - generic [ref=e108]: 企业用户
+        - generic [ref=e110]:
+          - generic [ref=e111]:
+            - heading "无代码工作流引擎,稳定易用" [level=2] [ref=e112]
+            - paragraph [ref=e113]: 拖拽式搭建AI工作流,可视化配置执行逻辑,降低自动化门槛
+          - generic [ref=e114]:
+            - generic [ref=e115]:
+              - list [ref=e116]:
+                - listitem [ref=e117]: 拖拽式可视化编排,无需编写代码
+                - listitem [ref=e119]: 支持条件分支、循环等复杂逻辑
+                - listitem [ref=e121]: 实时预览执行结果,快速调试
+                - listitem [ref=e123]: 丰富的模板库,一键开始使用
+              - button "立即试用 →" [ref=e125] [cursor=pointer]
+            - img "工作流" [ref=e127]
+          - generic [ref=e128]:
+            - generic [ref=e129]:
+              - generic [ref=e130]: 200+
+              - generic [ref=e131]: 工作流模板
+            - generic [ref=e132]:
+              - generic [ref=e133]: 100w+
+              - generic [ref=e134]: 日均执行
+            - generic [ref=e135]:
+              - generic [ref=e136]: 99.9%
+              - generic [ref=e137]: 成功率
+        - generic [ref=e139]:
+          - generic [ref=e140]:
+            - heading "实时调试预览，支持性能监控" [level=2] [ref=e141]
+            - paragraph [ref=e142]: 实时查看接口调用耗时、错误日志,在线调试参数,快速定位问题
+          - generic [ref=e143]:
+            - generic [ref=e144]:
+              - heading "实时性能监控" [level=3] [ref=e145]
+              - paragraph [ref=e146]: 监控APP响应时间、成功率等关键指标
+            - generic [ref=e148]:
+              - heading "在线调试控制台" [level=3] [ref=e149]
+              - paragraph [ref=e150]: 实时查看请求日志、错误堆栈信息
+            - generic [ref=e152]:
+              - heading "参数在线调试" [level=3] [ref=e153]
+              - paragraph [ref=e154]: 可视化编辑请求参数,即时预览结果
+            - generic [ref=e156]:
+              - heading "性能分析报告" [level=3] [ref=e157]
+              - paragraph [ref=e158]: 生成详细的性能分析和优化建议
+          - generic [ref=e160]:
+            - generic [ref=e161]:
+              - generic [ref=e162]: <200ms
+              - generic [ref=e163]: 平均响应时间
+            - generic [ref=e164]:
+              - generic [ref=e165]: 80%
+              - generic [ref=e166]: 监控覆盖率
+            - generic [ref=e167]:
+              - generic [ref=e168]: 80%
+              - generic [ref=e169]: 问题定位速度提升
+        - generic [ref=e171]:
+          - generic [ref=e172]:
+            - heading "通用大模型集成能力" [level=2] [ref=e173]
+            - paragraph [ref=e174]: 支持市场主流大模型快速匹配集成,一键连接顶尖AI能力
+          - generic [ref=e175]:
+            - generic [ref=e176]:
+              - generic [ref=e177]:
+                - generic [ref=e178]: G
+                - heading "OpenAI GPT-4" [level=3] [ref=e179]
+              - paragraph [ref=e180]: 文本生成 代码辅助 多模态
+            - generic [ref=e181]:
+              - generic [ref=e182]:
+                - generic [ref=e183]: C
+                - heading "Claude 3" [level=3] [ref=e184]
+              - paragraph [ref=e185]: 长文本理解 分析推理 创作
+            - generic [ref=e186]:
+              - generic [ref=e187]:
+                - generic [ref=e188]: D
+                - heading "deepseek" [level=3] [ref=e189]
+              - paragraph [ref=e190]: 文本生成 代码辅助 多模态
+            - generic [ref=e191]:
+              - generic [ref=e192]:
+                - generic [ref=e193]: Q
+                - heading "通义千问" [level=3] [ref=e194]
+              - paragraph [ref=e195]: 多语言 多模态 代码生成
+            - generic [ref=e196]:
+              - generic [ref=e197]:
+                - generic [ref=e198]: G
+                - heading "Gemini Pro" [level=3] [ref=e199]
+              - paragraph [ref=e200]: 推理 创意 多模态
+            - generic [ref=e201]:
+              - generic [ref=e202]:
+                - generic [ref=e203]: K
+                - heading "Kimi" [level=3] [ref=e204]
+              - paragraph [ref=e205]: 文本生成 代码辅助 多模态
+    - contentinfo [ref=e206]:
+      - generic [ref=e207]:
+        - banner [ref=e208]:
+          - navigation [ref=e210]:
+            - button "首页" [ref=e212] [cursor=pointer]
+            - generic [ref=e213]:
+              - generic [ref=e214]: "|"
+              - button "FDE解决方案" [ref=e215] [cursor=pointer]
+            - generic [ref=e216]:
+              - generic [ref=e217]: "|"
+              - button "MAAS" [ref=e218] [cursor=pointer]
+            - generic [ref=e219]:
+              - generic [ref=e220]: "|"
+              - button "产品" [ref=e221] [cursor=pointer]
+            - generic [ref=e222]:
+              - generic [ref=e223]: "|"
+              - button "关于我们" [ref=e224] [cursor=pointer]
+        - generic [ref=e225]:
+          - generic:
+            - heading "准备好迎接下一代AI应用了吗？" [level=2] [ref=e226]
+            - paragraph [ref=e227]:
+              - text: 集RAG pipeline、丰富的集成和全面可观测性于一体，
+              - text: 轻松上线可投产的AI Agents，无需繁琐操作。
+          - generic [ref=e229]:
+            - generic [ref=e230]:
+              - img "微信号" [ref=e231]
+              - generic [ref=e232]: 微信号
+            - generic [ref=e233]:
+              - heading "联系我们" [level=3] [ref=e234]
+              - generic [ref=e235]:
+                - paragraph [ref=e236]: 联系电话：18751969612
+                - paragraph [ref=e237]: 邮箱地址：m278398343@163.com
+                - paragraph [ref=e238]:
+                  - text: 公司地址：深圳市宝安区新安街道海旺社区宝兴路6号
+                  - text: 海纳百川大厦B座6层
+        - paragraph [ref=e240]: © 2025 Breakthrough Energy, LLC. All Rights Reserved
