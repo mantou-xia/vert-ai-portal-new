@@ -4,7 +4,8 @@
   background: #fff;
 
   .maas-ai-model__inner {
-    width: min(1760px, calc(100% - 160px));
+    width: min(1480px, calc(100% - 48px));
+    height: 64px;
     margin: 0 auto;
   }
 
@@ -12,7 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 22px;
+    gap: auto;
   }
 
   .maas-ai-model__item {

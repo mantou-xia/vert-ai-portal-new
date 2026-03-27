@@ -88,9 +88,40 @@ const HomeSubjectKeyword: React.FC<HomeSubjectKeywordProps> = ({ className }) =>
       targetProgress.set(next);
     };
 
+    const syncProgressFromScroll = () => {
+      const track = trackRef.current;
+      if (!track) return;
+
+      const rect = track.getBoundingClientRect();
+      if (rect.top > 0) {
+        targetProgress.set(0);
+        return;
+      }
+
+      if (rect.bottom < window.innerHeight) {
+        targetProgress.set(1);
+        return;
+      }
+
+      const scrollableHeight = rect.height - window.innerHeight;
+      if (scrollableHeight <= 0) {
+        targetProgress.set(rect.top <= 0 ? 1 : 0);
+        return;
+      }
+
+      const mappedProgress = clamp((-rect.top) / scrollableHeight, 0, 1);
+      targetProgress.set(mappedProgress);
+    };
+
     window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('scroll', syncProgressFromScroll, { passive: true });
+    window.addEventListener('resize', syncProgressFromScroll, { passive: true });
+    syncProgressFromScroll();
+
     return () => {
       window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('scroll', syncProgressFromScroll);
+      window.removeEventListener('resize', syncProgressFromScroll);
     };
   }, [targetProgress]);
 

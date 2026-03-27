@@ -53,6 +53,8 @@ export const ZH_TO_EN_RUNTIME_TEXT_MAP: Record<string, string> = {
     'Multi-mode workflow design with complex branching, parallelism, and retry checkpoints for enterprise logic',
   'VERT 大模型中台 - 企业级一体化智能服务平台':
     'VERT Model Hub - Enterprise Integrated Intelligent Service Platform',
+  'VERT 大模型中台\u00A0\u00A0-\u00A0\u00A0企业级一体化智能服务平台':
+    'VERT Model Hub - Enterprise Integrated Intelligent Service Platform',
   '一站式实现大模型统一管理、智能 Agent 构建、知识库 & RAG 引擎、可视化工作流编排与工具生态集成，低代码降低企业 AI 开发门槛，高可扩展赋能全场景 AI 落地执行':
     'Unified model management, intelligent agent building, knowledge base & RAG, visual workflow orchestration, and ecosystem integration with low-code efficiency and high scalability',
   '五大核心价值，重构企业 AI 开发效率':

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo } from 'react';
+import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { getAssetPath } from '../../utils/path';
@@ -132,6 +132,52 @@ const PdeStudiesDetail: React.FC = () => {
       window.removeEventListener('mouseup', handleMouseUp);
     };
   }, []);
+
+  const isDesktopViewport = useCallback((): boolean => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth > 1024;
+  }, []);
+
+  const isSectionActiveInViewport = useCallback((): boolean => {
+    if (!isDesktopViewport()) return false;
+    const section = sectionRef.current;
+    if (!section) return false;
+
+    const rect = section.getBoundingClientRect();
+    const viewportCenterY = window.innerHeight / 2;
+    return rect.top <= viewportCenterY && rect.bottom >= viewportCenterY;
+  }, [isDesktopViewport]);
+
+  useEffect(() => {
+    const handleWindowWheel = (event: WheelEvent) => {
+      if (canCenterAllCards || !isSectionActiveInViewport()) {
+        return;
+      }
+
+      const inner = innerRef.current;
+      if (!inner) return;
+
+      const maxScrollLeft = Math.max(0, inner.scrollWidth - inner.clientWidth);
+      if (maxScrollLeft <= 0) return;
+
+      const delta = event.deltaY !== 0 ? event.deltaY : event.deltaX;
+      if (delta === 0) return;
+
+      const atStart = inner.scrollLeft <= 1;
+      const atEnd = inner.scrollLeft >= maxScrollLeft - 1;
+
+      if ((delta < 0 && atStart) || (delta > 0 && atEnd)) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      inner.scrollLeft = Math.max(0, Math.min(inner.scrollLeft + delta, maxScrollLeft));
+    };
+
+    window.addEventListener('wheel', handleWindowWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWindowWheel);
+  }, [canCenterAllCards, isSectionActiveInViewport]);
 
   useEffect(() => {
     const inner = innerRef.current;

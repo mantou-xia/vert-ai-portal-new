@@ -84,7 +84,7 @@ const HomeItemShow: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const activeItem = items[activeIndex] ?? items[0];
-  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const axisRef = useRef<HTMLDivElement>(null);
   const titleRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -161,19 +161,25 @@ const HomeItemShow: React.FC = () => {
   const lowerStarPath = useMemo(() => getLowerStarPath(animatedExtendY), [animatedExtendY]);
   const upperStarPath = useMemo(() => getUpperStarPath(animatedExtendY), [animatedExtendY]);
 
-  const isSectionCenterInViewport = useCallback((): boolean => {
-    const section = sectionRef.current;
-    if (!section) return false;
-
-    const rect = section.getBoundingClientRect();
-    const viewportCenterY = window.innerHeight / 2;
-    return rect.top <= viewportCenterY && rect.bottom >= viewportCenterY;
+  const isDesktopViewport = useCallback((): boolean => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth > 1024;
   }, []);
+
+  const isTrackStickyActive = useCallback((): boolean => {
+    if (!isDesktopViewport()) return false;
+    const track = trackRef.current;
+    if (!track) return false;
+
+    const rect = track.getBoundingClientRect();
+    return rect.top <= 0 && rect.bottom >= window.innerHeight;
+  }, [isDesktopViewport]);
 
   useEffect(() => {
     const handleWindowWheel = (event: WheelEvent) => {
-      if (!isSectionCenterInViewport()) {
+      if (!isTrackStickyActive()) {
         wheelDeltaRef.current = 0;
+        wheelLockUntilRef.current = 0;
         return;
       }
 
@@ -207,79 +213,83 @@ const HomeItemShow: React.FC = () => {
 
     window.addEventListener('wheel', handleWindowWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWindowWheel);
-  }, [activeIndex, isSectionCenterInViewport, items.length]);
+  }, [activeIndex, isTrackStickyActive, items.length]);
 
   return (
-    <section ref={sectionRef} className="home-item-show">
-      <div className="home-item-show__inner">
-        <header className="home-item-show__header">
-          <h2 className="home-item-show__title">{t('home.itemShow.title')}</h2>
-        </header>
+    <section className="home-item-show">
+      <div ref={trackRef} className="home-item-show__track">
+        <div className="home-item-show__sticky">
+          <div className="home-item-show__inner">
+            <header className="home-item-show__header">
+              <h2 className="home-item-show__title">{t('home.itemShow.title')}</h2>
+            </header>
 
-        <div className="home-item-show__content">
-          <div ref={listRef} className="home-item-show__list">
-            <div ref={axisRef} className="home-item-show__axis">
-              <div className="home-item-show__axis-line" />
-              <div
-                className="home-item-show__axis-icon"
-                style={{
-                  top: `${animatedAnchorTopPx}px`,
-                  transform: `translate(-50%, -${iconAnchorOffset}px)`,
-                }}
-              >
-                <svg
-                  className="home-item-show__axis-icon-svg"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={BASE_ICON_WIDTH}
-                  height={iconHeight}
-                  viewBox={`0 0 ${BASE_ICON_WIDTH} ${iconHeight}`}
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path d={mainBodyPath} fill="black" />
-                  <path d={lowerStarPath} fill="#98EF00" />
-                  <path d={upperStarPath} fill="#98EF00" />
-                </svg>
-              </div>
-            </div>
-            <div className="home-item-show__items">
-              {items.map((item, index) => (
-                <div
-                  key={item.id}
-                  className={`home-item-show__item ${index === activeIndex ? 'home-item-show__item--active' : ''}`}
-                >
-                  <div className="home-item-show__item-text">
-                    <div className="home-item-show__item-title-row">
-                      <span
-                        ref={(el) => {
-                          titleRefs.current[index] = el;
-                        }}
-                        className={`home-item-show__item-title ${index === activeIndex ? 'home-item-show__item-title--active' : ''}`}
-                      >
-                        {item.title}
-                      </span>
-                    </div>
-                    <p className="home-item-show__item-desc">{item.subtitle}</p>
+            <div className="home-item-show__content">
+              <div ref={listRef} className="home-item-show__list">
+                <div ref={axisRef} className="home-item-show__axis">
+                  <div className="home-item-show__axis-line" />
+                  <div
+                    className="home-item-show__axis-icon"
+                    style={{
+                      top: `${animatedAnchorTopPx}px`,
+                      transform: `translate(-50%, -${iconAnchorOffset}px)`,
+                    }}
+                  >
+                    <svg
+                      className="home-item-show__axis-icon-svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={BASE_ICON_WIDTH}
+                      height={iconHeight}
+                      viewBox={`0 0 ${BASE_ICON_WIDTH} ${iconHeight}`}
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path d={mainBodyPath} fill="black" />
+                      <path d={lowerStarPath} fill="#98EF00" />
+                      <path d={upperStarPath} fill="#98EF00" />
+                    </svg>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+                <div className="home-item-show__items">
+                  {items.map((item, index) => (
+                    <div
+                      key={item.id}
+                      className={`home-item-show__item ${index === activeIndex ? 'home-item-show__item--active' : ''}`}
+                    >
+                      <div className="home-item-show__item-text">
+                        <div className="home-item-show__item-title-row">
+                          <span
+                            ref={(el) => {
+                              titleRefs.current[index] = el;
+                            }}
+                            className={`home-item-show__item-title ${index === activeIndex ? 'home-item-show__item-title--active' : ''}`}
+                          >
+                            {item.title}
+                          </span>
+                        </div>
+                        <p className="home-item-show__item-desc">{item.subtitle}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-          <div className="home-item-show__image">
-            <div className="home-item-show__image-frame">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.img
-                  key={activeItem.id}
-                  src={activeItem.image}
-                  alt={activeItem.title}
-                  className="home-item-show__image-el"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </AnimatePresence>
+              <div className="home-item-show__image">
+                <div className="home-item-show__image-frame">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.img
+                      key={activeItem.id}
+                      src={activeItem.image}
+                      alt={activeItem.title}
+                      className="home-item-show__image-el"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </AnimatePresence>
+                </div>
+              </div>
             </div>
           </div>
         </div>

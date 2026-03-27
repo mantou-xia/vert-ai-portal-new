@@ -37,8 +37,8 @@ const CountUpMetric: React.FC<{
 const VISUAL_BACK_IMAGE = getAssetPath('/images/icons/fde/PdeAlgorithmExamples_back.png');
 const VISUAL_MAIN_IMAGE = getAssetPath('/images/icons/fde/image_PdeAlgorithmExamples.png');
 const VISUAL_PROMPT_BACK_IMAGE = getAssetPath('/images/icons/fde/propmt_back.png');
-const VISUAL_PROMPT_ICON = getAssetPath('/images/icons/icon1.png');
-const VISUAL_PROMPT_ACTION = getAssetPath('/images/icons/icon2.png');
+const VISUAL_PROMPT_ICON = getAssetPath('/images/icons/fde/prompt_icon.svg');
+const VISUAL_PROMPT_ACTION = getAssetPath('/images/icons/fde/prompt_action.png');
 
 const PdeAlgorithmExamples: React.FC = () => {
   const { t } = useTranslation();

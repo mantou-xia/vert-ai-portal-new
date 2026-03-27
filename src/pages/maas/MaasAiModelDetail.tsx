@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getAssetPath } from '../../utils/path';
 import './MaasAiModelDetail.css';
@@ -71,17 +71,32 @@ const MaasAiModelDetail: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  const isDesktopViewport = useCallback((): boolean => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth > 1024;
+  }, []);
+
+  const isSectionActiveInViewport = useCallback((): boolean => {
+    if (!isDesktopViewport()) return false;
+    const section = sectionRef.current;
+    if (!section) return false;
+
+    const rect = section.getBoundingClientRect();
+    const viewportCenterY = window.innerHeight / 2;
+    return rect.top <= viewportCenterY && rect.bottom >= viewportCenterY;
+  }, [isDesktopViewport]);
+
   useEffect(() => {
-    const viewport = viewportRef.current;
-    if (!viewport) {
-      return;
-    }
+    const handleWindowWheel = (event: WheelEvent) => {
+      if (isCenteredLayout || !isSectionActiveInViewport()) {
+        return;
+      }
 
-    if (isCenteredLayout) {
-      return;
-    }
+      const viewport = viewportRef.current;
+      if (!viewport) {
+        return;
+      }
 
-    const handleWheel = (event: WheelEvent) => {
       const maxScrollLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
       if (maxScrollLeft <= 0) {
         return;
@@ -100,12 +115,13 @@ const MaasAiModelDetail: React.FC = () => {
       }
 
       event.preventDefault();
+      event.stopPropagation();
       viewport.scrollLeft = Math.max(0, Math.min(viewport.scrollLeft + delta, maxScrollLeft));
     };
 
-    viewport.addEventListener('wheel', handleWheel, { passive: false });
-    return () => viewport.removeEventListener('wheel', handleWheel);
-  }, [isCenteredLayout]);
+    window.addEventListener('wheel', handleWindowWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWindowWheel);
+  }, [isCenteredLayout, isSectionActiveInViewport]);
 
   useEffect(() => {
     const viewport = viewportRef.current;

@@ -12,7 +12,7 @@ const PdeMainImg: React.FC = () => {
   return (
     <section
       className="pde-main-img"
-      style={{ backgroundImage: `url(${getAssetPath('/images/home/home-back-2.png')})` }}
+      style={{ backgroundImage: `url(${getAssetPath('/images/icons/fde/fde-back.png')})` }}
     >
       <div className="pde-main-img__overlay" />
       <div className="pde-main-img__content">

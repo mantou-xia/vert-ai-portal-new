@@ -4,6 +4,8 @@
 
 html {
   overflow-y: scroll;
+  background-color: #fff;
+  overscroll-behavior-y: none;
 }
 
 :root {
@@ -22,7 +24,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #fff;
+  overscroll-behavior-y: none;
 }
 
 html.dark body {
@@ -32,6 +35,15 @@ html.dark body {
 #root {
   width: 100%;
   min-height: 100vh;
+  background-color: #ffffff;
+}
+
+html.dark {
+  background-color: #0a0a0a;
+}
+
+html.dark #root {
+  background-color: #0a0a0a;
 }
 
 .container {

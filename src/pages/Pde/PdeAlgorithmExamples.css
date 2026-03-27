@@ -174,13 +174,16 @@
     object-fit: cover;
     object-position: center top;
     display: block;
+    border-radius: 12px;
+    border: 2px solid #000;
   }
 
   .pde-algorithm-examples__prompt {
     position: absolute;
     left: -165px;
     top: 302px;
-    width: 411px;
+    min-width: 411px;
+    width: fit-content;
     height: 72px;
     border-radius: 32px;
     display: flex;

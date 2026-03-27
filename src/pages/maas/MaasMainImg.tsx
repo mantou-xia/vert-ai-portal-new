@@ -36,7 +36,7 @@ type DecorTrailState = {
 };
 
 const DECOR_TRAIL_POINT_COUNT = 64;
-const DECOR_TRAIL_TAIL_RATIO = 0.26;
+const DECOR_TRAIL_TAIL_RATIO = 0.52; // 流光长度
 
 const decorTrailRoutes: Array<{ id: DecorTrailRouteId; speed: number; phase: number }> = [
   { id: 'top-left', speed: 96, phase: 0 },

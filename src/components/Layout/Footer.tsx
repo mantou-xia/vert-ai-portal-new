@@ -12,6 +12,11 @@ const Footer: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  const navigateWithScrollTop = (path: string) => {
+    navigate(path);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
+
   const footerNav = useMemo(
     () => [
       { label: t('layout.header.nav.home'), path: routes.home },
@@ -28,7 +33,7 @@ const Footer: React.FC = () => {
       <div className='app-footer__container'>
         <div className="app-footer__inner">
           <header className="app-footer__top">
-            <div className="app-footer__logo" onClick={() => navigate(routes.home)}>
+            <div className="app-footer__logo" onClick={() => navigateWithScrollTop(routes.home)}>
               <img src={getAssetPath('/images/logo/VERT_logo_\u767D\u8272.svg')} alt="" />
               <span>VERT</span>
             </div>
@@ -39,7 +44,7 @@ const Footer: React.FC = () => {
                   <button
                     type="button"
                     className="app-footer__nav-link"
-                    onClick={() => navigate(item.path)}
+                    onClick={() => navigateWithScrollTop(item.path)}
                   >
                     {item.label}
                   </button>

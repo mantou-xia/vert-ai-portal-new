@@ -125,12 +125,17 @@ const Header: React.FC = () => {
 
   const languageLabel = language === 'zh-CN' ? t('common.languageCurrentZh') : t('common.languageCurrentEn');
 
+  const navigateWithScrollTop = (path: string) => {
+    navigate(path);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
+
   return (
     <>
       <AntHeader className={`app-header ${isMiniHeader ? 'app-header--mini' : ''}`}>
         <div className="header-content">
           <div className={`header-normal ${isMiniHeader ? 'header-normal--hidden' : ''}`}>
-            <div className="header-brand" onClick={() => navigate(routes.home)}>
+            <div className="header-brand" onClick={() => navigateWithScrollTop(routes.home)}>
               <img className="header-brand-icon" src={getAssetPath(HEADER_LOGO_SRC)} alt="" aria-hidden="true" />
               <span className="header-brand-text">VERT</span>
             </div>
@@ -143,7 +148,7 @@ const Header: React.FC = () => {
                       key={item.key}
                       type="button"
                       className={`header-menu-item ${selectedMenuKey === item.key ? 'is-active' : ''}`}
-                      onClick={() => navigate(item.path)}
+                      onClick={() => navigateWithScrollTop(item.path)}
                     >
                       {item.label}
                     </button>
@@ -169,7 +174,7 @@ const Header: React.FC = () => {
 
           <div className={`header-mini ${isMiniHeader ? 'header-mini--visible' : ''}`}>
             <div className="header-mini-pill">
-              <div className="header-mini-logo" onClick={() => navigate(routes.home)}>
+              <div className="header-mini-logo" onClick={() => navigateWithScrollTop(routes.home)}>
                 <img className="header-mini-logo-icon" src={getAssetPath(HEADER_LOGO_SRC)} alt="" aria-hidden="true" />
                 <span className="header-mini-logo-text">VERT</span>
               </div>

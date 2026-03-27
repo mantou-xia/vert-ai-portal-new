@@ -1,10 +1,9 @@
-﻿.maas-ai-model-detail {
+.maas-ai-model-detail {
   position: relative;
-  padding: 0 0 86px;
   background: #fff;
   border-radius: 0 0 32px 32px;
   margin-top: 120px;
-  margin-bottom: 120px;
+  margin-bottom: 96px;
   .maas-ai-model-detail__inner {
     width: 100%;
     margin: 0 auto;
@@ -218,3 +217,4 @@
     }
   }
 }
+
