@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getAssetPath } from '../../utils/path';
 import './PdeAiPlugins.css';
 
 type TextSegment = {
@@ -24,8 +25,8 @@ type PluginCard = {
 };
 
 const PLUGIN_COVER_MAP: Record<string, string> = {
-  aeon: 'https://www.figma.com/api/mcp/asset/f8145b66-e387-453c-848b-efce1e0286ac',
-  yijiancai: 'https://www.figma.com/api/mcp/asset/b532bfd8-d880-491a-80eb-2c245a3211e6',
+  aeon: getAssetPath('/images/home/image_永旺.png'),
+  yijiancai: getAssetPath('/images/home/image_优软.png'),
 };
 
 const renderSegments = (segments: TextSegment[]) =>

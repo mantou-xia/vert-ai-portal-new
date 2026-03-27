@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { getAssetPath } from '../../utils/path';
 import './PdeStudiesDetail.css';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -21,9 +22,9 @@ type DetailCard = {
 };
 
 const DETAIL_CARD_IMAGES: Record<string, string> = {
-  service: '../../../public/images/icons/fde/image_1.png',
-  legal: '../../../public/images/icons/fde/image_2.png',
-  audit: '../../../public/images/icons/fde/image_3.png',
+  service: getAssetPath('/images/icons/fde/image_1.png'),
+  legal: getAssetPath('/images/icons/fde/image_2.png'),
+  audit: getAssetPath('/images/icons/fde/image_3.png'),
 };
 
 function parseHighlight(text: string): React.ReactNode {

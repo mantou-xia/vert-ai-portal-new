@@ -376,15 +376,15 @@ html.dark .home-page {
 }
 
 .core-card-media--models {
-  background-image: url('/images/home/chatgpt.png');
+  background-image: var(--home-bg-chatgpt);
 }
 
 .core-card-media--dev {
-  background-image: url('/images/home/keyboard.png');
+  background-image: var(--home-bg-keyboard);
 }
 
 .core-card-media--performance {
-  background-image: url('/images/home/optimization.png');
+  background-image: var(--home-bg-optimization);
 }
 
 .core-carousel-nav {

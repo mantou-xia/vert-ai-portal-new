@@ -5,10 +5,20 @@ import HomeItemShow from './home/HomeItemShow';
 import HomeSubjectKeyword from './home/HomeSubjectKeyword';
 import HomeData from './home/HomeData';
 import HomeCompanyDetail from './home/HomeCompanyDetail';
+import { getAssetPath } from '../utils/path';
 
 const HomePage: React.FC = () => {
   return (
-    <div className="home-page">
+    <div
+      className="home-page"
+      style={
+        {
+          '--home-bg-chatgpt': `url(${getAssetPath('/images/home/chatgpt.png')})`,
+          '--home-bg-keyboard': `url(${getAssetPath('/images/home/keyboard.png')})`,
+          '--home-bg-optimization': `url(${getAssetPath('/images/home/optimization.png')})`,
+        } as React.CSSProperties
+      }
+    >
       <section className="hero-section">
         <HomeVideo />
       </section>

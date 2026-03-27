@@ -7,6 +7,7 @@ import {
   useMotionValueEvent,
 } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { getAssetPath } from '../../utils/path';
 import './HomeItemShow.css';
 
 const BASE_ICON_WIDTH = 26;
@@ -50,31 +51,31 @@ const HomeItemShow: React.FC = () => {
         id: 'fde',
         title: t('home.itemShow.fdeTitle'),
         subtitle: t('home.itemShow.fdeSubtitle'),
-        image: '/images/home/image1.png',
+        image: getAssetPath('/images/home/image1.png'),
       },
       {
         id: 'maas',
         title: t('home.itemShow.maasTitle'),
         subtitle: t('home.itemShow.maasSubtitle'),
-        image: '/images/home/image2.png',
+        image: getAssetPath('/images/home/image2.png'),
       },
       {
         id: 'flow',
         title: t('home.itemShow.flowTitle'),
         subtitle: t('home.itemShow.flowSubtitle'),
-        image: '/images/home/image3.png',
+        image: getAssetPath('/images/home/image3.png'),
       },
       {
         id: 'insight',
         title: t('home.itemShow.insightTitle'),
         subtitle: t('home.itemShow.insightSubtitle'),
-        image: '/images/home/image4.png',
+        image: getAssetPath('/images/home/image4.png'),
       },
       {
         id: 'core',
         title: t('home.itemShow.coreTitle'),
         subtitle: t('home.itemShow.coreSubtitle'),
-        image: '/images/home/image5.png',
+        image: getAssetPath('/images/home/image5.png'),
       },
     ],
     [t]

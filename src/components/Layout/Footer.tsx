@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
         <div className="app-footer__inner">
           <header className="app-footer__top">
             <div className="app-footer__logo" onClick={() => navigate(routes.home)}>
-              <img src={getAssetPath('/public/images/logo/VERT_logo_白色.svg')} alt="" />
+              <img src={getAssetPath('/images/logo/VERT_logo_\u767D\u8272.svg')} alt="" />
               <span>VERT</span>
             </div>
             <nav className="app-footer__nav">
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
                 <div className="app-footer__qr-wrap">
                   <img
                     className="app-footer__qr-img"
-                    src={getAssetPath('/images/icons/home/微信号二维码.png')}
+                    src={getAssetPath('/images/icons/home/\u5FAE\u4FE1\u53F7\u4E8C\u7EF4\u7801.png')}
                     alt={t('layout.footer.qrLabel')}
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
