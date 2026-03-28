@@ -65,8 +65,6 @@
 
   .pde-studies-detail__card:hover,
   .pde-studies-detail__card:focus-within {
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-
     .pde-studies-detail__expand {
       opacity: 1;
       transform: translateY(0);
