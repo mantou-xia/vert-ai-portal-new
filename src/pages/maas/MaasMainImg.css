@@ -229,10 +229,10 @@
     height: 11.429px;
   }
 
-  .maas-main-img__input-btn:hover {
+  /* .maas-main-img__input-btn:hover {
     transform: translateY(-1px) scale(1.02);
-    /* box-shadow: 0 6px 20px rgba(174, 255, 33, 0.48); */
-  }
+    box-shadow: 0 6px 20px rgba(174, 255, 33, 0.48);
+  } */
 
   .maas-main-img__input-btn:active {
     transform: scale(0.96);

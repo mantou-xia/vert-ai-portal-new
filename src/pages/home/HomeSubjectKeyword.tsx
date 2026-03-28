@@ -38,6 +38,7 @@ const HomeSubjectKeyword: React.FC<HomeSubjectKeywordProps> = ({ className }) =>
   const { t } = useTranslation();
   const trackRef = useRef<HTMLDivElement>(null);
   const wheelAccumulatorRef = useRef(0);
+  const isManualWheelControlRef = useRef(false);
   const targetProgress = useMotionValue(0);
   const smoothedProgress = useSpring(targetProgress, {
     stiffness: 170,
@@ -62,6 +63,7 @@ const HomeSubjectKeyword: React.FC<HomeSubjectKeywordProps> = ({ className }) =>
     const handleWheel = (event: WheelEvent) => {
       if (!isTrackStickyActive()) {
         wheelAccumulatorRef.current = 0;
+        isManualWheelControlRef.current = false;
         return;
       }
 
@@ -85,6 +87,7 @@ const HomeSubjectKeyword: React.FC<HomeSubjectKeywordProps> = ({ className }) =>
       wheelAccumulatorRef.current = 0;
       const next = clamp(current + accumulatedDelta * PROGRESS_PER_PIXEL, 0, 1);
       if (next === current) return;
+      isManualWheelControlRef.current = true;
       targetProgress.set(next);
     };
 
@@ -94,12 +97,18 @@ const HomeSubjectKeyword: React.FC<HomeSubjectKeywordProps> = ({ className }) =>
 
       const rect = track.getBoundingClientRect();
       if (rect.top > 0) {
+        isManualWheelControlRef.current = false;
         targetProgress.set(0);
         return;
       }
 
       if (rect.bottom < window.innerHeight) {
+        isManualWheelControlRef.current = false;
         targetProgress.set(1);
+        return;
+      }
+
+      if (isManualWheelControlRef.current) {
         return;
       }
 

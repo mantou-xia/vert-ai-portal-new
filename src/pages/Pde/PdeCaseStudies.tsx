@@ -26,27 +26,6 @@ const PdeCaseStudies: React.FC = () => {
 
               <p className="pde-case-studies__intro">{t('fde.caseStudies.intro')}</p>
 
-              <ul className="pde-case-studies__list">
-                <li>
-                  <span className="pde-case-studies__num" aria-hidden>
-                    {'\u2460'}
-                  </span>
-                  <span>{t('fde.caseStudies.item1')}</span>
-                </li>
-                <li>
-                  <span className="pde-case-studies__num" aria-hidden>
-                    {'\u2461'}
-                  </span>
-                  <span>{t('fde.caseStudies.item2')}</span>
-                </li>
-                <li>
-                  <span className="pde-case-studies__num" aria-hidden>
-                    {'\u2462'}
-                  </span>
-                  <span>{t('fde.caseStudies.item3')}</span>
-                </li>
-              </ul>
-
               <PartnerCtaButton
                 className="pde-case-studies__btn"
                 onClick={() => setIsMessageOpen(true)}

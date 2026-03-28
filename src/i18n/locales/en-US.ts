@@ -206,7 +206,8 @@ const enUS = {
       title: 'Enterprise AI Digital Employee Case Study',
       company: 'Yingtang Zhikong',
       industry: 'Manufacturing and Distribution',
-      intro: 'VERT.AI enterprise digital employees are not simple labor replacement, but a closed-loop value system built through heterogeneous data integration, model deployment, and industry algorithm customization.',
+      intro:
+        'After multiple rounds of business-scenario evaluation and outcome validation, the intelligent service system for electronic components distribution built on VERT AI agents achieved the expected business results and was successfully launched into production. This shift from fully manual end-to-end operations to an AI-automated process with human review and oversight not only substantially improved the intelligence level of distribution operations, but also significantly increased order processing efficiency and customer service experience.',
       item1: 'Efficiency upgrade: core business efficiency improved by 50%+, with some scenarios exceeding 100%.',
       item2: 'Cost upgrade: all categories reduced by 30%-80%, reducing compliance and decision risk.',
       item3: 'Decision upgrade: from experience-driven to data-driven, from post-event review to real-time monitoring.',
