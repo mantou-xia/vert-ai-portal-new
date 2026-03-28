@@ -48,7 +48,7 @@
 .cta-button:hover {
   background: #c4ff50;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(174, 255, 33, 0.4);
+  /* box-shadow: 0 8px 24px rgba(174, 255, 33, 0.4); */
 }
 
 .cta-button:active {

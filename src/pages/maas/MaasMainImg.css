@@ -176,7 +176,6 @@
     height: 32px;
     flex-shrink: 0;
     border-radius: 50%;
-    border: 1px solid rgba(154, 255, 70, 0.28);
     margin-right: 10px;
   }
 
@@ -232,7 +231,7 @@
 
   .maas-main-img__input-btn:hover {
     transform: translateY(-1px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(174, 255, 33, 0.48);
+    /* box-shadow: 0 6px 20px rgba(174, 255, 33, 0.48); */
   }
 
   .maas-main-img__input-btn:active {
