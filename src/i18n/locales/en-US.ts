@@ -317,7 +317,7 @@ const enUS = {
       metric1: 'Business Nodes',
       metric2: 'Agent Application Scenarios',
       metric3: 'Labor Cost Reduction',
-      prompt: 'Generate the January revenue report for me',
+      prompt: 'Generate the January revenue report',
     },
   },
   maas: {

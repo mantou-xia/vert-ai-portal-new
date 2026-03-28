@@ -41,8 +41,9 @@ const VISUAL_PROMPT_ICON = getAssetPath('/images/icons/fde/prompt_icon.svg');
 const VISUAL_PROMPT_ACTION = getAssetPath('/images/icons/fde/prompt_action.png');
 
 const PdeAlgorithmExamples: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isMessageOpen, setIsMessageOpen] = useState(false);
+  const isEnglish = i18n.language === 'en-US';
   const [metricsInView, setMetricsInView] = useState(false);
   const metricsRef = useRef<HTMLUListElement>(null);
 
@@ -78,7 +79,11 @@ const PdeAlgorithmExamples: React.FC = () => {
               {t('fde.algorithm.intro')}
             </p>
 
-            <ul ref={metricsRef} className="pde-algorithm-examples__metrics" aria-label={t('fde.algorithm.metricsAria')}>
+            <ul
+              ref={metricsRef}
+              className={`pde-algorithm-examples__metrics ${isEnglish ? 'pde-algorithm-examples__metrics--en' : ''}`.trim()}
+              aria-label={t('fde.algorithm.metricsAria')}
+            >
               <li className="pde-algorithm-examples__metric-item">
                 <span className="pde-algorithm-examples__metric-label">{t('fde.algorithm.metric1')}</span>
                 <span className="pde-algorithm-examples__metric-value-wrap">
