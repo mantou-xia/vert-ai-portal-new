@@ -7,7 +7,7 @@ import CTAButton from '../../components/common/CTAButton';
 import './HomeVideo.css';
 
 const VIDEO_SRC = getAssetPath('/videos/home/home_video.mp4');
-// const POSTER_SRC = getAssetPath('/images/home/video-poster.png?v=20260326');
+const POSTER_SRC = getAssetPath('/images/home/video-poster-first-frame.png');
 const DESKTOP_TITLE_VIEWPORT_TOP = 170;
 const MOBILE_TITLE_VIEWPORT_TOP = 120;
 const TITLE_FADE_TRIGGER_AFTER_GITHUB_TOP_PX = 20;
@@ -197,7 +197,7 @@ const HomeVideo: React.FC = () => {
             ref={videoRef}
             className="home-video-element"
             src={VIDEO_SRC}
-            // poster={POSTER_SRC}
+            poster={POSTER_SRC}
             muted
             playsInline
             preload="auto"
